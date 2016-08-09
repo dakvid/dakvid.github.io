@@ -1,0 +1,32 @@
+name: "blog"
+navbar:
+  title: "David's AdVentures In Data"
+  right:
+    - text: "Home"
+      icon: fa-home
+      href: index.html
+    - text: "Posts"
+      icon: fa-newspaper-o
+      menu:
+        - text: "Birthday Eve"
+          href: 2016-08-birthday-eve.html
+    - text: "About"
+      icon: fa-question-circle
+      menu:
+        - text: "About Site"
+          icon: fa-question
+          href: about.html
+        - text: "Twitter"
+          icon: fa-twitter
+          href: https://twitter.com/dakvid
+        - text: "LinkedIn"
+          icon: fa-linkedin
+          href: https://nz.linkedin.com/in/dfriggens
+output_dir: '.'
+output:
+  html_document:
+    self_contained: false
+    lib_dir: libs
+    theme: flatly
+    mathjax: null
+    highlight: textmate

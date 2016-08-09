@@ -1,0 +1,29 @@
+---
+title: "Recent Posts"
+---
+
+```{r setup, include=FALSE}
+library(htmltools)
+blurb_post <- function(latest = FALSE, title = "Untitled", link = "#", abstract= "Loren ipsum...") {
+  if (latest) {
+    div(class = "jumbotron",
+        h1(title),
+        p(abstract),
+        p(a(class = "btn btn-primary btn-lg",
+            href = link,
+            "Read more...")))
+  } else {
+  div(class = paste0("panel panel-", ifelse(latest, "info", "primary")),
+      div(class = "panel-heading",
+          h3(class = "panel-title",
+             title)),
+      div(class = "panel-body",
+          abstract,
+          a(href = link, "Read more...")))
+}}
+```
+
+```{r blurbs, echo=FALSE}
+blurb_post(TRUE, "Birthday Eve", "2016-08-birthday-eve.html",
+           "Some time ago I had a thought - if you had a daughter and she was born on Christmas Eve or New Year's Eve, would you be tempted to name her Eve?")
+```

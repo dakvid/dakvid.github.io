@@ -1,0 +1,27 @@
+---
+title: "About"
+---
+
+### Disclaimer
+
+Everything here is entirely personal - any views are nothing to do with any previous, current, or future employers.
+
+I'd have loved to use [Peter Gutmann](https://www.cs.auckland.ac.nz/~pgut001/)'s, but it's probably safer to be straight.
+
+### About Me
+
+My Twitter bio says "data analyst, computer scientist, 2/7 stay-at-home father of 11 (binary)", which is nice and
+succinct. I guess I should flesh this out more, but some other time.
+
+This is intended to be a place for me to store and publish the results of my spare time playing. 
+And to encourage me to properly finish things I start. Between work and kids I don't have much 
+spare time these days, but I'm trying. Feel free to ping me if this has been quiet for too long. :-)
+
+### Contact
+
+Preferred comments/contact is via [Twitter](https://twitter.com/dakvid).
+Alternatively, you can reach me by changing a dot to an @ in the domain.
+
+### Colophon
+
+Created with [RMarkdown](http://rmarkdown.rstudio.com/rmarkdown_websites.html) and hosted on [GitHub Pages](https://pages.github.com).

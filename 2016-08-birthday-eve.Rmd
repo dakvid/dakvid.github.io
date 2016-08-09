@@ -1,0 +1,52 @@
+---
+title: "Birthday Eve"
+date: "9 August 2016"
+---
+
+Some time ago I had a thought --- if you had a daughter and she was born on Christmas Eve or New Year's Eve, would you be tempted to name her Eve?
+
+At the time, I had access to a database with a large number of names and birthdays,^[I won't say
+which one, but there are at least five to choose from.]
+so I thought I'd check. I ran a query similar to the following:
+
+```{sql, eval=FALSE}
+select count(*)
+
+from people
+
+where
+  people.first_name = 'Eve'
+  and
+  month(people.date_of_birth) = 'Dec'
+  and
+  day(people.date_of_birth) in (24, 31)
+```
+
+And the result?
+
+Zero.
+
+I was mildly disappointed. I didn't look into it any further (and in hindsight I could have also
+checked similar names such as Eva or Evelyn), but it seems that even though there are a few
+people who are willing to be creative with their child's name^[[Or abusive](http://mentalfloss.com/article/68768/22-outlawed-baby-names-around-world)!], the name Eve is not very popular^[At least recently - it
+didn't make [the top 100 names](https://www.dia.govt.nz/diawebsite.nsf/wpg_URL/Services-Births-Deaths-and-Marriages-Most-Popular-Male-and-Female-First-Names?OpenDocument) in the past 5 years.]
+and there aren't that many opportunities. Even if you took the whole of New Zealand:
+
+```{r eves}
+60000 /   # babies born each year
+  365 *   # assuming even number each day
+  2 /     # Xmas and NY Eve
+  2       # only females
+```
+
+I would like to believe that in a larger population such as the UK or USA it has happened at least
+several times, but the only one I've been able to find is the singer
+[Evelyn Knight](https://en.wikipedia.org/wiki/Evelyn_Knight_(singer)) who was born on New Year's Eve 1917.
+
+Googling, I found people like me amused at the hypothetical, and one person who confessed to nearly naming
+their daughter Eve because she was _conceived_ on New Year's Eve.
+Strangely, I also came across a family with
+[three kids born on Christmas Eve](http://www.huffingtonpost.co.uk/2014/12/26/mum-has-three-children-all-born-on-christmas-eve_n_7318368.html)
+and another with
+[three kids born on New Year's Eve](http://www.thelocal.es/20160112/the-spanish-woman-who-always-gave-birth-on-new-years-eve)!
+
