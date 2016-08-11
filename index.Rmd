@@ -24,6 +24,11 @@ blurb_post <- function(latest = FALSE, title = "Untitled", link = "#", abstract=
 ```
 
 ```{r blurbs, echo=FALSE}
-blurb_post(TRUE, "Birthday Eve", "2016-08-birthday-eve.html",
+blurb_post(TRUE, "Unfamiliar Maps", "2016-08-unfamiliar-maps.html",
+           "At least 3 people have booked flights to Sydney, Nova Scotia (population 30,000) intending to holiday in
+New South Wales (two orders of magnitude larger). There are a number of cases like this of towns and cities
+with larger and more well known doppelgangers. 
+I thought it would be interesting to have a map that labelled the familiar names in the unfamiliar locations.")
+blurb_post(FALSE, "Birthday Eve", "2016-08-birthday-eve.html",
            "Some time ago I had a thought - if you had a daughter and she was born on Christmas Eve or New Year's Eve, would you be tempted to name her Eve?")
 ```

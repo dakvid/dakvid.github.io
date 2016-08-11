@@ -8,6 +8,8 @@ navbar:
     - text: "Posts"
       icon: fa-newspaper-o
       menu:
+        - text: "Unfamiliar Maps"
+          href: 2016-08-unfamiliar-maps.html
         - text: "Birthday Eve"
           href: 2016-08-birthday-eve.html
     - text: "About"
