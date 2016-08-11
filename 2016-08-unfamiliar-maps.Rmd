@@ -1,0 +1,49 @@
+---
+title: "Unfamiliar Maps"
+date: "12 August 2016"
+output:
+  html_document:
+    code_folding: hide
+---
+
+At least 3 people have booked flights to Sydney, Nova Scotia (population 30,000) intending to holiday in
+New South Wales (two orders of magnitude larger). There are a number of cases like this of towns and cities
+with larger and more well known doppelgangers. 
+I thought it would be interesting to have a map that labelled the familiar names in the unfamiliar locations.
+
+This is fairly easy to do in R given the data that comes with the ```maps``` package. But bear in mind that the
+data is neither 100% accurate nor complete.
+Also, I've made a semi-manual selection of what to include, based
+on my interpretations of what is interesting and well known. 
+Feel free to make your own version, based on your knowledge and familiarity of the globe.
+
+```{r setup, warning=FALSE, message=FALSE}
+library(maps)
+library(leaflet)
+library(dplyr)
+data("world.cities")
+
+# For pairs, just take the smaller of the two.
+doubles = c("Adelaide", "Barcelona", "Bath", "Belfast", "Birmingham", "Bombay", "Boston", "Bradford", "Brighton", "Bristol", "Brussels", "Christchurch", "Colchester", "Colombo", "Corpus Christi", "Dallas", "Delhi", "Doha", "Dresden", "Dublin", "Dundee", "Essen", "Frankfurt", "Fresno", "Groningen", "Hanover", "Houston", "Jacksonville", "Kabul", "Los Angeles", "Madrid", "Malaga", "Manchester", "Melbourne", "Milan", "Palermo", "Paris", "Reading", "Saint Petersburg", "Sendai", "Sevilla", "Southampton", "Sydney", "Tripoli", "Utrecht", "Vancouver")
+doppel <- 
+  data_frame(name = doubles) %>% 
+  inner_join(world.cities) %>% 
+  group_by(name) %>% 
+  summarise(pop = min(pop)) %>% 
+  inner_join(world.cities)
+
+multiples = c("Alexandria", "Berlin", "Buenos Aires", "Cambridge", "El Paso", "Kingston", "Las Vegas", "Lima", "Lincoln", "Liverpool", "London", "Oxford", "Perth", "Plymouth", "San Diego", "San Francisco", "Bethlehem","Charleston", "Portsmouth", "Wellington")
+
+```
+
+We can add labels to the map using the latest version of the ```leaflet``` package.
+I had to install from Github - the CRAN version (1.0.1) doesn't support this.
+
+```{r map, warning=FALSE, message=FALSE}
+leaflet(doppel) %>% 
+  #addTiles() %>% 
+  addProviderTiles("Acetate.terrain") %>% 
+  addMarkers(label = ~name,
+             labelOptions = labelOptions(noHide = T))
+```
+
