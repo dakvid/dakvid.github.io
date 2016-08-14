@@ -1,6 +1,6 @@
 ---
 title: "Unfamiliar Maps"
-date: "12 August 2016"
+date: "14 August 2016"
 output:
   html_document:
     code_folding: hide
@@ -11,9 +11,9 @@ New South Wales (two orders of magnitude larger). There are a number of cases li
 with larger and more well known doppelgangers. 
 I thought it would be interesting to have a map that labelled the familiar names in the unfamiliar locations.
 
-This is fairly easy to do in R given the data that comes with the ```maps``` package. But bear in mind that the
+This is fairly easy to do in R, given the data that comes with the ```maps``` package. But bear in mind that the
 data is neither 100% accurate nor complete.
-Also, I've made a semi-manual selection of what to include, based
+Also, it was a mostly manual selection of what to include, based
 on my interpretations of what is interesting and well known. 
 Feel free to make your own version, based on your knowledge and familiarity of the globe.
 
@@ -21,29 +21,113 @@ Feel free to make your own version, based on your knowledge and familiarity of t
 library(maps)
 library(leaflet)
 library(dplyr)
+library(purrr)
 data("world.cities")
 
-# For pairs, just take the smaller of the two.
-doubles = c("Adelaide", "Barcelona", "Bath", "Belfast", "Birmingham", "Bombay", "Boston", "Bradford", "Brighton", "Bristol", "Brussels", "Christchurch", "Colchester", "Colombo", "Corpus Christi", "Dallas", "Delhi", "Doha", "Dresden", "Dublin", "Dundee", "Essen", "Frankfurt", "Fresno", "Groningen", "Hanover", "Houston", "Jacksonville", "Kabul", "Los Angeles", "Madrid", "Malaga", "Manchester", "Melbourne", "Milan", "Palermo", "Paris", "Reading", "Saint Petersburg", "Sendai", "Sevilla", "Southampton", "Sydney", "Tripoli", "Utrecht", "Vancouver")
-doppel <- 
-  data_frame(name = doubles) %>% 
+# Manually prepared file giving name and region, and when ordered by population,
+# how many of the largest are "familiar" and how many of the smallest are "unfamiliar"
+my_cities <- readr::read_csv("data/familiar_cities.csv")
+
+familiar <- 
+  my_cities %>%
   inner_join(world.cities) %>% 
   group_by(name) %>% 
-  summarise(pop = min(pop)) %>% 
-  inner_join(world.cities)
+  mutate(rank_desc = rank(-pop)) %>% 
+  filter(rank_desc <= num_familiar) %>% 
+  ungroup() %>% 
+  select(-num_familiar, -num_unfamiliar, -rank_desc)
 
-multiples = c("Alexandria", "Berlin", "Buenos Aires", "Cambridge", "El Paso", "Kingston", "Las Vegas", "Lima", "Lincoln", "Liverpool", "London", "Oxford", "Perth", "Plymouth", "San Diego", "San Francisco", "Bethlehem","Charleston", "Portsmouth", "Wellington")
-
+unfamiliar <- 
+  my_cities %>%
+  inner_join(world.cities) %>% 
+  group_by(name) %>% 
+  mutate(rank_asc = rank(pop)) %>% 
+  filter(rank_asc <= num_unfamiliar) %>% 
+  ungroup() %>% 
+  select(-num_familiar, -num_unfamiliar, -rank_asc)
 ```
 
 We can add labels to the map using the latest version of the ```leaflet``` package.
 I had to install from Github - the CRAN version (1.0.1) doesn't support this.
+The cities are grouped by the continental region of the (main) familiar city.
 
 ```{r map, warning=FALSE, message=FALSE}
-leaflet(doppel) %>% 
-  #addTiles() %>% 
-  addProviderTiles("Acetate.terrain") %>% 
-  addMarkers(label = ~name,
-             labelOptions = labelOptions(noHide = T))
+leaflet(width = "100%") %>% 
+  addProviderTiles("Esri.WorldGrayCanvas") %>% 
+  addCircleMarkers(
+    data = familiar %>% filter(region == "Americas"),
+    group = "Americas - Familiar",
+    radius = 6,
+    stroke = FALSE,
+    fillOpacity = 0.5,
+    color = "red",
+    label = ~name,
+    labelOptions = labelOptions(noHide = T)) %>% 
+  addCircleMarkers(
+    data = unfamiliar %>% filter(region == "Americas"),
+    group = "Americas - Unfamiliar",
+    radius = 6,
+    stroke = FALSE,
+    fillOpacity = 0.5,
+    color = "navy",
+    options = markerOptions(riseOnHover = TRUE),
+    label = ~name,
+    labelOptions = labelOptions(noHide = T)) %>% 
+  addCircleMarkers(
+    data = familiar %>% filter(region == "Asia-Pacific"),
+    group = "Asia/Pacific - Familiar",
+    radius = 6,
+    stroke = FALSE,
+    fillOpacity = 0.5,
+    color = "red",
+    label = ~name,
+    labelOptions = labelOptions(noHide = T)) %>% 
+  addCircleMarkers(
+    data = unfamiliar %>% filter(region == "Asia-Pacific"),
+    group = "Asia/Pacific - Unfamiliar",
+    radius = 6,
+    stroke = FALSE,
+    fillOpacity = 0.5,
+    color = "navy",
+    options = markerOptions(riseOnHover = TRUE),
+    label = ~name,
+    labelOptions = labelOptions(noHide = T)) %>% 
+  addCircleMarkers(
+    data = familiar %>% filter(region == "Europe-Africa"),
+    group = "Europe/Africa - Familiar",
+    radius = 6,
+    stroke = FALSE,
+    fillOpacity = 0.5,
+    color = "red",
+    label = ~name,
+    labelOptions = labelOptions(noHide = T)) %>% 
+  addCircleMarkers(
+    data = unfamiliar %>% filter(region == "Europe-Africa"),
+    group = "Europe/Africa - Unfamiliar",
+    radius = 6,
+    stroke = FALSE,
+    fillOpacity = 0.5,
+    color = "navy",
+    options = markerOptions(riseOnHover = TRUE),
+    label = ~name,
+    labelOptions = labelOptions(noHide = T)) %>% 
+  addLayersControl(
+    overlayGroups = c("Americas - Familiar", "Americas - Unfamiliar",
+                      "Asia/Pacific - Familiar", "Asia/Pacific - Unfamiliar",
+                      "Europe/Africa - Familiar", "Europe/Africa - Unfamiliar"),
+    options = layersControlOptions(collapsed = FALSE)) %>% 
+  hideGroup("Americas - Familiar") %>%
+  hideGroup("Asia/Pacific - Familiar") %>% 
+  hideGroup("Europe/Africa - Familiar")
 ```
 
+#### Notes
+
+* Click to expand the code in the post (if it wasn't obvious).
+* I left out Alexandria, Buenos Aires and San Francisco as there were so many alternatives.
+* The labels on the map are a bit cluttered in places. Perhaps with more thought they could be handled better.
+* Popups with more information (population etc) would be a nice improvement, but given that the data is outdated and unreliable I opted not to.
+* The manually curated CSV file is structured as follows:
+```{r headcsv}
+head(my_cities)
+```

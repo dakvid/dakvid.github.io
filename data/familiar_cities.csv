@@ -1,0 +1,62 @@
+name,num_familiar,num_unfamiliar,region
+Adelaide,1.0,1.0,Asia-Pacific
+Barcelona,1.0,1.0,Europe-Africa
+Bath,1.0,1.0,Europe-Africa
+Belfast,1.0,1.0,Europe-Africa
+Berlin,1.0,2.0,Europe-Africa
+Birmingham,1.0,1.0,Europe-Africa
+Bombay,1.0,1.0,Asia-Pacific
+Boston,1.0,1.0,Americas
+Bradford,1.0,1.0,Europe-Africa
+Brighton,1.0,1.0,Europe-Africa
+Bristol,1.0,1.0,Europe-Africa
+Brussels,1.0,1.0,Europe-Africa
+Cambridge,2.0,2.0,Europe-Africa
+Charleston,1.0,1.0,Americas
+Christchurch,1.0,1.0,Asia-Pacific
+Colchester,1.0,1.0,Europe-Africa
+Colombo,1.0,1.0,Asia-Pacific
+Corpus Christi,1.0,1.0,Americas
+Dallas,1.0,1.0,Americas
+Delhi,1.0,1.0,Asia-Pacific
+Doha,1.0,1.0,Asia-Pacific
+Dresden,1.0,1.0,Europe-Africa
+Dublin,1.0,1.0,Europe-Africa
+Dundee,1.0,1.0,Europe-Africa
+El Paso,1.0,2.0,Americas
+Essen,1.0,1.0,Europe-Africa
+Frankfurt,1.0,1.0,Europe-Africa
+Fresno,1.0,1.0,Americas
+Groningen,1.0,1.0,Europe-Africa
+Hanover,1.0,1.0,Europe-Africa
+Houston,1.0,1.0,Americas
+Jacksonville,1.0,1.0,Americas
+Kabul,1.0,1.0,Asia-Pacific
+Kingston,1.0,2.0,Americas
+Las Vegas,1.0,1.0,Americas
+Lima,1.0,2.0,Americas
+Lincoln,2.0,3.0,Europe-Africa
+Liverpool,1.0,1.0,Europe-Africa
+London,1.0,2.0,Europe-Africa
+Los Angeles,1.0,1.0,Americas
+Madrid,1.0,1.0,Europe-Africa
+Malaga,1.0,1.0,Europe-Africa
+Manchester,1.0,1.0,Europe-Africa
+Melbourne,1.0,1.0,Asia-Pacific
+Milan,1.0,1.0,Europe-Africa
+Oxford,1.0,2.0,Europe-Africa
+Palermo,1.0,1.0,Europe-Africa
+Paris,1.0,1.0,Europe-Africa
+Perth,1.0,2.0,Asia-Pacific
+Portsmouth,1.0,2.0,Europe-Africa
+Reading,1.0,1.0,Europe-Africa
+Saint Petersburg,1.0,1.0,Europe-Africa
+San Diego,1.0,4.0,Americas
+Sendai,1.0,1.0,Asia-Pacific
+Sevilla,1.0,1.0,Europe-Africa
+Southampton,1.0,1.0,Europe-Africa
+Sydney,1.0,1.0,Asia-Pacific
+Tripoli,1.0,1.0,Europe-Africa
+Utrecht,1.0,1.0,Europe-Africa
+Vancouver,1.0,1.0,Americas
+Wellington,1.0,4.0,Asia-Pacific

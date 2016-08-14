@@ -4,11 +4,13 @@ title: "Recent Posts"
 
 ```{r setup, include=FALSE}
 library(htmltools)
-blurb_post <- function(latest = FALSE, title = "Untitled", link = "#", abstract= "Loren ipsum...") {
+blurb_post <- function(latest = FALSE, title = "Untitled", pub_date = Sys.Date(), link = "#", abstract= "Loren ipsum...") {
   if (latest) {
     div(class = "jumbotron",
-        h1(title),
-        p(abstract),
+        h1(title,
+           tag("small", pub_date)),
+        p(class = "lead",
+          abstract),
         p(a(class = "btn btn-primary btn-lg",
             href = link,
             "Read more...")))
@@ -19,16 +21,18 @@ blurb_post <- function(latest = FALSE, title = "Untitled", link = "#", abstract=
              title)),
       div(class = "panel-body",
           abstract,
-          a(href = link, "Read more...")))
+          a(href = link, "Read more...")),
+      div(class = "panel-footer",
+          pub_date))
 }}
 ```
 
 ```{r blurbs, echo=FALSE}
-blurb_post(TRUE, "Unfamiliar Maps", "2016-08-unfamiliar-maps.html",
+blurb_post(TRUE, "Unfamiliar Maps", "14 August 2016", "2016-08-unfamiliar-maps.html",
            "At least 3 people have booked flights to Sydney, Nova Scotia (population 30,000) intending to holiday in
 New South Wales (two orders of magnitude larger). There are a number of cases like this of towns and cities
 with larger and more well known doppelgangers. 
 I thought it would be interesting to have a map that labelled the familiar names in the unfamiliar locations.")
-blurb_post(FALSE, "Birthday Eve", "2016-08-birthday-eve.html",
+blurb_post(FALSE, "Birthday Eve", "9 August 2016", "2016-08-birthday-eve.html",
            "Some time ago I had a thought - if you had a daughter and she was born on Christmas Eve or New Year's Eve, would you be tempted to name her Eve?")
 ```
