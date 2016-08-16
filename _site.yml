@@ -24,6 +24,8 @@ navbar:
         - text: "LinkedIn"
           icon: fa-linkedin
           href: https://nz.linkedin.com/in/dfriggens
+    - icon: fa-rss
+      href: feed.xml
 output_dir: '.'
 output:
   html_document:
