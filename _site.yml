@@ -29,6 +29,8 @@ output:
   html_document:
     self_contained: false
     lib_dir: libs
+    includes:
+      in_header: _meta.html
     theme: flatly
     mathjax: null
     highlight: textmate
