@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">
+	<channel>
+		<title>David&#39;s AdVentures In Data</title>
+		<description>Various attempts to play with data.</description>		
+		<link>http://david.frigge.nz</link>
+		<atom:link href="http://david.frigge.nz/feed.xml" rel="self" type="application/rss+xml" />
+		
+		  <item>
+		    <title>Unfamiliar Maps</title>
+		    <description>At least 3 people have booked flights to Sydney, Nova Scotia (population 30,000) intending to holiday in New South Wales (two orders of magnitude larger). There are a number of cases like this of towns and cities with larger and more well known doppelgangers. I thought it would be interesting to have a map that labelled the familiar names in the unfamiliar locations.</description>
+		    <pubDate>Sun, 14 Aug 2016 18:15:00 +1200</pubDate>
+		    <link>http://david.frigge.nz/2016-08-unfamiliar-maps.html</link>
+		    <guid isPermaLink="true">http://david.frigge.nz/2016-08-unfamiliar-maps.html</guid>
+		  </item>
+
+			<item>
+				<title>Birthday Eve</title>
+					<description>Some time ago I had a thought - if you had a daughter and she was born on Christmas Eve or New Year's Eve, would you be tempted to name her Eve?</description>
+				<pubDate>Tue, 9 Aug 2016 23:30:00 +1200</pubDate>
+				<link>http://david.frigge.nz/2016-08-birthday-eve.html</link>
+				<guid isPermaLink="true">http://david.frigge.nz/2016-08-birthday-eve.html</guid>
+			</item>
+
+	</channel>
+</rss>
