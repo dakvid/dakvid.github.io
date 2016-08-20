@@ -33,6 +33,7 @@ output:
     lib_dir: libs
     includes:
       in_header: _meta.html
+      after_body: _footer.html
     theme: flatly
     mathjax: null
     highlight: textmate
