@@ -1,0 +1,35 @@
+---
+title: "The Luminaries"
+date: "24 August 2016"
+---
+
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(readr)
+library(dplyr)
+library(plotly)
+
+hardback <- read_csv("data/luminaries_hardback.csv")
+chapters <- read_csv("data/luminaries_chapters.csv")
+```
+
+Last year I read Eleanor Catton's 
+award-wining
+masterpiece
+The Luminaries.
+I started a little project around it, which is temporarily stalled (watch this space^[Maybe - I have a number of stalled projects!]), but recently a colleague remarked about the chapter lengths and I was reminded I had this data.
+
+The novel has a number of structural constraints, one of which is that each of the 12 parts is half the length of the previous one. Or are they?
+
+```{r pages}
+plot_ly(
+  hardback,
+  x = Part,
+  y = Pages,
+  text = Title,
+  type = "bar"
+) %>% 
+  layout(title = "Divisions in The Luminaries (Hardback)")
+```
+
+
