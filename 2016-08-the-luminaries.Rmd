@@ -1,10 +1,12 @@
 ---
 title: "The Luminaries"
-date: "24 August 2016"
+date: "25 August 2016"
 ---
 
 ```{r setup, include=FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
 library(readr)
 library(dplyr)
 library(plotly)
@@ -14,12 +16,14 @@ chapters <- read_csv("data/luminaries_chapters.csv")
 ```
 
 Last year I read Eleanor Catton's 
-award-wining
-masterpiece
-The Luminaries.
+[award](https://en.wikipedia.org/wiki/Man_Booker_Prize)-winning
+[yarn](http://dimpost.wordpress.com/2013/07/17/on-what-the-luminaries-is-actually-like)
+[The Luminaries](http://www.librarything.com/work/13687338).
 I started a little project around it, which is temporarily stalled (watch this space^[Maybe - I have a number of stalled projects!]), but recently a colleague remarked about the chapter lengths and I was reminded I had this data.
 
-The novel has a number of structural constraints, one of which is that each of the 12 parts is half the length of the previous one. Or are they?
+The novel has a number of structural constraints, one of which is that each of the 12 parts is half the length of the previous one.
+
+Or are they?
 
 ```{r pages}
 plot_ly(
@@ -32,4 +36,133 @@ plot_ly(
   layout(title = "Divisions in The Luminaries (Hardback)")
 ```
 
+You can see easily at a glance that the pages decrease, but they don't reliably halve. Notably, parts three
+and four are not too different. The tail doesn't look to decrease like that, but in part that's due to pages
+being a less reliable indicator for length when they're that short.
 
+First, why does the length decrease at all? Well each part has different divisions --- Part _n_ has 13--_n_
+chapters --- so that's one thing. The only comment I've seen is from a
+[a reviewer who said](https://www.theguardian.com/books/2013/oct/15/eleanor-catton-booker-prize-winner-the-luminaries)
+it "mimic[s] the moon waning through its lunar cycle", but I don't know whether that's just a guess.
+
+### From pages to words
+
+I do have word counts though, so lets look at that instead.
+
+```{r words}
+chapters %>% 
+  inner_join(hardback) %>% 
+  group_by(Part, Title) %>% 
+  summarise(Words = sum(Text)) %>% 
+  plot_ly(
+    x = Part,
+    y = Words,
+    text = Title,
+    type = "bar"
+  ) %>% 
+  layout(title = "Divisions in The Luminaries")
+```
+
+Still you can see that it's not halving each time. And those later parts are getting hard to see. So let's look at the ratios.
+
+First, I'll point out that each chapter begins with a little summary text. At the very first chapter, this is a brief couple of lines:
+
+> In which a stranger arrives in Hokitika; a secret council is disturbed; Walter Moody conceals his most recent memory; and Thomas Balfour begins to tell a story.
+
+Which does very briefly summarise the plot. In the very final chapter, the summary is longer than the actual text, and gives more plot. Should these count when we're comparing them? Let's have a look.
+
+The next plot shows the ratio of each Part to the one before, looking at the summary, the main text, and both together.
+
+```{r ratios}
+part_words <- 
+  chapters %>% 
+  inner_join(hardback) %>% 
+  group_by(Part, Title) %>% 
+  summarise(
+    Summary = sum(Summary),
+    Body = sum(Text),
+    Full = sum(Summary + Text)
+  ) %>% 
+  ungroup() %>% 
+  mutate(PrevPart = Part - 1)
+
+inner_join(
+  part_words %>% select(-PrevPart, -Title),
+  part_words,
+  by = c("Part" = "PrevPart")
+) %>% 
+  mutate(
+    Summary = round(Summary.y / Summary.x * 100, 0), 
+    Body = round(Body.y / Body.x * 100, 0), 
+    Full = round(Full.y / Full.x * 100, 0)
+  ) %>% 
+  select(Part.y, Title, Summary, Body, Full) %>% 
+  rename(Part = Part.y) %>% 
+  plot_ly(
+    x = Part,
+    y = Full,
+    name = "All text",
+    mode = "markers",
+    hoverinfo = "text",
+    text = paste0("Part ", Part, ": ", Title, "<br><b>", Full, "%</b> the length of the previous part in total")
+  ) %>% 
+  add_trace(
+    x = Part,
+    y = Body,
+    name = "Main text",
+    mode = "markers",
+    hoverinfo = "text",
+    text = paste0("Part ", Part, ": ", Title, "<br><b>", Body, "%</b> the length of the previous part in the body")
+  ) %>% 
+  add_trace(
+    x = Part,
+    y = Summary,
+    name = "Summary text",
+    mode = "markers",
+    hoverinfo = "text",
+    text = paste0("Part ", Part, ": ", Title, "<br><b>", Summary, "%</b> the length of the previous part in the summary")
+  ) %>% 
+  add_trace(
+    x = c(1.5, 12.5),
+    y = c(50, 50),
+    mode = "lines",
+    name = "if they halved",
+    hoverinfo = "text", text = ""
+  ) %>% 
+  layout(
+    title = "Comparison of length of divisions in The Luminaries",
+    yaxis = list(title = "Percent length of previous Part")
+  )
+```
+
+
+Looking at this, you can see^[The summary text for Part 7 is a massive outlier that makes the rest of it hard to see.
+You can click on the legend for "Summary text" to remove that series, or just click and drag a box to zoom in. 
+Plotly and interactive graphics FTW!] 
+that only a few parts are actually half their predecessor, even if you're being generous and allow a 10% margin
+on either side.
+
+Including or excluding the summary text doesn't seem to have a consistent effect.
+
+
+### Chapter by chapter
+
+As mentioned, each part is split into 13--_n_ chapters. Naturally, the next question is "what do the chapters
+look like?"
+
+```{r chapters}
+chapters %>% 
+  plot_ly(
+    x = Number,
+    y = Text,
+    group = Part,
+    text = Name,
+    type = "bar"
+  ) %>% 
+  layout(
+    title = "Length of chapters in The Luminaries",
+    xaxis = list(title = "Chapter"),
+    yaxis = list(title = "Words"),
+    showlegend = FALSE
+  )
+```
