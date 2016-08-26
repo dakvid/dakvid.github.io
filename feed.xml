@@ -5,6 +5,14 @@
 		<description>Various attempts to play with data.</description>		
 		<link>http://david.frigge.nz</link>
 		<atom:link href="http://david.frigge.nz/feed.xml" rel="self" type="application/rss+xml" />
+		  
+		  <item>
+		    <title>The Luminaries</title>
+		    <description>Last year I read Eleanor Catton's award-winning yarn The Luminaries. I started a little project around it, which is temporarily stalled (watch this space), but recently a colleague remarked about the chapter lengths and I was reminded I had this data.<br />The novel has a number of structural constraints, one of which is that each of the 12 parts is half the length of the previous one.<br />Or are they?</description>
+		    <pubDate>Fri, 26 Aug 2016 22:00:00 +1200</pubDate>
+		    <link>http://david.frigge.nz/2016-08-the-luminaries.html</link>
+		    <guid isPermaLink="true">http://david.frigge.nz/2016-08-the-luminaries.html</guid>
+		  </item>
 		
 		  <item>
 		    <title>Unfamiliar Maps</title>
