@@ -28,7 +28,13 @@ blurb_post <- function(latest = FALSE, title = "Untitled", pub_date = Sys.Date()
 ```
 
 ```{r blurbs, echo=FALSE}
-blurb_post(TRUE, "Unfamiliar Maps", "14 August 2016", "2016-08-unfamiliar-maps.html",
+blurb_post(TRUE, "The Luminaries", "26 August 2016", "2016-08-the-luminaries.html",
+           "Last year I read Eleanor Catton's award-winning yarn The Luminaries. I started a little project around it, which is temporarily stalled (watch this space), but recently a colleague remarked about the chapter lengths and I was reminded I had this data.
+
+The novel has a number of structural constraints, one of which is that each of the 12 parts is half the length of the previous one.
+
+Or are they?")
+blurb_post(FALSE, "Unfamiliar Maps", "14 August 2016", "2016-08-unfamiliar-maps.html",
            "At least 3 people have booked flights to Sydney, Nova Scotia (population 30,000) intending to holiday in
 New South Wales (two orders of magnitude larger). There are a number of cases like this of towns and cities
 with larger and more well known doppelgangers. 

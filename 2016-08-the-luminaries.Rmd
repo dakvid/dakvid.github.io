@@ -1,6 +1,6 @@
 ---
 title: "The Luminaries"
-date: "25 August 2016"
+date: "26 August 2016"
 ---
 
 ```{r setup, include=FALSE, message=FALSE, warning=FALSE}

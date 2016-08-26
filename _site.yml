@@ -8,6 +8,8 @@ navbar:
     - text: "Posts"
       icon: fa-newspaper-o
       menu:
+        - text: "The Luminaries"
+          href: 2016-08-the-luminaries.html
         - text: "Unfamiliar Maps"
           href: 2016-08-unfamiliar-maps.html
         - text: "Birthday Eve"
