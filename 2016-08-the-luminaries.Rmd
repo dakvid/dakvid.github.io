@@ -18,12 +18,14 @@ chapters <- read_csv("data/luminaries_chapters.csv")
 Last year I read Eleanor Catton's 
 [award](https://en.wikipedia.org/wiki/Man_Booker_Prize)-winning
 [yarn](http://dimpost.wordpress.com/2013/07/17/on-what-the-luminaries-is-actually-like)
-[The Luminaries](http://www.librarything.com/work/13687338).
+_[The Luminaries](http://www.librarything.com/work/13687338)_.
 I started a little project around it, which is temporarily stalled (watch this space^[Maybe - I have a number of stalled projects!]), but recently a colleague remarked about the chapter lengths and I was reminded I had this data.
 
 The novel has a number of structural constraints, one of which is that each of the 12 parts is half the length of the previous one.
 
-Or are they?
+Or are they?^[Fair warning - this post may not seem super interesting if you haven't read the book.
+But the drive to write this was as much to try out Plotly as anything else, so feel free to stay
+and marvel and the interactive graphs.]
 
 ```{r pages}
 plot_ly(
@@ -33,7 +35,10 @@ plot_ly(
   text = Title,
   type = "bar"
 ) %>% 
-  layout(title = "Divisions in The Luminaries (Hardback)")
+  layout(
+    title = "Divisions in The Luminaries (Hardback)",
+    xaxis = list(dtick = 1)
+  )
 ```
 
 You can see easily at a glance that the pages decrease, but they don't reliably halve. Notably, parts three
@@ -60,7 +65,10 @@ chapters %>%
     text = Title,
     type = "bar"
   ) %>% 
-  layout(title = "Divisions in The Luminaries")
+  layout(
+    title = "Divisions in The Luminaries",
+    xaxis = list(dtick = 1)
+  )
 ```
 
 Still you can see that it's not halving each time. And those later parts are getting hard to see. So let's look at the ratios.
@@ -127,10 +135,14 @@ inner_join(
     y = c(50, 50),
     mode = "lines",
     name = "if they halved",
-    hoverinfo = "text", text = ""
+    hoverinfo = "text",
+    text = "",
+    showlegend = FALSE,
+    line = list(color = "gray")
   ) %>% 
   layout(
     title = "Comparison of length of divisions in The Luminaries",
+    xaxis = list(dtick = 1),
     yaxis = list(title = "Percent length of previous Part")
   )
 ```
@@ -159,10 +171,38 @@ chapters %>%
     text = Name,
     type = "bar"
   ) %>% 
+  add_trace(
+    x = Number,
+    y = Summary,
+    group = Part,
+    text = rep("summary text", 12),
+    type = "bar"
+  ) %>% 
   layout(
     title = "Length of chapters in The Luminaries",
     xaxis = list(title = "Chapter"),
     yaxis = list(title = "Words"),
-    showlegend = FALSE
+    showlegend = FALSE,
+    barmode = "stack"
   )
 ```
+
+There's no clear pattern I can see here.^[Again, feel free to make liberal use of the zoom functionality.]
+On the whole, the lengths are decreasing, but certainly not in a uniform way. Chapter 13 is very obvious at
+one end, and 35/37 at the other. The latter two offer an explanation for why Part 4 is about the same length
+as Part 3.
+
+
+### Conclusion
+
+I think we can say that "each successive part halves in length" is not an accurate description of
+_The Luminaries_. The only constraint seems to be the number of chapters in each part, decreasing by
+one each time. This combines with the general trend for the chapters to get smaller to produce the
+descreasing trend that many people have mistaken for halving.
+
+I haven't included the code (or raw 
+[data](https://github.com/dakvid/dakvid.github.io/tree/source/data)
+) in this post, but if you're interested, 
+[it's available](https://raw.githubusercontent.com/dakvid/dakvid.github.io/source/2016-08-the-luminaries.Rmd) 
+in the source branch on GitHub.
+
