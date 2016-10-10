@@ -1,0 +1,32 @@
+---
+title: "W[h]ither Local Democracy?"
+date: "10 October 2016"
+---
+
+```{r setup, include=FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(warning = FALSE)
+library(readr)
+library(dplyr)
+library(plotly)
+
+turnout <- read_csv("data/local2016/total_turnout.csv")
+```
+
+```{r turnout_dumbell, fig.height=12}
+turnout$Council <- 
+  factor(turnout$Council,
+         levels = turnout$Council[order(turnout$PC2013)])
+plot_ly(turnout, color = I("gray80")) %>% 
+  add_segments(x = ~PC2013, xend = ~PC2016, y = ~Council, yend = ~Council, showlegend = FALSE) %>% 
+  add_markers(x = ~PC2013, y = ~Council, name = "2013", color = I("blue")) %>% 
+  add_markers(x = ~PC2016, y = ~Council, name = "2016", color = I("red")) %>% 
+  layout(
+    title = "Local Election Turnout by Council",
+    xaxis = list(title = "Voter Turnout (Percent)"),
+    yaxis = list(title = ""),
+    margin = list(l = 125)
+  )
+```
+
