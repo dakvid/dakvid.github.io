@@ -1,32 +1,182 @@
 ---
 title: "W[h]ither Local Democracy?"
-date: "10 October 2016"
+date: "13 October 2016"
 ---
+
+If you live in New Zealand you would have been hard pressed not to notice that we had
+local body elections recently. Like many people (or perhaps fewer and fewer) I have a
+couple of thoughts. Now I have a blog my thoughts can come with graphs!
+Mostly the summary is "it depends". Is voter turnout dropping? It depends. How terrible
+are council websites? It depends.
 
 ```{r setup, include=FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 knitr::opts_chunk$set(message = FALSE)
 knitr::opts_chunk$set(warning = FALSE)
 library(readr)
+library(rvest)
+library(magrittr)
+library(tidyr)
 library(dplyr)
+library(purrr)
 library(plotly)
-
-turnout <- read_csv("data/local2016/total_turnout.csv")
 ```
 
+### Turnout
+
+```{r get_turnout_data}
+if(!file.exists("data/local2016/summary_turnout.csv") |
+   !file.exists("data/local2016/council_turnout.csv")) {
+  lg_tables <- 
+    read_html("http://www.lgnz.co.nz/vote2016/preliminary-voter-turnout-2016/") %>% 
+    html_nodes("table") %>% 
+    map(html_table, header = TRUE)
+  # Combine national and council type
+  summary_turnout <- 
+    bind_rows(
+      lg_tables %>% 
+        extract2(1) %>% 
+        select(2:4) %>% 
+        set_names(c(2010, 2013, 2016)) %>% 
+        gather(Year, Turnout) %>% 
+        mutate(Group = "National"),
+      lg_tables %>% 
+        extract2(2) %>% 
+        select(1:4) %>% 
+        set_names(c("Group", 2010, 2013, 2016)) %>% 
+        gather(Year, Turnout, -Group)
+    )
+    write_csv(summary_turnout, "data/local2016/summary_turnout.csv")
+
+    council_turnout <- 
+      bind_rows(
+        lg_tables %>% 
+          extract2(3) %>% 
+          select(1:4) %>% 
+          set_names(c("Council", 2010, 2013, 2016)) %>% 
+          mutate(Type = "Metro") %>% 
+          gather(Year, Turnout, -Council, -Type),
+        lg_tables %>% 
+          extract2(4) %>% 
+          select(1:4) %>% 
+          set_names(c("Council", 2010, 2013, 2016)) %>% 
+          mutate(Type = "Provincial") %>% 
+          gather(Year, Turnout, -Council, -Type),
+        lg_tables %>% 
+          extract2(5) %>% 
+          select(1:4) %>% 
+          set_names(c("Council", 2010, 2013, 2016)) %>% 
+          mutate(Type = "Rural") %>% 
+          gather(Year, Turnout, -Council, -Type)
+      ) %>% 
+      filter(Council != "Total") %>% 
+      mutate(Council = sub("*", "", Council, fixed = TRUE),
+             Council = gsub(intToUtf8(160), "", Council),
+             Turnout = Turnout %>% gsub(intToUtf8(160), "", .) %>% as.numeric())
+    write_csv(council_turnout, "data/local2016/council_turnout.csv")
+} else {
+  summary_turnout <- read_csv("data/local2016/summary_turnout.csv")
+  council_turnout <- read_csv("data/local2016/council_turnout.csv")
+}
+```
+
+There has been a lot of talk about the very low voter turnout for local body versus
+general elections. In fact, it has been argued as a reason for trying online voting.
+(These arguments are flawed though --- online voting would be a Bad Idea.^[This is
+where I get to say "trust me, I'm a doctor (of verifying computer systems)". But you
+don't have to take my word for it --- listen to IITP and Nigel.])
+
+These elections haven't been much better than last time.
+Here's a graph comparing the turnouts of the last three elections, both nationally and
+grouping the councils as "metro", "provincial" and "rural".
+
+```{r turnout_summary, fig.height=4}
+nto <- 
+  summary_turnout %>% 
+  spread(Year, Turnout) %>% 
+  mutate(min_to = pmin(`2010`, `2013`, `2016`),
+         max_to = pmax(`2010`, `2013`, `2016`))
+plot_ly(nto,
+        color = I("gray80")) %>% 
+  add_segments(x = ~min_to, xend = ~max_to, y = ~Group, yend = ~Group, showlegend = FALSE) %>% 
+  add_markers(x = ~`2010`, y = ~Group, name = "2010", color = I("yellow")) %>% 
+  add_markers(x = ~`2013`, y = ~Group, name = "2013", color = I("blue")) %>% 
+  add_markers(x = ~`2016`, y = ~Group, name = "2016", color = I("red")) %>% 
+  layout(
+    title = "Local Election Turnout in New Zealand",
+    xaxis = list(title = "Voter Turnout (Percent)"),
+    yaxis = list(title = "")#,
+    #margin = list(l = 140)
+  )
+```
+
+You can see that there was a reasonable drop between 2010 and 2013, and a slight increase this year.
+This increase has only been in the big cities though --- the provincial and rural areas have continued
+to fall. I say "only", but the metro areas account for nearly two thirds of the country (62% in 2013).
+
+Are the changes uniform across these groups? Let's look in more detail at the individual council turnouts.
+
+```{r turnout_dumbell0, fig.height=12}
+cto0 <- 
+  council_turnout %>% 
+  spread(Year, Turnout) %>% 
+  mutate(min_to = pmin(`2010`, `2013`, `2016`),
+         max_to = pmax(`2010`, `2013`, `2016`))
+cto0$Council <- 
+  factor(cto0$Council,
+         levels = cto0$Council[order(cto0$Type, cto0$`2013`, method = "radix", decreasing = c(TRUE, FALSE))])
+plot_ly(cto0,
+        color = I("gray80")) %>% 
+  add_segments(x = ~min_to, xend = ~max_to, y = ~Council, yend = ~Council, showlegend = FALSE) %>% 
+  add_markers(x = ~`2010`, y = ~Council, name = "2010", color = I("yellow")) %>% 
+  add_markers(x = ~`2013`, y = ~Council, name = "2013", color = I("blue")) %>% 
+  add_markers(x = ~`2016`, y = ~Council, name = "2016", color = I("red")) %>% 
+  layout(
+    title = "Local Election Turnout in New Zealand",
+    xaxis = list(title = "Voter Turnout (Percent)"),
+    yaxis = list(title = ""),
+    margin = list(l = 140)
+  )
+```
+
+These elections have had an even worse turnout than last time apparently, but I wondered
+if this was a universal trend. So here's a graph comparing voter turnout in 2013 and 2016
+for each city and district council. Note that the 2016 figures don't include special votes,
+so may change slightly.
+
 ```{r turnout_dumbell, fig.height=12}
-turnout$Council <- 
-  factor(turnout$Council,
-         levels = turnout$Council[order(turnout$PC2013)])
-plot_ly(turnout, color = I("gray80")) %>% 
-  add_segments(x = ~PC2013, xend = ~PC2016, y = ~Council, yend = ~Council, showlegend = FALSE) %>% 
-  add_markers(x = ~PC2013, y = ~Council, name = "2013", color = I("blue")) %>% 
-  add_markers(x = ~PC2016, y = ~Council, name = "2016", color = I("red")) %>% 
+cto <- 
+  council_turnout %>% 
+  spread(Year, Turnout)
+cto$Council <- 
+  factor(cto$Council,
+         levels = cto$Council[order(cto$Type, cto$`2013`, method = "radix", decreasing = c(TRUE, FALSE))])
+plot_ly(cto %>% 
+          mutate(Text13 = paste0(Council, ", ", `2013`, "% in 2013", ifelse(is.na(`2016`), " [No 2016 data yet]", "")),
+                 Text16 = paste0(Council, ", ", `2016`, "% in 2016")), 
+        color = I("gray80")) %>% 
+  add_segments(x = ~`2013`, xend = ~`2016`, y = ~Council, yend = ~Council, showlegend = FALSE) %>% 
+  add_markers(x = ~`2013`, y = ~Council, text = ~Text13, name = "2013", color = I("blue")) %>% 
+  add_markers(x = ~`2016`, y = ~Council, text = ~Text16, name = "2016", color = I("red")) %>% 
   layout(
     title = "Local Election Turnout by Council",
     xaxis = list(title = "Voter Turnout (Percent)"),
     yaxis = list(title = ""),
-    margin = list(l = 125)
+    margin = list(l = 140)
   )
 ```
 
+My initial observations:
+
+* There's no clear pattern for the increase or decrease over the past three years. Some have gone up; some have gone down; some have moved a little; some have moved a lot.
+* WTF happened in Otorohanga and Matamata-Piako? It's not just a case of being a small North Island area --- CHB and Tararua are nice counters to that.^[Otorohanga did have a killer on the loose in the final week, but I haven't seen any suggestions that that affected turnout.]
+* Well done to Ashburton, Gisborne, MacKenzie and Tauranga for consistency.
+* Are the areas with high turnout (MacKenzie) and/or high improvement (Gore, Invercargill) doing anything that can be copied elsewhere?
+
+Of course, a lot of this is rats a
+
+#### Slopegraph
+
+### Council Websites
+
+### My Own Voting

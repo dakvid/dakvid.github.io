@@ -1,0 +1,202 @@
+Council,Type,Year,Turnout
+Auckland,Metro,2010,51.0
+Christchurch City,Metro,2010,52.2
+Dunedin City,Metro,2010,53.0
+Hamilton City,Metro,2010,37.8
+Hutt City Council,Metro,2010,40.4
+Nelson City,Metro,2010,52.2
+Palmerston North City  ,Metro,2010,43.2
+Porirua City,Metro,2010,39.1
+Tauranga City,Metro,2010,43.8
+Upper Hutt City,Metro,2010,44.3
+Wellington City,Metro,2010,40.0
+Auckland,Metro,2013,34.9
+Christchurch City,Metro,2013,42.9
+Dunedin City,Metro,2013,43.1
+Hamilton City,Metro,2013,38.3
+Hutt City Council,Metro,2013,36.6
+Nelson City,Metro,2013,52.2
+Palmerston North City  ,Metro,2013,38.7
+Porirua City,Metro,2013,36.6
+Tauranga City,Metro,2013,37.8
+Upper Hutt City,Metro,2013,40.8
+Wellington City,Metro,2013,41.5
+Auckland,Metro,2016,38.3
+Christchurch City,Metro,2016,38.3
+Dunedin City,Metro,2016,45.2
+Hamilton City,Metro,2016,33.3
+Hutt City Council,Metro,2016,37.7
+Nelson City,Metro,2016,52.1
+Palmerston North City  ,Metro,2016,38.7
+Porirua City,Metro,2016,38.0
+Tauranga City,Metro,2016,38.0
+Upper Hutt City,Metro,2016,41.0
+Wellington City,Metro,2016,45.6
+Ashburton District,Provincial,2010,58.7
+Far North District,Provincial,2010,46.9
+Gisborne District,Provincial,2010,54.8
+Hastings District,Provincial,2010,44.3
+Horowhenua District,Provincial,2010,52.0
+Invercargill City,Provincial,2010,60.1
+Kapiti Coast District,Provincial,2010,49.3
+Manawatu District,Provincial,2010,46.5
+Marlborough District,Provincial,2010,56.5
+Masterton District,Provincial,2010,54.4
+Matamata-Piako District,Provincial,2010,42.1
+Napier City,Provincial,2010,44.9
+New Plymouth District,Provincial,2010,57.7
+Queenstown-Lakes District,Provincial,2010,50.7
+Rotorua District,Provincial,2010,43.4
+Selwyn District,Provincial,2010,43.9
+South Taranaki District,Provincial,2010,49.0
+Southland District,Provincial,2010,38.8
+Tasman District,Provincial,2010,50.6
+Taupo District,Provincial,2010,54.8
+Thames-Coromandel District,Provincial,2010,43.8
+Timaru District,Provincial,2010,59.4
+Waikato District,Provincial,2010,34.3
+Waimakariri District,Provincial,2010,42.1
+Waipa District,Provincial,2010,41.8
+Waitaki District,Provincial,2010,59.2
+Western Bay of Plenty District,Provincial,2010,38.9
+Whakatane District,Provincial,2010,56.3
+Whanganui District,Provincial,2010,60.4
+Whangarei District,Provincial,2010,49.7
+Ashburton District,Provincial,2013,53.3
+Far North District,Provincial,2013,48.9
+Gisborne District,Provincial,2013,48.3
+Hastings District,Provincial,2013,47.8
+Horowhenua District,Provincial,2013,52.9
+Invercargill City,Provincial,2013,46.6
+Kapiti Coast District,Provincial,2013,51.1
+Manawatu District,Provincial,2013,39.7
+Marlborough District,Provincial,2013,54.7
+Masterton District,Provincial,2013,46.8
+Matamata-Piako District,Provincial,2013,44.8
+Napier City,Provincial,2013,47.8
+New Plymouth District,Provincial,2013,50.6
+Queenstown-Lakes District,Provincial,2013,46.0
+Rotorua District,Provincial,2013,43.8
+Selwyn District,Provincial,2013,43.5
+South Taranaki District,Provincial,2013,46.4
+Southland District,Provincial,2013,48.7
+Tasman District,Provincial,2013,51.3
+Taupo District,Provincial,2013,48.5
+Thames-Coromandel District,Provincial,2013,37.8
+Timaru District,Provincial,2013,51.6
+Waikato District,Provincial,2013,31.6
+Waimakariri District,Provincial,2013,35.0
+Waipa District,Provincial,2013,39.6
+Waitaki District,Provincial,2013,58.2
+Western Bay of Plenty District,Provincial,2013,37.8
+Whakatane District,Provincial,2013,48.9
+Whanganui District,Provincial,2013,58.5
+Whangarei District,Provincial,2013,47.7
+Ashburton District,Provincial,2016,53.2
+Far North District,Provincial,2016,41.5
+Gisborne District,Provincial,2016,48.0
+Hastings District,Provincial,2016,46.8
+Horowhenua District,Provincial,2016,51.0
+Invercargill City,Provincial,2016,54.9
+Kapiti Coast District,Provincial,2016,47.9
+Manawatu District,Provincial,2016,47.3
+Marlborough District,Provincial,2016,53.6
+Masterton District,Provincial,2016,43.6
+Matamata-Piako District,Provincial,2016,24.1
+Napier City,Provincial,2016,43.9
+New Plymouth District,Provincial,2016,47.4
+Queenstown-Lakes District,Provincial,2016,54.1
+Rotorua District,Provincial,2016,45.9
+Selwyn District,Provincial,2016,44.6
+South Taranaki District,Provincial,2016,38.3
+Southland District,Provincial,2016,40.2
+Tasman District,Provincial,2016,49.3
+Taupo District,Provincial,2016,50.2
+Thames-Coromandel District,Provincial,2016,38.0
+Timaru District,Provincial,2016,48.9
+Waikato District,Provincial,2016,30.4
+Waimakariri District,Provincial,2016,39.4
+Waipa District,Provincial,2016,36.0
+Waitaki District,Provincial,2016,50.7
+Western Bay of Plenty District,Provincial,2016,38.0
+Whakatane District,Provincial,2016,48.0
+Whanganui District,Provincial,2016,56.0
+Whangarei District,Provincial,2016,44.4
+Buller District,Rural,2010,62.4
+Carterton District,Rural,2010,56.7
+Central Hawke's Bay District  ,Rural,2010,56.2
+Central Otago District,Rural,2010,58.0
+Chatham Islands,Rural,2010,72.1
+Clutha District,Rural,2010,62.8
+Gore District,Rural,2010,50.6
+Grey District,Rural,2010,47.8
+Hauraki District,Rural,2010,42.8
+Hurunui District,Rural,2010,55.4
+Kaikoura District,Rural,2010,65.5
+Kaipara District,Rural,2010,53.5
+Kawerau District,Rural,2010,50.0
+Mackenzie District,Rural,2010,65.9
+Opotiki District,Rural,2010,55.7
+Otorohanga District,Rural,2010,36.4
+Rangitikei District,Rural,2010,47.1
+Ruapehu District,Rural,2010,44.1
+South Waikato District,Rural,2010,39.1
+South Wairarapa District,Rural,2010,51.9
+Stratford District,Rural,2010,45.5
+Tararua District,Rural,2010,55.1
+Waimate District,Rural,2010,55.6
+Wairoa District,Rural,2010,57.4
+Waitomo District,Rural,2010,49.0
+Westland District,Rural,2010,62.4
+Buller District,Rural,2013,62.4
+Carterton District,Rural,2013,45.7
+Central Hawke's Bay District  ,Rural,2013,55.2
+Central Otago District,Rural,2013,52.9
+Chatham Islands,Rural,2013,54.4
+Clutha District,Rural,2013,59.8
+Gore District,Rural,2013,41.7
+Grey District,Rural,2013,45.3
+Hauraki District,Rural,2013,40.4
+Hurunui District,Rural,2013,44.7
+Kaikoura District,Rural,2013,59.3
+Kaipara District,Rural,2013,36.1
+Kawerau District,Rural,2013,47.7
+Mackenzie District,Rural,2013,64.0
+Opotiki District,Rural,2013,51.5
+Otorohanga District,Rural,2013,50.6
+Rangitikei District,Rural,2013,49.5
+Ruapehu District,Rural,2013,47.4
+South Waikato District,Rural,2013,41.5
+South Wairarapa District,Rural,2013,45.1
+Stratford District,Rural,2013,47.2
+Tararua District,Rural,2013,50.5
+Waimate District,Rural,2013,57.0
+Wairoa District,Rural,2013,62.0
+Waitomo District,Rural,2013,43.6
+Westland District,Rural,2013,54.3
+Buller District,Rural,2016,51.6
+Carterton District,Rural,2016,52.3
+Central Hawke's Bay District  ,Rural,2016,62.7
+Central Otago District,Rural,2016,62.0
+Chatham Islands,Rural,2016,70.9
+Clutha District,Rural,2016,40.8
+Gore District,Rural,2016,59.4
+Grey District,Rural,2016,49.0
+Hauraki District,Rural,2016,44.2
+Hurunui District,Rural,2016,41.1
+Kaikoura District,Rural,2016,54.6
+Kaipara District,Rural,2016,47.1
+Kawerau District,Rural,2016,44.8
+Mackenzie District,Rural,2016,64.3
+Opotiki District,Rural,2016,41.6
+Otorohanga District,Rural,2016,25.1
+Rangitikei District,Rural,2016,47.9
+Ruapehu District,Rural,2016,46.5
+South Waikato District,Rural,2016,44.4
+South Wairarapa District,Rural,2016,56.1
+Stratford District,Rural,2016,45.4
+Tararua District,Rural,2016,53.5
+Waimate District,Rural,2016,49.6
+Wairoa District,Rural,2016,60.9
+Waitomo District,Rural,2016,38.4
+Westland District,Rural,2016,58.9
