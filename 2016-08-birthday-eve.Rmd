@@ -9,7 +9,7 @@ At the time, I had access to a database with a large number of names and birthda
 which one, but there are at least five to choose from.]
 so I thought I'd check. I ran a query similar to the following:
 
-```{sql, eval=FALSE}
+```sql
 select count(*)
 
 from people

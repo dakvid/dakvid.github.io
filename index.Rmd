@@ -28,7 +28,11 @@ blurb_post <- function(latest = FALSE, title = "Untitled", pub_date = Sys.Date()
 ```
 
 ```{r blurbs, echo=FALSE}
-blurb_post(TRUE, "The Luminaries", "26 August 2016", "2016-08-the-luminaries.html",
+blurb_post(TRUE, "W[h]ither Local Democracy?", "14 October 2016", "2016-10-whither-local-democracy.html",
+           "If you live in New Zealand you would have been hard pressed not to notice that we had
+local body elections recently. It seems that all anyone can talk about is the turnout.
+Is it all bad news?")
+blurb_post(FALSE, "The Luminaries", "26 August 2016", "2016-08-the-luminaries.html",
            "Last year I read Eleanor Catton's award-winning yarn The Luminaries. I started a little project around it, which is temporarily stalled (watch this space), but recently a colleague remarked about the chapter lengths and I was reminded I had this data.
 
 The novel has a number of structural constraints, one of which is that each of the 12 parts is half the length of the previous one.
