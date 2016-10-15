@@ -30,9 +30,9 @@ and marvel and the interactive graphs.]
 ```{r pages}
 plot_ly(
   hardback,
-  x = Part,
-  y = Pages,
-  text = Title,
+  x = ~Part,
+  y = ~Pages,
+  text = ~Title,
   type = "bar"
 ) %>% 
   layout(
@@ -59,10 +59,11 @@ chapters %>%
   inner_join(hardback) %>% 
   group_by(Part, Title) %>% 
   summarise(Words = sum(Text)) %>% 
+  ungroup() %>% 
   plot_ly(
-    x = Part,
-    y = Words,
-    text = Title,
+    x = ~Part,
+    y = ~Words,
+    text = ~Title,
     type = "bar"
   ) %>% 
   layout(
@@ -106,29 +107,30 @@ inner_join(
   ) %>% 
   select(Part.y, Title, Summary, Body, Full) %>% 
   rename(Part = Part.y) %>% 
-  plot_ly(
-    x = Part,
-    y = Full,
+  plot_ly() %>% 
+  add_trace(
+    x = ~Part,
+    y = ~Full,
     name = "All text",
     mode = "markers",
     hoverinfo = "text",
-    text = paste0("Part ", Part, ": ", Title, "<br><b>", Full, "%</b> the length of the previous part in total")
+    text = ~paste0("Part ", Part, ": ", Title, "<br><b>", Full, "%</b> the length of the previous part in total")
   ) %>% 
   add_trace(
-    x = Part,
-    y = Body,
+    x = ~Part,
+    y = ~Body,
     name = "Main text",
     mode = "markers",
     hoverinfo = "text",
-    text = paste0("Part ", Part, ": ", Title, "<br><b>", Body, "%</b> the length of the previous part in the body")
+    text = ~paste0("Part ", Part, ": ", Title, "<br><b>", Body, "%</b> the length of the previous part in the body")
   ) %>% 
   add_trace(
-    x = Part,
-    y = Summary,
+    x = ~Part,
+    y = ~Summary,
     name = "Summary text",
     mode = "markers",
     hoverinfo = "text",
-    text = paste0("Part ", Part, ": ", Title, "<br><b>", Summary, "%</b> the length of the previous part in the summary")
+    text = ~paste0("Part ", Part, ": ", Title, "<br><b>", Summary, "%</b> the length of the previous part in the summary")
   ) %>% 
   add_trace(
     x = c(1.5, 12.5),
@@ -164,18 +166,25 @@ look like?"
 
 ```{r chapters}
 chapters %>% 
+  group_by(Part) %>% 
   plot_ly(
-    x = Number,
-    y = Text,
-    group = Part,
-    text = Name,
+    x = ~Number,
+    y = ~Text,
+    #color = ~Part,
+    marker = list(color = c(rep("#1f77b4",12),rep("#ff7f0e",11),rep("#2ca02c",10),rep("#d62728",9),
+                            rep("#9467bd",8),rep("#8c564b",7),rep("#e377c2",6),rep("#7f7f7f",5),
+                            rep("#bcbd22",4),rep("#17becf",3),rep("#1f77b4",2),"#ff7f0e")),
+    text = ~Name,
     type = "bar"
   ) %>% 
   add_trace(
-    x = Number,
-    y = Summary,
-    group = Part,
-    text = rep("summary text", 12),
+    x = ~Number,
+    y = ~Summary,
+    #color = ~Part,
+    marker = list(color = c(rep("#2ca02c",12),rep("#d62728",11),rep("#9467bd",10),rep("#8c564b",9),
+                            rep("#e377c2",8),rep("#7f7f7f",7),rep("#bcbd22",6),rep("#17becf",5),
+                            rep("#1f77b4",4),rep("#ff7f0e",3),rep("#2ca02c",2),"#d62728")),
+    text = "summary text",
     type = "bar"
   ) %>% 
   layout(
