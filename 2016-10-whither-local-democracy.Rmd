@@ -97,14 +97,19 @@ nto <-
 plot_ly(nto,
         color = I("gray80")) %>% 
   add_segments(x = ~min_to, xend = ~max_to, y = ~Group, yend = ~Group, showlegend = FALSE) %>% 
-  add_markers(x = ~`2010`, y = ~Group, name = "2010", color = I("yellow")) %>% 
-  add_markers(x = ~`2013`, y = ~Group, name = "2013", color = I("blue")) %>% 
-  add_markers(x = ~`2016`, y = ~Group, name = "2016", color = I("red")) %>% 
+  add_markers(x = ~`2010`, y = ~Group, name = "2010", color = I("yellow"),
+              hoverinfo = "text",
+              text = ~paste0(`2010`, "% turnout in ", Group, " councils in 2010")) %>% 
+  add_markers(x = ~`2013`, y = ~Group, name = "2013", color = I("blue"),
+              hoverinfo = "text",
+              text = ~paste0(`2013`, "% turnout in ", Group, " councils in 2013")) %>% 
+  add_markers(x = ~`2016`, y = ~Group, name = "2016", color = I("red"),
+              hoverinfo = "text",
+              text = ~paste0(`2016`, "% turnout in ", Group, " councils in 2016")) %>% 
   layout(
     title = "Local Election Turnout in New Zealand",
     xaxis = list(title = "Voter Turnout (Percent)"),
-    yaxis = list(title = "")#,
-    #margin = list(l = 140)
+    yaxis = list(title = "")
   )
 ```
 
@@ -117,20 +122,26 @@ Are the changes uniform across these groups? Let's look in more detail at the in
 This graph is grouped by metro, provincial and rural, then ordered by 2013 turnout.
 
 ```{r turnout_dumbbell0, fig.height=12}
-cto0 <- 
+cto <- 
   council_turnout %>% 
   spread(Year, Turnout) %>% 
   mutate(min_to = pmin(`2010`, `2013`, `2016`),
          max_to = pmax(`2010`, `2013`, `2016`))
-cto0$Council <- 
-  factor(cto0$Council,
-         levels = cto0$Council[order(cto0$Type, cto0$`2013`, method = "radix", decreasing = c(TRUE, FALSE))])
-plot_ly(cto0,
+cto$Council <- 
+  factor(cto$Council,
+         levels = cto$Council[order(cto$Type, cto$`2013`, method = "radix", decreasing = c(TRUE, FALSE))])
+plot_ly(cto,
         color = I("gray80")) %>% 
   add_segments(x = ~min_to, xend = ~max_to, y = ~Council, yend = ~Council, showlegend = FALSE) %>% 
-  add_markers(x = ~`2010`, y = ~Council, name = "2010", color = I("yellow")) %>% 
-  add_markers(x = ~`2013`, y = ~Council, name = "2013", color = I("blue")) %>% 
-  add_markers(x = ~`2016`, y = ~Council, name = "2016", color = I("red")) %>% 
+  add_markers(x = ~`2010`, y = ~Council, name = "2010", color = I("yellow"),
+              hoverinfo = "text",
+              text = ~paste0(`2010`, "% turnout in ", Council, " in 2010")) %>% 
+  add_markers(x = ~`2013`, y = ~Council, name = "2013", color = I("blue"),
+              hoverinfo = "text",
+              text = ~paste0(`2013`, "% turnout in ", Council, " in 2013")) %>% 
+  add_markers(x = ~`2016`, y = ~Council, name = "2016", color = I("red"),
+              hoverinfo = "text",
+              text = ~paste0(`2016`, "% turnout in ", Council, " in 2016")) %>% 
   layout(
     title = "Local Election Turnout in New Zealand",
     xaxis = list(title = "Voter Turnout (Percent)"),
