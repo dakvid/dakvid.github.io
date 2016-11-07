@@ -1,16 +1,10 @@
 ---
 title: "Simple To Vote"
-date: "26 October 2016"
+date: "8 November 2016"
 output: 
   html_document: 
     fig_caption: no
 ---
-
-**TODO**
-
-* Specific section of Local Electoral Act for STV
-* Update graphics
-* Click placeholders for large graphics
 
 Recently we had local body elections in New Zealand. (You may [have heard](2016-10-whither-local-democracy.html).)
 [Single Transferable Vote](http://www.stv.govt.nz) (STV) was used for 7 of the 67
@@ -82,7 +76,7 @@ summary](https://en.wikipedia.org/wiki/Counting_single_transferable_votes). The 
 Scotland, Ireland, Australia and New Zealand (and elsewhere) all differ slightly.
 
 In New Zealand we use a system devised by [Meek in 1969](http://www.votingmatters.org.uk/ISSUE1/P1.HTM)
-and enshrined in the [Local Electoral Act 2001](http://www.legislation.govt.nz/act/public/2001/0035/latest/DLM93301.html).
+and enshrined in the [Local Electoral Act 2001](http://www.legislation.govt.nz/act/public/2001/0035/latest/DLM93435.html).
 
 
 ### Single Seat
@@ -92,69 +86,9 @@ Simply, a candidate needs to get 50% of the votes to win --- if no candidate has
 the lowest polling candidates are eliminated, transferring their votes to the next preferences.
 Candidates are eliminated until somebody reaches the 50% quota / threshold.
 
-#### Example: Palmerston North City Council, Mayor 2016
 
-```{r pncc_mayor, eval=FALSE, fig.height=200, fig.width=600, message=FALSE, warning=FALSE, include=FALSE}
-if (!file.exists("images/stv/stv2016_pncc_mayor.png")) {
-  library(dplyr)
-  library(forcats)
-  library(ggplot2)
-  library(ggthemes)
-  library(showtext)
-  font.add.google("Poppins", "poppins")
-  showtext.auto()
-  votes <- 
-    data_frame(
-      candidate = c("Ross Barber", "Grant Smith") %>% fct_inorder(),
-      votes = c(1024, 18773),
-      action = c("excluded", "elected"),
-      bar_colour = c("red", "blue")
-    )
-  quota <- 9899
-  text_nudge <- 375
-  pncc_mayor <- 
-    ggplot() +
-    theme_tufte(12, base_family = "poppins") +
-    geom_bar(data = votes,
-             aes(x = candidate, y = votes, fill = bar_colour),
-             stat = "identity", position = "identity") +
-    geom_text(data = votes %>% filter(action == "elected"),
-              label = "Elected",
-              aes(x = candidate),
-              y = text_nudge, color = "white",
-              family = "poppins", fontface = "bold", size = 4,
-              hjust = 0) +
-    geom_text(data = votes %>% filter(votes < quota),
-              aes(x = candidate, y = votes, label = prettyNum(votes, big.mark = ",")),
-              family = "poppins",
-              hjust = 0, nudge_y = text_nudge) +
-    geom_text(data = votes %>% filter(votes >= quota),
-              aes(x = candidate, y = votes, label = prettyNum(votes, big.mark = ",")),
-              family = "poppins",
-              hjust = 1, nudge_y = -text_nudge) +
-    geom_hline(yintercept = quota) +
-    annotate("text", label = "Quota",
-              x = 0.8, y = quota,
-              family = "poppins", size = 5,
-              hjust = 1.1) +
-    annotate("text", x = 2.7, y = 0,
-              label = "Iteration 1",
-              family = "poppins", size = 6, fontface = "bold",
-              hjust = 0) +
-    scale_fill_identity() +
-    scale_color_identity() +
-    coord_flip() +
-    ylim(0, NA) +
-    expand_limits(x = 3) +
-    theme(axis.ticks = element_blank()) +
-    labs(x = "", caption = "David Friggens [CC-BY] http://david.frigge.nz") +
-    ggtitle("2016 Palmerston North City Council, Mayor",
-            subtitle = "Election conducted using Single Transferable Vote (STV)")
-  png("images/stv/stv2016_pncc_mayor.png", 600, 200)
-  pncc_mayor
-  dev.off()
-}
-```
+
+#### Example: Palmerston North City Council, Mayor 2016
 
 The 2016 mayoralty race in Palmerston North is a simple example of an election being determined
 on first preferences, giving exactly the same result as FPP. Incumbant mayor Grant Smith received
@@ -186,6 +120,9 @@ and making a decision on what to do next.
 
 ![animated bar graph of 2016 Wellington Regional Council Kapiti Coast Constituency STV election results](images/stv/stv2016_wrc_kapiti.gif)
 
+
+
+
 #### Example: Wellington City Council, Mayor 2016
 
 The 2016 election for Wellington Mayor featured eight hopeful candidates. This was a longer but
@@ -196,7 +133,22 @@ runner up Nick Leggett.
 Interestingly, in the 7th and final iteration 8,434 voters (13.0%) ranked neither of the top
 two candidates (and up to 66.0% of those had voted only for the third place getter Jo Coughlan).
 
-![animated bar graph of 2016 Wellington City Council Mayor STV election](images/stv/stv2016_wcc_mayor.gif)
+<div id="wcc_mayor_2016">
+<img src="images/stv/placeholder_stv2016_wcc_mayor.png" alt="Placeholder for 5.1MB animated graph. Click to load with JavaScript" />
+</div>
+<script>
+$(function(){
+    $("#wcc_mayor_2016 img").click(function(e){
+        $(this).attr("src", "images/stv/stv2016_wcc_mayor.gif");
+        $(this).attr("alt", "animated bar graph of 2016 Wellington City Council Mayor STV election")
+        return false;
+    });
+});
+</script>
+
+
+
+
 
 #### Example: Wellington City Council, Mayor 2010
 
@@ -216,7 +168,19 @@ other candidate", but that "3/5th of voters would rather have someone other than
 Running the STV iterations allows us to discover that more voters preferred Wade-Brown to
 Prendergast, so her election is the most democratic outcome (given the low voter turnout).
 
-![animated bar graph of 2010 Wellington City Council Mayor STV election](images/stv/stv2010_wcc_mayor.gif)
+<div id="wcc_mayor_2010">
+<img src="images/stv/placeholder_stv2010_wcc_mayor.png" alt="Placeholder for 3.5MB animated graph. Click to load with JavaScript" />
+</div>
+<script>
+$(function(){
+    $("#wcc_mayor_2010 img").click(function(e){
+        $(this).attr("src", "images/stv/stv2010_wcc_mayor.gif");
+        $(this).attr("alt", "animated bar graph of 2010 Wellington City Council Mayor STV election")
+        return false;
+    });
+});
+</script>
+
 
 
 
@@ -241,8 +205,8 @@ Moving south from the Kapiti Coast, the Porirua-Tawa constituency had four candi
 two seats on the Wellington Regional Council in 2016.
 On first preferences, Jenny Brash has 7,705 (45%) of the 17,003 votes, easily surpassing the
 quota of `17003 / 3 = 5667.7`.
-Trailing behind are Barbara Donaldson with 4,649 (27.3%), Joern Scherzer with 2,709 (15.9%),
-and Heidi Mills with 1,940 (11.4%).
+Trailing behind are Barbara Donaldson with 4,649 votes (27.3%), Joern Scherzer with 2,709 votes (15.9%),
+and Heidi Mills with 1,940 votes (11.4%).
 
 Now Brash has 2,037.3 surplus votes she "doesn't need", as they are above the quota, and which
 can be transferred to the other candidates.
@@ -301,12 +265,13 @@ Finally, at iteration 11, the final seat is decided as Jeremy Seamark narrowly e
 the quota. Incumbant Eric Gregory is excluded.
 
 <div id="kcdc_waikanae-cb">
-<img src="images/stv/placeholder_stv2016_kcdc_waikanae_cb.gif" alt="Waikanae Community Board 2016" />
+<img src="images/stv/placeholder_stv2016_kcdc_waikanae_cb.png" alt="Placeholder for 7.8MB animated graph. Click to load with JavaScript" />
 </div>
 <script>
 $(function(){
     $("#kcdc_waikanae-cb img").click(function(e){
         $(this).attr("src", "images/stv/stv2016_kcdc_waikanae_cb.gif");
+        $(this).attr("alt", "animated bar graph of 2016 Kapiti District Council STV election for Waikanae Community Board")
         return false;
     });
 });
@@ -317,7 +282,7 @@ $(function(){
 
 I found it interesting to see the variation in length of the counting process for the elections.
 Some were over in a couple of iterations, others in a couple of dozen. The clear winner was the
-Dunedin City Council's At Large election, which took 82 iterations to be decided.
+Dunedin City Council's At Large election, which took 79 iterations to be decided.
 
 There are no doubt a range of factors that can increase or decrease the number of iterations, but
 the strongest single variable looks, unsurprisingly, to be the number of candidates standing.
@@ -332,29 +297,69 @@ plot_ly() %>%
               y = ~iterations, 
               size = ~4*seats,
               text = ~paste0(body, ifelse(is.na(election), "", paste(", ", election)), " (", seats, " seats)<br />",
-                             candidates, " candidates + ", seats, " seats = ", iterations, " iterations"),
-              hoverinfo = "text")
-#ggplot(stv16, aes(x = candidates, y = iterations, size = 2*(seats), colour = factor(seats))) + geom_point()
+                             candidates, " candidates took ", iterations, " iterations"),
+              hoverinfo = "text") %>% 
+  layout(xaxis = list(title = "Number of Candidates"),
+         yaxis = list(title = "Number of Iterations"),
+         title = "2016 NZ Local Body Elections, STV Vote Counting")
 ```
 
 
 
 ## Post Script
 
-I've found this an interesting process, both technically learning how to make the graphs with
-[gganimate](https://github.com/dgrtwo/gganimate) and [tweenr](https://github.com/thomasp85/tweenr),
-and getting a better understanding of how the STV counting works. I've always been in
-favour of using STV for these elections, but haven't fully understood the counting process
-(especially the fractional votes).
+I've found this an interesting process, both for the insights and the technical experimentation.
 
-I had planned to write a technical post about creating the animations, but I'm not sure if
-I will now. Either way I'll make the code available at some point. In the meantime, I would
-recommend Len Kiefer's excellent posts for making a start at something like this.^[[Improving R animated GIFs with
-tweenr](http://lenkiefer.com/2016/05/29/improving-R-animated-gifs-with-tweenr) and
-[More tweenr animation examples](http://lenkiefer.com/2016/05/30/more-tweenr-animations)]
+#### Elections and Officials
 
-I have created more animations, and did plan to include more in the post, but they start to
-get quite large (36MB in one case). I'm aiming to create animations for all of 2016's elections,
-and it might be sensible to start a separate repository to handle that.
+I've always been in favour of using STV for local body elections (but prefer MMP for parliament) and
+thought I had a good idea of how it works. I've discovered though that there was a reasonable amount I was unclear on.
+Getting closer to grokking how the multi-seat counting works and what the fractional votes mean has been
+enlightening. I'm still a little uneasy about the fractional votes, and am interested to dig a little
+deeper, especially to look at the differences between the different STV methods.
 
+Also interesting has been an extension of experiencing, as mentioned in the last post, the variety in
+different councils' and DHBs' approaches to making information available. Six of the eight councils,
+and one of the nineteen DHBs made the iteration report available on their websites. Only one supplied
+the original XML used by the voting software; the others used PDF, RTF or XLSX. So I put out several
+[OIA/LGOIMA requests](https://fyi.org.nz/user/david_friggens/requests) for the rest, which similarly
+elicited a range of responses. One quickly put it up on their website the next day, six have yet to
+respond, two weeks later. Some passed it through to the 3rd party election company who supplied the
+XML, others just sent a PDF or Word DOC (not DOCX) and said "that's all we have!" Finally, two
+helpfully printed and scanned the datatable (one with a "RELEASED UNDER THE OIA" watermark) to make
+text extraction impossible. Thankfully they both eventually supplied something more usable.
+
+#### Data and Graphs
+
+More mundanely, this post has been in gestation for 2-3 weeks. Partly because I've been amassing
+quite a bit of data from the various elections and trying to make sense of them (including retyping
+some from unhelpful PDFs). I want to have a broader look across it all, and I think it's grown a bit
+too big for the blog, so I plan to start a separate repository for it all.
+
+Also, I attempted to create these graphs in three (3!) different formats --- ggplot, Plot.ly
+and Highcharts. First, I spent a reasonable
+amount of time figuring out how to make the animated gifs I've included in the post, created with
+[gganimate](https://github.com/dgrtwo/gganimate) and [tweenr](https://github.com/thomasp85/tweenr)
+(and I have to give a huge thank you to Len Kiefer's excellent posts for helping with this.^[[Improving R
+animated GIFs with tweenr](http://lenkiefer.com/2016/05/29/improving-R-animated-gifs-with-tweenr) and
+[More tweenr animation examples](http://lenkiefer.com/2016/05/30/more-tweenr-animations)]).
+I really like how these have turned out --- they're pretty close to what I had in mind from the
+outset. My main complaints are that it would be nice to have some (user) controls over the animation,
+and the files can get quite large (20-40MB for the DHBs).
+
+I gave a talk on this subject at Toastmasters last week, and redid all of these graphs in
+[Plot.ly](http://plot.ly/r/). This gave me separate graphs for each of the iterations to step through
+manually, as well as interactive control to zoom in etc. Later, I tried to see if they could be animated,
+but the best that seems possible is hiding and revealing different series (i.e. not having smooth
+transformations between them), and controlling the changes by selecting from a drop-down box rather than
+having a "play" or "next" button.
+
+Just recently I discovered Highcharts' [motion plugin](http://jkunst.com/highcharter/plugins.html) and
+have tried to recreate the graphs with this too. I've successfully created a static plot, but have
+struggled with the animation. I've decided to give up for now and possibly try again later, though it's
+not clear to me from the documentation and examples whether I would be able to animate the quota line
+as well as the bars.
+
+
+#### Te be continued...
 
