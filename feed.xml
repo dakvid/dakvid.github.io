@@ -5,7 +5,15 @@
 		<description>Various attempts to play with data.</description>		
 		<link>http://david.frigge.nz</link>
 		<atom:link href="http://david.frigge.nz/feed.xml" rel="self" type="application/rss+xml" />
-		  
+
+		  <item>
+		    <title>Simple To Vote</title>
+		    <description>If you live in New Zealand you would have been hard pressed not to notice that we had local body elections recently. It seems that all anyone can talk about is the turnout. Is it all bad news?</description>
+		    <pubDate>Tue, 8 Nov 2016 13:00:00 +1300</pubDate>
+		    <link>http://david.frigge.nz/2016-11-simple-to-vote.html</link>
+		    <guid isPermaLink="true">http://david.frigge.nz/2016-11-simple-to-vote.html</guid>
+		  </item>
+
 		  <item>
 		    <title>W[h]ither Local Democracy?</title>
 		    <description>If you live in New Zealand you would have been hard pressed not to notice that we had local body elections recently. It seems that all anyone can talk about is the turnout. Is it all bad news?</description>
@@ -13,7 +21,7 @@
 		    <link>http://david.frigge.nz/2016-10-whither-local-democracy.html</link>
 		    <guid isPermaLink="true">http://david.frigge.nz/2016-10-whither-local-democracy.html</guid>
 		  </item>
-		  
+
 		  <item>
 		    <title>The Luminaries</title>
 		    <description>Last year I read Eleanor Catton's award-winning yarn The Luminaries. I started a little project around it, which is temporarily stalled (watch this space), but recently a colleague remarked about the chapter lengths and I was reminded I had this data.<br />The novel has a number of structural constraints, one of which is that each of the 12 parts is half the length of the previous one.<br />Or are they?</description>
@@ -21,7 +29,7 @@
 		    <link>http://david.frigge.nz/2016-08-the-luminaries.html</link>
 		    <guid isPermaLink="true">http://david.frigge.nz/2016-08-the-luminaries.html</guid>
 		  </item>
-		
+
 		  <item>
 		    <title>Unfamiliar Maps</title>
 		    <description>At least 3 people have booked flights to Sydney, Nova Scotia (population 30,000) intending to holiday in New South Wales (two orders of magnitude larger). There are a number of cases like this of towns and cities with larger and more well known doppelgangers. I thought it would be interesting to have a map that labelled the familiar names in the unfamiliar locations.</description>
