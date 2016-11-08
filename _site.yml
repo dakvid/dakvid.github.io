@@ -8,8 +8,10 @@ navbar:
     - text: "Posts"
       icon: fa-newspaper-o
       menu:
+        - text: "Simple To Vote"
+          href: 2016-11-simple-to-vote.html
         - text: "W[h]ither Local Democracy?"
-          href: 2016-10-whither-local_democracy.html
+          href: 2016-10-whither-local-democracy.html
         - text: "The Luminaries"
           href: 2016-08-the-luminaries.html
         - text: "Unfamiliar Maps"
