@@ -28,7 +28,20 @@ blurb_post <- function(latest = FALSE, title = "Untitled", pub_date = Sys.Date()
 ```
 
 ```{r blurbs, echo=FALSE}
-blurb_post(TRUE, "Simple To Vote", "8 November 2016", "2016-11-simple-to-vote.html",
+blurb_post(TRUE, "Earthquake Depth", "18 November 2016", "2016-11-earthquake-depth.html",
+           "There have been a number of interesting visualisations of this weeks earthquakes: I
+particularly like Chris McDowall's,
+but also Harkanwal Singh's.
+Most of them focus on the two-dimensional geographic dimensions, which is important. A
+notable exception is the pie graph showing
+that nearly half of the energy released by NZ earthquakes in seven years came on Monday.
+
+I haven't seen anything yet that gives a closer look at the depths of these earthquakes.
+The depth of the epicentre has an effect on the energy and damage at the surface, so
+this seems like an important factor. Some use colour to indicate depth, but it's hard
+to get a feel for the distribution and variation. I thought it would be interesting to take
+a look at the quakes with depth as the primary dimension.")
+blurb_post(FALSE, "Simple To Vote", "8 November 2016", "2016-11-simple-to-vote.html",
            "Recently we had local body elections in New Zealand. (You may have heard.) Single Transferable Vote (STV) was used for 7 of the 67 territorial authorities (city and district councils), for 1 of the 11 regional councils, and for 19 of the 20 district health boards. STV is Simple To Vote, but it can also be Strenuous To Vet - understanding how the votes are counted and the results are calculated is much less intuitive than First Past the Post (FPP).
 
 So here are some animations to hopefully make the process in New Zealand a little easier to understand.")

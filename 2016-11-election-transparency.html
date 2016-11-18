@@ -11,7 +11,7 @@
 
 
 
-<title>Recent Posts</title>
+<title>Election Transparency</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -265,88 +265,40 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Recent Posts</h1>
+<h1 class="title toc-ignore">Election Transparency</h1>
+<h4 class="date"><em>9 November 2016</em></h4>
 
 </div>
 
 
-<p><div class="jumbotron">
-<h1>
-Earthquake Depth
-<small>18 November 2016</small>
-</h1>
-<p class="lead">There have been a number of interesting visualisations of this weeks earthquakes: I
-particularly like Chris McDowall's,
-but also Harkanwal Singh's.
-Most of them focus on the two-dimensional geographic dimensions, which is important. A
-notable exception is the pie graph showing
-that nearly half of the energy released by NZ earthquakes in seven years came on Monday.
-
-I haven't seen anything yet that gives a closer look at the depths of these earthquakes.
-The depth of the epicentre has an effect on the energy and damage at the surface, so
-this seems like an important factor. Some use colour to indicate depth, but it's hard
-to get a feel for the distribution and variation. I thought it would be interesting to take
-a look at the quakes with depth as the primary dimension.</p>
-<p>
-<a class="btn btn-primary btn-lg" href="2016-11-earthquake-depth.html">Read more...</a>
-</p>
-</div><div class="panel panel-primary">
-<div class="panel-heading">
-<h3 class="panel-title">Simple To Vote</h3>
+<p>Despite the timing, this post is not about the sorry excuse for popular expression just completed in North America. I’ve been looking into the results of the recent local body elections in New Zealand that used Single Transferable Vote (STV), and have some reflections on the transparency of results. TL;DR — all STV elections should provide the iteration report, and councils and (especially) DHBs should do better responding to OIAs.</p>
+<p>First Past the Post (FPP) elections are pretty easy to report on — everybody makes a certain number of votes (depending on the number of seats available) and you can just list the number of votes each candidate received. The official results are brief and complete, and it’s completely clear to members of the public who got elected and why.</p>
+<p>STV elections, as I’ve <a href="2016-11-simple-to-vote.html">recently discovered</a> are not so straightforward. The councils and DHBs are <a href="???">mandated</a> to report the iteration number and count of votes when each candidate was excluded or elected, but that doesn’t provide any explanation or insight into what votes/preferences were cast, and how the vote counting process proceeded.</p>
+<p>Understanding how the election results were determined is important for giving the public a sense of ownership and engagement with the voting process (important given the <a href="2016-10-whither-local-democracy.html">low voter turnout</a> in local body elections). And the transparency this brings is important for making it clear that the elections are free and fair. SURELY SAY SOMETHING MORE IN HERE.</p>
+<p>In my view, the only way to do this is to provide the iteration report, which gives the votes for each candidate at every iteration.</p>
+<p>Six of the eight councils provided this, as did two of the 19 DHBs:</p>
+<ul>
+<li>Dunedin City Council (PDF)</li>
+<li>Kāpiti Coast District Council (XML)</li>
+<li>Porirua City Council (PDF)</li>
+<li>Wellington City Council (PDF and RTF)</li>
+<li>Wellington Regional Council (PDF)</li>
+<li>MidCentral DHB (PDF)</li>
+<li>South Canterbury DHB (PDF)</li>
+</ul>
+<p>Only one of these was completely machine readable in that I could input it directly into R. The RTF and a few of the PDFs I could copy the data directly into a TSV, but the others required either retyping or more manual alterations to the copied text.</p>
+<div id="official-information-requests" class="section level2">
+<h2>Official Information Requests</h2>
+<p>I wanted to look into the rest of the elections too, so I sent off 17 requests<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a> under the Official Information Act (OIA) XXXX or Local Government Official Information XXXX Act (LGOIMA) XXXX <a href="https://fyi.org.nz/user/david_friggens/requests">through FYI</a>.</p>
+<pre class="r"><code>library(tibble)
+library(plotly)</code></pre>
 </div>
-<div class="panel-body">
-Recently we had local body elections in New Zealand. (You may have heard.) Single Transferable Vote (STV) was used for 7 of the 67 territorial authorities (city and district councils), for 1 of the 11 regional councils, and for 19 of the 20 district health boards. STV is Simple To Vote, but it can also be Strenuous To Vet - understanding how the votes are counted and the results are calculated is much less intuitive than First Past the Post (FPP).
-
-So here are some animations to hopefully make the process in New Zealand a little easier to understand.
-<a href="2016-11-simple-to-vote.html">Read more...</a>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>If that number doesn’t seem to add up, it’s because I asked Auckland Council about 3 DHBs, and asked Southern DHB, not realising they didn’t have an election this year.<a href="#fnref1">↩</a></p></li>
+</ol>
 </div>
-<div class="panel-footer">8 November 2016</div>
-</div><div class="panel panel-primary">
-<div class="panel-heading">
-<h3 class="panel-title">W[h]ither Local Democracy?</h3>
-</div>
-<div class="panel-body">
-If you live in New Zealand you would have been hard pressed not to notice that we had
-local body elections recently. It seems that all anyone can talk about is the turnout.
-Is it all bad news?
-<a href="2016-10-whither-local-democracy.html">Read more...</a>
-</div>
-<div class="panel-footer">14 October 2016</div>
-</div><div class="panel panel-primary">
-<div class="panel-heading">
-<h3 class="panel-title">The Luminaries</h3>
-</div>
-<div class="panel-body">
-Last year I read Eleanor Catton's award-winning yarn The Luminaries. I started a little project around it, which is temporarily stalled (watch this space), but recently a colleague remarked about the chapter lengths and I was reminded I had this data.
-
-The novel has a number of structural constraints, one of which is that each of the 12 parts is half the length of the previous one.
-
-Or are they?
-<a href="2016-08-the-luminaries.html">Read more...</a>
-</div>
-<div class="panel-footer">26 August 2016</div>
-</div><div class="panel panel-primary">
-<div class="panel-heading">
-<h3 class="panel-title">Unfamiliar Maps</h3>
-</div>
-<div class="panel-body">
-At least 3 people have booked flights to Sydney, Nova Scotia (population 30,000) intending to holiday in
-New South Wales (two orders of magnitude larger). There are a number of cases like this of towns and cities
-with larger and more well known doppelgangers. 
-I thought it would be interesting to have a map that labelled the familiar names in the unfamiliar locations.
-<a href="2016-08-unfamiliar-maps.html">Read more...</a>
-</div>
-<div class="panel-footer">14 August 2016</div>
-</div><div class="panel panel-primary">
-<div class="panel-heading">
-<h3 class="panel-title">Birthday Eve</h3>
-</div>
-<div class="panel-body">
-Some time ago I had a thought - if you had a daughter and she was born on Christmas Eve or New Year's Eve, would you be tempted to name her Eve?
-<a href="2016-08-birthday-eve.html">Read more...</a>
-</div>
-<div class="panel-footer">9 August 2016</div>
-</div></p>
 
 <hr />
 
