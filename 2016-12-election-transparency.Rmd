@@ -1,0 +1,234 @@
+---
+title: "Election Transparency"
+date: "19 December 2016"
+output:
+  html_document:
+    code_folding: hide
+---
+
+Despite the timing, this post is not about the recent sorry excuse for democracy in
+North America. I've been looking into the results of the recent local body elections in New Zealand
+that used Single Transferable Vote (STV), and have some reflections on the transparency of results.
+
+<div class="panel panel-info">
+<div class="panel-heading"><h3 class="panel-title">Recommendations</h3></div><div class="panel-body">
+
+* All STV elections should provide the iteration report with the results.
+* Councils and (especially) DHBs should do better responding to OIAs (including, but not limited to, avoiding breaking the law).
+</div></div>
+
+## STV Iteration Reports
+
+First Past the Post (FPP) elections are pretty easy to report on --- everybody makes a certain
+number of votes (depending on the number of seats available) and you can just list the number of
+votes each candidate received. The official results are brief and complete, and it's completely
+clear to members of the public who got elected and why.
+
+STV elections, as I've [recently discovered](2016-11-simple-to-vote.html), are not so straightforward.
+The councils and DHBs appear to be mandated
+to report the iteration number and count of votes when each candidate was excluded or elected^[I
+haven't come across the exact requirements, but this was the minimum that was reported for
+each election. See eg the [Electionz results](http://www.electionz.com/2016lgeresults/2016_results.htm).], but
+that doesn't provide any explanation or insight into what votes/preferences were cast, and how
+the vote counting process proceeded.
+
+Understanding how the election results were determined is important for giving the public a
+sense of ownership and engagement with the voting process, which in turn seems like
+an important issue given the
+[low voter turnout](2016-10-whither-local-democracy.html) in local body elections.
+And the transparency this brings is important for making it clear that the elections are
+free and fair.
+
+STV is arguably a fairer system, but it won't keep and gain support if voters don't understand it.
+In my view, the only way to do this is to provide the votes for every candidate at every iteration
+of the counting process, thus making it clear how and why each candidate was elected or excluded.
+The STV iteration report provides this.
+
+Six of the eight councils provided STV iteration reports, as did two of the 19 DHBs:
+
+* Dunedin City Council ([PDF]())
+* Kāpiti Coast District Council ([XML]())
+* Porirua City Council ([PDF]())
+* Wellington City Council ([PDF]() and [RTF]())
+* Wellington Regional Council ([PDF]())
+* MidCentral DHB ([PDF]())
+* South Canterbury DHB ([PDF]())
+
+Only one of these was completely machine readable, in that I could input it directly into
+[R](http://r-project.org).
+The RTF and a few of the PDFs I could copy the data directly into a
+[TSV](https://en.wikipedia.org/wiki/Tab-separated_values), but the others
+would have required manually retyping if I hadn't recently discovered [tabulizer](https://github.com/ropenscilabs/tabulizer).
+
+## Official Information Requests
+
+I wanted to look into the rest of the elections too, so I sent off 17 requests^[If that number doesn't
+seem to add up, it's because I asked Auckland Council about 3 DHBs, and asked Southern DHB, not
+realising they didn't have an election this year. I also asked Whanganui District Council about
+Whanganui DHB, as they appeared to have run the election for them.] under the
+Official Information Act (OIA) 1982 or 
+Local Government Official Information and Meetings Act (LGOIMA) 1987
+[through FYI](https://fyi.org.nz/user/david_friggens/requests).
+
+The responses were ... variable.
+
+The Acts say that a request must be responded to 
+"[as soon as reasonably practicable](http://www.legislation.govt.nz/act/public/1982/0156/latest/DLM65390.html?search=sw_096be8ed81430379_as+soon+as+reasonably+practicable_25_se&p=1&sr=5)"
+with a hard deadline of 20 working days.
+A request like this, which is for an existing file that should be held by the
+electoral officer, could be completed the day it's received (thanks Waikato DHB!), but it seems
+reasonable to allow up to a week.
+
+Ten of the local bodies gave me the file within a week, but six of them appeared to take the
+20 day deadline as more of a target. Hawke's Bay DHB on the other hand didn't seem at all
+bothered by their legal responsibility, taking four days _after_ the deadline to respond.
+
+
+### A picture is worth a thousand words
+
+The following graph shows the time taken by each local body to respond, and each of the
+main communications back and forth.
+
+Note that I have counted the day of request as Day 1, for nicer graphing. To be fairer, this
+makes the legal deadline Day 21.
+
+```{r oias, warning=FALSE, message=FALSE, fig.height=7.7, fig.width=9}
+# This graph is constructed in parts:
+# - a bar graph of total durations
+# - a scatter plot of events, with hover info
+# - line and text annotations
+# - image annotations to sit over the scatter dots.
+
+library(magrittr)
+library(readr)
+library(dplyr)
+library(purrr)
+library(forcats)
+library(plotly)
+oia <- read_csv("data/stv_oia_events.csv")
+oia_days <-
+  oia %>% 
+  group_by(body) %>% 
+  summarise(duration = max(day)) %>% 
+  ungroup()
+
+
+oia_days %<>% mutate(body = fct_reorder(body, duration))
+oia %<>% mutate(body = factor(body, levels = levels(oia_days$body)))
+
+num_bodies <- oia_days %>% nrow()
+
+make_image_list <- function(my_event) {
+  oia %>%
+    filter(event == my_event) %>% 
+    transpose() %>% 
+    map(~ list(source = paste0("images/icons/",my_event,".png"),
+               xref = "x", yref = "y",
+               x = .x$day %>% subtract(0.5) %>% add(.x$adjust),
+               y = num_bodies - (.x$body %>% as.integer() %>% subtract(0.4)),
+               sizex = 1, sizey = 1,
+               opacity = 1,
+               layer = "above"))
+}
+
+plot_ly() %>% 
+  add_bars(data = oia_days, 
+           y = ~body %>% fct_rev(),
+           x = ~duration,
+           orientation = "h",
+           showlegend = FALSE,
+           name = "Duration",
+           hoverinfo = "none") %>% 
+  add_trace(data = oia,
+            y = ~body,
+            x = ~(day + adjust),
+            type = "scatter",
+            name = "Events",
+            text = ~paste0("<b>Day ", day, ": ",status,"</b><br> ", comment),
+            hoverinfo = "text",
+            showlegend = FALSE) %>% 
+  add_annotations(x = 8,
+                  y = num_bodies - 1,
+                  text = "reasonable<br>deadline?",
+                  showarrow = FALSE,
+                  font = list(color = "black", align = "left")) %>% 
+  add_annotations(x = 23,
+                  y = 1.5,
+                  text = "LEGAL<br>DEADLINE",
+                  showarrow = FALSE,
+                  font = list(color = "red")) %>% 
+  layout(title = "Response Times to Official Information Requests for Election Reports",
+         xaxis = list(title = "Working Days"),
+         yaxis = list(title = ""),
+         margin = list(l = 125),
+         shapes = list(
+           list(type = "line",
+                line = list(color = "black"),
+                y0 = -0.5, y1 = num_bodies, x0 = 6.5, x1 = 6.5),
+           list(type = "Line",
+                line = list(color = "red"),
+                y0 = -0.5, y1 = num_bodies,
+                x0 = 21.5, x1 = 21.5)
+         ),
+         images = oia %>% use_series(event) %>% unique() %>% map(make_image_list) %>% flatten()
+         )
+```
+
+
+### Comments
+
+There are various things to comment on. First and foremost, none of this would be necessary if the STV
+iteration reports were all proactively published with the election results. Hopefully that will be
+the case universally in 2019.
+
+One notable variation between the organisations is whether an initial acknowledgement is sent.
+Given that BOP DHB "lost" my original email I think it would be good practice to do this for every
+request so that there is no uncertainty. It's frustrating to wait with no response for two weeks
+not knowing whether it's legitimately in a queue or has just been forgotten about.
+
+I was surprised that there were a few organisations that sent me or directed me to something other
+than the full iteration report. I realise that it's a bit technical and confusing if you don't know
+anything about it, but I was specific about the information I wanted and I would have thought it
+wise to check the wording of the request before sending a response.
+
+Somewhat related, many of the elections were contracted to a third party election company. In
+some of these cases, the report was sourced from them and passed on to me, in others my request
+was forwarded and they responded directly to me. In a couple of cases there was an attempt to
+say "we don't have the file --- you'll have to contact [the election company] yourself".
+This demonstrates a lack of understanding of the OIA/LGOIMA: this is still deemed to be held
+by the council/board,^[Any information held by an independent contractor engaged by a body in
+his or her capacity as such contractor shall, for the purposes of this Act, be deemed to be
+held by the body. ([OIA](http://www.legislation.govt.nz/act/public/1982/0156/latest/DLM64790.html))
+([LGOIMA](http://www.legislation.govt.nz/act/public/1987/0174/latest/DLM122247.html))]
+so shouldn't be my responsibility to chase up, and either way the Acts' duty of "reasonable
+assistance" requires a better response than `¯\_(ツ)_/¯`
+The Ombudsman has [some useful guides](http://www.ombudsman.parliament.nz/resources-and-publications/guides/official-information-legislation-guides).
+
+Frustrating as it was to wait days and weeks for many responses, it was another level again to
+receive a PDF of images indicating that a machine-readable file had been printed and then scanned.
+With this, anything non-trivial on my part would require manually retyping pages and pages of 
+names and numbers (hopefully mistake-free). Thankfully, I did manage to get the "original" file
+in each case after explaining the problem, but there didn't seem to be an understanding of
+how and why data might be used, as opposed to text.
+More broadly, the variety of file formats were often less than ideal for extracting data from,
+but "they were all that we were given". In hindsight I think I could have pushed for XML files
+from everyone (as above), but I managed to make them work.
+There are actually very good government guidelines about
+[file formats for releasing data](https://www.ict.govt.nz/guidance-and-resources/open-government/new-zealand-government-open-access-and-licensing-nzgoal-framework/nzgoal-guidance-notes/nzgoal-guidance-note-2-file-formats-august-2015/);
+it would be great if these were more widely known.
+
+
+
+
+## STV data: what now?
+
+Having collected all of the STV reports, I'm planning to poke around and do some more analysis
+and visualisation.
+In the meantime, I've made the files (original and processed) available in a Github repository for
+anyone who's interested:
+http://github.com/dakvid/stvnz
+
+I was keen to try and get and get hold of the more detailed data of all preferences, to be able
+to look at other counting methods, such as [Condorcet](https://en.wikipedia.org/wiki/Condorcet_method),
+but it seems that that information is not stored for long.
+
