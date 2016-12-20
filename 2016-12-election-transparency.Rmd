@@ -1,6 +1,6 @@
 ---
 title: "Election Transparency"
-date: "19 December 2016"
+date: "20 December 2016"
 output:
   html_document:
     code_folding: hide
@@ -44,7 +44,7 @@ In my view, the only way to do this is to provide the votes for every candidate 
 of the counting process, thus making it clear how and why each candidate was elected or excluded.
 The STV iteration report provides this.
 
-Six of the eight councils provided STV iteration reports, as did two of the 19 DHBs:
+Six of the eight councils proactively provided STV iteration reports, as did two of the 19 DHBs:
 
 * Dunedin City Council ([PDF]())
 * Kāpiti Coast District Council ([XML]())
@@ -56,7 +56,7 @@ Six of the eight councils provided STV iteration reports, as did two of the 19 D
 
 Only one of these was completely machine readable, in that I could input it directly into
 [R](http://r-project.org).
-The RTF and a few of the PDFs I could copy the data directly into a
+With the RTF and a few of the PDFs I could copy the data directly into a
 [TSV](https://en.wikipedia.org/wiki/Tab-separated_values), but the others
 would have required manually retyping if I hadn't recently discovered [tabulizer](https://github.com/ropenscilabs/tabulizer).
 
@@ -88,6 +88,8 @@ bothered by their legal responsibility, taking four days _after_ the deadline to
 
 The following graph shows the time taken by each local body to respond, and each of the
 main communications back and forth.
+The icons give more detail when the mouse hovers, but if you're on a mobile device you
+should be able to tap to display.
 
 Note that I have counted the day of request as Day 1, for nicer graphing. To be fairer, this
 makes the legal deadline Day 21.
@@ -181,12 +183,12 @@ There are various things to comment on. First and foremost, none of this would b
 iteration reports were all proactively published with the election results. Hopefully that will be
 the case universally in 2019.
 
-One notable variation between the organisations is whether an initial acknowledgement is sent.
+One notable variation between the agencies is whether an initial acknowledgement is sent.
 Given that BOP DHB "lost" my original email I think it would be good practice to do this for every
 request so that there is no uncertainty. It's frustrating to wait with no response for two weeks
 not knowing whether it's legitimately in a queue or has just been forgotten about.
 
-I was surprised that there were a few organisations that sent me or directed me to something other
+I was surprised that there were a few agencies that sent me or directed me to something other
 than the full iteration report. I realise that it's a bit technical and confusing if you don't know
 anything about it, but I was specific about the information I wanted and I would have thought it
 wise to check the wording of the request before sending a response.
@@ -200,8 +202,8 @@ by the council/board,^[Any information held by an independent contractor engaged
 his or her capacity as such contractor shall, for the purposes of this Act, be deemed to be
 held by the body. ([OIA](http://www.legislation.govt.nz/act/public/1982/0156/latest/DLM64790.html))
 ([LGOIMA](http://www.legislation.govt.nz/act/public/1987/0174/latest/DLM122247.html))]
-so shouldn't be my responsibility to chase up, and either way the Acts' duty of "reasonable
-assistance" requires a better response than `¯\_(ツ)_/¯`
+so shouldn't be my responsibility to chase up. And either way the Acts' duty of "reasonable
+assistance" requires a better response than `¯\_(ツ)_/¯`.
 The Ombudsman has [some useful guides](http://www.ombudsman.parliament.nz/resources-and-publications/guides/official-information-legislation-guides).
 
 Frustrating as it was to wait days and weeks for many responses, it was another level again to
@@ -213,7 +215,7 @@ how and why data might be used, as opposed to text.
 More broadly, the variety of file formats were often less than ideal for extracting data from,
 but "they were all that we were given". In hindsight I think I could have pushed for XML files
 from everyone (as above), but I managed to make them work.
-There are actually very good government guidelines about
+There are actually very good government guidelines from NZGOAL about
 [file formats for releasing data](https://www.ict.govt.nz/guidance-and-resources/open-government/new-zealand-government-open-access-and-licensing-nzgoal-framework/nzgoal-guidance-notes/nzgoal-guidance-note-2-file-formats-august-2015/);
 it would be great if these were more widely known.
 
@@ -223,12 +225,12 @@ it would be great if these were more widely known.
 ## STV data: what now?
 
 Having collected all of the STV reports, I'm planning to poke around and do some more analysis
-and visualisation.
-In the meantime, I've made the files (original and processed) available in a Github repository for
+and visualisation. (Especially if my kids will stay out of hospital.)
+In the meantime, I've made the files, original and processed, available in a Github repository for
 anyone who's interested:
 http://github.com/dakvid/stvnz
 
 I was keen to try and get and get hold of the more detailed data of all preferences, to be able
 to look at other counting methods, such as [Condorcet](https://en.wikipedia.org/wiki/Condorcet_method),
-but it seems that that information is not stored for long.
+but it seems that that information is not stored for long. But there's enough to work with for now.
 

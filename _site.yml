@@ -8,6 +8,8 @@ navbar:
     - text: "Posts"
       icon: fa-newspaper-o
       menu:
+        - text: "Election Transparency"
+          href: 2016-12-election-transparency.html
         - text: "Earthquake Depth"
           href: 2016-11-earthquake-depth.html
         - text: "Simple To Vote"

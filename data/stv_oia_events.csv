@@ -35,7 +35,7 @@ Taranaki DHB,1,0,wrongdata,Wrong Data,PA to CE sent limited results summary
 Taranaki DHB,2,0,xml,Success,Electoral Officer (external) sent original XML report
 Waikato DHB,1,0,pdf,Success,Executive Director Public & Organisational Affairs sent report as PDF
 Wairarapa DHB,1,0,ack,Acknowledgement,Communications Advisor noted receipt
-Wairarapa DHB,16,-0.6,ping,Request for Update, "I was just wanting to check that my request hadn't been forgotten, and was on track to be responded to by next week" 
+Wairarapa DHB,16,-0.6,ping,Request for Update, "I was just wanting to check that my request hadn't been forgotten<br />and was on track to be responded to by next week" 
 Wairarapa DHB,16,0,scanned,Partial Success,PACS/RIS Administrator sent PDF (ie photos) of letter from CE with report
 Wairarapa DHB,16,0.6,docx,Success,PACS/RIS Administrator sent report as Word 2007 document
 West Coast DHB,1,0,ack,Acknowledgement,Automated out-of-office from Senior Communications Advisor (back tomorrow)

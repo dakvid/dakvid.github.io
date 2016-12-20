@@ -28,7 +28,15 @@ blurb_post <- function(latest = FALSE, title = "Untitled", pub_date = Sys.Date()
 ```
 
 ```{r blurbs, echo=FALSE}
-blurb_post(TRUE, "Earthquake Depth", "18 November 2016", "2016-11-earthquake-depth.html",
+blurb_post(TRUE, "Election Transparency", "20 December 2016", "2016-12-election-transparency.html",
+           "Despite the timing, this post is not about the recent sorry excuse for democracy in
+North America. I've been looking into the results of the recent local body elections in New Zealand
+that used Single Transferable Vote (STV), and have some reflections on the transparency of results.
+
+Recommendations:
+(1) All STV elections should provide the iteration report with the results.
+(2) Councils and (especially) DHBs should do better responding to OIAs (including, but not limited to, avoiding breaking the law).")
+blurb_post(FALSE, "Earthquake Depth", "18 November 2016", "2016-11-earthquake-depth.html",
            "There have been a number of interesting visualisations of this weeks earthquakes: I
 particularly like Chris McDowall's,
 but also Harkanwal Singh's.
