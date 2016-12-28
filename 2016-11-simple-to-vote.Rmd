@@ -289,7 +289,7 @@ the strongest single variable looks, unsurprisingly, to be the number of candida
 
 ```{r iterations, echo=FALSE, message=FALSE, warning=FALSE}
 library(readr)
-stv16 <- read_csv("data/local2016/summary_stv_counts.csv", skip = 2)
+stv16 <- read_csv("data/local2016/summary_stv_counts.csv")
 library(plotly)
 plot_ly() %>% 
   add_markers(data = stv16, 
