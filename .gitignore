@@ -6,4 +6,5 @@
 *.yml
 notes
 libs
+*_files
 
