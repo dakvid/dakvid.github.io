@@ -7,6 +7,22 @@
 		<atom:link href="http://david.frigge.nz/feed.xml" rel="self" type="application/rss+xml" />
 
       <item>
+        <title>Earthquake Excuses</title>
+        <description>After my first foray into earthquake data I poked around a bit more but didn't produce anything hugely revelatory. I thought I'd use the data though as an excuse to try out a couple of new things: zooming facets in ggplot2, and creating maps with Plotly.</description>
+        <pubDate>Wed, 28 Dec 2016 23:45:00: +1300</pubDate>
+        <links>http://david.frigge.nz/2016-12-earthquake-excuses.html</links>
+        <guid isPermaLink="true">http://david.frigge.nz/2016-12-earthquake-excuses.html</guid>
+      </item>
+
+      <item>
+        <title>Election Transparency</title>
+        <description>Despite the timing, this post is not about the recent sorry excuse for democracy in North America. I've been looking into the results of the recent local body elections in New Zealand that used Single Transferable Vote (STV), and have some reflections on the transparency of results. <br />Recommendations:<ul><li>All STV elections should provide the iteration report with the results.</li><li>Councils and (especially) DHBs should do better responding to OIAs (including, but not limited to, avoiding breaking the law).</li></ul></description>
+        <pubDate>Tue, 20 Dec 2016 13:00:00: +1300</pubDate>
+        <links>http://david.frigge.nz/2016-12-election-transparency.html</links>
+        <guid isPermaLink="true">http://david.frigge.nz/2016-12-election-transparency.html</guid>
+      </item>
+
+      <item>
         <title>Earthquake Depth</title>
         <description>There have been a number of interesting visualisations of this weeks earthquakes: I particularly like Chris McDowall's, but also Harkanwal Singh's. Most of them focus on the two-dimensional geographic dimensions, which is important. A notable exception is the pie graph showing that nearly half of the energy released by NZ earthquakes in seven years came on Monday.  I haven't seen anything yet that gives a closer look at the depths of these earthquakes. The depth of the epicentre has an effect on the energy and damage at the surface, so this seems like an important factor. Some use colour to indicate depth, but it's hard to get a feel for the distribution and variation. I thought it would be interesting to take a look at the quakes with depth as the primary dimension.</description>
         <pubDate>Fri, 18 Nov 2016 13:30:00: +1300</pubDate>

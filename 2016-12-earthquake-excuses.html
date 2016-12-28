@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<meta name="date" content="2016-12-28" />
+
+<title>Earthquake Excuses</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<script src="site_libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="site_libs/plotlyjs-1.16.3/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotlyjs-1.16.3/plotly-latest.min.js"></script>
+<script src="site_libs/plotly-binding-4.5.6/plotly.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="alternate" type="application/rss+xml" title="David's AdVentures In Data" href="/feed.xml">
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">David's AdVentures In Data</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Posts
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="2016-12-election-excuses.html">Earthquake Excuses</a>
+    </li>
+    <li>
+      <a href="2016-12-election-transparency.html">Election Transparency</a>
+    </li>
+    <li>
+      <a href="2016-11-earthquake-depth.html">Earthquake Depth</a>
+    </li>
+    <li>
+      <a href="2016-11-simple-to-vote.html">Simple To Vote</a>
+    </li>
+    <li>
+      <a href="2016-10-whither-local-democracy.html">W[h]ither Local Democracy?</a>
+    </li>
+    <li>
+      <a href="2016-08-the-luminaries.html">The Luminaries</a>
+    </li>
+    <li>
+      <a href="2016-08-unfamiliar-maps.html">Unfamiliar Maps</a>
+    </li>
+    <li>
+      <a href="2016-08-birthday-eve.html">Birthday Eve</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-question-circle"></span>
+     
+    About
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="about.html">
+        <span class="fa fa-question"></span>
+         
+        About Site
+      </a>
+    </li>
+    <li>
+      <a href="https://twitter.com/dakvid">
+        <span class="fa fa-twitter"></span>
+         
+        Twitter
+      </a>
+    </li>
+    <li>
+      <a href="https://nz.linkedin.com/in/dfriggens">
+        <span class="fa fa-linkedin"></span>
+         
+        LinkedIn
+      </a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="feed.xml">
+    <span class="fa fa-rss"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Earthquake Excuses</h1>
+<h4 class="date"><em>28 December 2016</em></h4>
+
+</div>
+
+
+<p>After my <a href="2016-11-earthquake-depth.html">first foray into earthquake data</a> I poked around a bit more but didn’t produce anything hugely revelatory. I thought I’d use the data though as an excuse to try out a couple of new things: zooming facets in <code>ggplot2</code>, and creating maps with Plotly.</p>
+<p>If you are interested in more earthquake insights specifically, two of my favourite visualisations on the matter have been:</p>
+<ul>
+<li>Sarah Habershon’s <a href="http://optimalbi-aws-nz-play-earthquakeblog.s3-website-ap-southeast-2.amazonaws.com/">connected plot and map in d3</a> (see also explanatory posts <a href="http://optimalbi.com/blog/2016/11/25/oh-these-shaky-isles/">one</a> and <a href="http://optimalbi.com/blog/2016/12/02/drop-cover-hold-how-i-made-my-shaky-isles-visualisation/">two</a>), and</li>
+<li>Stefan Marks’ <a href="https://www.youtube.com/watch?v=ciIvHP0qkis">3d visualisation of a century of quakes (YouTube)</a>.</li>
+</ul>
+<div id="quake-patterns-differ-or-how-to-zoom-a-facet" class="section level2">
+<h2>Quake patterns differ, or, How to zoom a facet</h2>
+<p>It was interesting to look at the <a href="2016-11-earthquake-depth.html">depths of the recent earthquakes</a>, but it did leave me wondering if these were typical. Are NZ quakes typically distributed like this? Were the last canterbury quakes this shallow?</p>
+<p>I plotted the distributions of the first 24 hours of quakes following four major events in recent years. It was interesting to see that there was some difference between them. Frustratingly, most of the quakes were relatively shallow, but there were a few very deep ones. Do you leave in all the data to show the full range but make the detail hard to see, or crop the tail to tradeoff against better visibility of the peaks? Enter <code>facet_zoom</code> from the new <a href="https://github.com/thomasp85/ggforce">ggforce</a> package, which allows us to see the whole graph, but also zoom in on the detail of interest.</p>
+<pre class="r"><code>library(readr)
+library(purrr)
+library(dplyr)
+library(magrittr)
+library(forcats)
+library(ggplot2)
+library(ggthemes)
+library(ggforce)
+
+list(
+  #&quot;http://quakesearch.geonet.org.nz/csv?bbox=163.60840,-49.18170,182.98828,-32.28713&amp;minmag=2&amp;startdate=2009-07-15T9:00:00&amp;enddate=2009-07-16T9:00:00&quot;,
+  &quot;data/earthquakes-2009-07-15.csv&quot;,
+  #&quot;http://quakesearch.geonet.org.nz/csv?bbox=163.60840,-49.18170,182.98828,-32.28713&amp;minmag=2&amp;startdate=2010-09-03T16:00:00&amp;enddate=2010-09-04T16:00:00&quot;,
+  &quot;data/earthquakes-2010-09-04.csv&quot;,
+  #&quot;http://quakesearch.geonet.org.nz/csv?bbox=163.60840,-49.18170,182.98828,-32.28713&amp;minmag=2&amp;startdate=2011-02-21T23:00:00&amp;enddate=2011-02-22T23:00:00&quot;,
+  &quot;data/earthquakes-2011-02-22.csv&quot;,
+  #&quot;http://quakesearch.geonet.org.nz/csv?bbox=163.60840,-49.18170,182.98828,-32.28713&amp;minmag=2&amp;startdate=2016-11-13T11:00:00&amp;enddate=2016-11-14T11:00:00&quot;
+  &quot;data/earthquakes-2016-11-14.csv&quot;
+) %&gt;% 
+  map(read_csv) %&gt;% 
+  map(filter, eventtype == &quot;earthquake&quot; | is.na(eventtype)) %&gt;% 
+  map(select, depth) %&gt;% 
+  map2_df(
+    list(
+      &quot;Dusky Sound, 15 Jul 2009, 7.8M&quot;,
+      &quot;Darfield, 4 Sep 2010, 7.1M&quot;,
+      &quot;Christchurch, 22 Feb 2011, 6.3M&quot;,
+      &quot;Kaikoura, 14 Nov 2016, 7.8M&quot;
+    ),
+    function(df, ch) {
+      df %&gt;%
+        mutate(Event = ch)
+    }
+  ) -&gt;
+eq_24h
+
+png(&quot;images/eqnz_depth_comparison.png&quot;, width = 800, height = 600)
+ggplot(eq_24h %&gt;% mutate(Event = fct_inorder(Event)), 
+       aes(x = depth, colour = Event, fill = Event)) + 
+  geom_density(alpha = 0.3) + 
+  facet_zoom(x = depth &lt;= 20 &amp; depth &gt;= 3) +
+  theme_solarized() +
+  labs(title = &quot;Depths of earthquakes, 24 hours after major quake&quot;,
+       caption = &quot;http://david.frigge.nz&quot;)
+dev.off()</code></pre>
+<p><img src="images/eqnz_depth_comparison.png" alt="density plot of earthquake depths" /></p>
+<p>Notes on the code (display with the “Code” toggle above):</p>
+<ul>
+<li>We include blank event types, as these are probably earthquakes. See the <a href="http://info.geonet.org.nz/display/appdata/Catalogue+Output">Geonet docs</a>, and <a href="http://ellisp.github.io/blog/2016/11/19/earthquakes">Peter Ellis’s post</a> for the result of filtering them out.</li>
+<li>I’m enjoying using <a href="https://github.com/hadley/purrr">purrr</a> more and more. Creating lists and mapping across them is starting to feel more natural to me.</li>
+<li>The events will be ordered alphabetically unless we turn them into a factor (yay for <a href="https://blog.rstudio.org/2016/08/31/forcats-0-1-0/">forcats</a>).</li>
+<li><code>facet_zoom</code> is fairly straightforward, which is nice.</li>
+</ul>
+</div>
+<div id="big-quakes-are-almost-everywhere-or-scatter-plots-on-maps-with-plotly" class="section level2">
+<h2>Big quakes are (almost) everywhere, or, Scatter plots on maps with Plotly</h2>
+<p>I’ve “always” known that Wellington was the big risk for quakes, and has had some big ones in the past. And I grew up in Hawkes Bay with the communal memory of the 1931 quake there. But have the big quakes been only in these regions or have they been across the whole country?</p>
+<p>I looked at Geonet for all recorded quakes over 7 magnitude; it turns out there have been 30 of them. As you can see below, the quakes span the length of the country, on what looks like a diagonal line, highlighting <a href="https://en.wikipedia.org/wiki/Geology_of_New_Zealand">New Zealand’s position</a> as the meeting place of the Pacific and Australian Plates. Northland looks like the place to be if you’re super scared of earthquakes. Just keep your fingers crossed that <a href="https://en.wikipedia.org/wiki/Auckland_volcanic_field">Auckland’s volcanoes</a> don’t explode!</p>
+<p>I’ve plotted the 30 big quakes, coloured by date. For reference, especially for non-kiwis, I’ve also plotted the main towns and cities, scraping this data from Wikipedia.</p>
+<pre class="r"><code>library(readr)
+library(dplyr)
+library(plotly)
+library(lubridate)
+big_eq &lt;- 
+  read_csv(&quot;data/big_nz_quakes.csv&quot;) %&gt;% 
+  # read_csv(&quot;http://quakesearch.geonet.org.nz/csv?bbox=162.99316,-49.66763,182.37305,-32.91649&amp;minmag=7&amp;startdate=1800-01-01T0:00:00&amp;enddate=2016-12-31T23:00:00&quot;) %&gt;% 
+  mutate(origintime = with_tz(origintime, &quot;Pacific/Auckland&quot;),
+         magnitude = round(magnitude, 1),
+         depth = round(depth, 0),
+         Year = year(origintime))
+
+nzua &lt;- read_tsv(&quot;data/nz_urban_areas.tsv&quot;, skip = 1, col_types = &quot;icccnn&quot;)
+
+plot_geo(big_eq, 
+         lat = ~latitude, lon = ~longitude) %&gt;% 
+  add_markers(text = ~paste0(format(origintime, &quot;%l:%M%p, %A %e %B %Y&quot;), &quot;&lt;br /&gt;&quot;,
+                             magnitude, &quot; &quot;, magnitudetype, &quot;, &quot;, depth, &quot;km deep&quot;),
+              size = I(10),
+              color = ~Year,
+              name = &quot;Earthquakes&quot;,
+              hoverinfo = &quot;text&quot;) %&gt;% 
+  add_markers(data = nzua %&gt;% rename(latitude = Latitude, longitude = Longitude),
+              size = I(5),
+              color = I(&quot;black&quot;),
+              text = ~paste0(Name, &quot; Urban Area &lt;br /&gt; Population &quot;, Population),
+              hoverinfo = &quot;text&quot;,
+              name = &quot;Urban areas&quot;,
+              showlegend = T) %&gt;%
+  layout(title = &quot;Big quakes (&gt;7M) in New Zealand&quot;,
+         geo = list(scope = &quot;world&quot;,
+                    showland = TRUE,
+                    resolution = 50,
+                    projection = list(
+                      type = &quot;conic conformal&quot;,
+                      rotation = list(lon = 172)
+                    ),
+                    lonaxis = list(range = c(156,190)),
+                    lataxis = list(range = c(-50,-33))))</code></pre>
+<div id="htmlwidget-cff66bb5e9d6b668124f" style="width:672px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cff66bb5e9d6b668124f">{"x":{"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"mapType":"geo","title":"Big quakes (>7M) in New Zealand","geo":{"domain":{"x":[0,1],"y":[0,1]},"scope":"world","showland":true,"resolution":50,"projection":{"type":"conic conformal","rotation":{"lon":172}},"lonaxis":{"range":[156,190]},"lataxis":{"range":[-50,-33]}},"legend":{"y":0.5,"yanchor":"top"}},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"modeBarButtonsToRemove":["sendDataToCloud"]},"data":[{"lat":[-42.6925354,-36.97947693,-43.52731,-45.77025,-49.27101,-46.60614,-45.19286,-36.48562,-37.64958,-46.7,-41.76,-37.6,-38.84554,-47.47,-33.7,-45,-40.55,-39.5,-39.3,-41.7,-42.84,-37.5,-40.4,-42.6,-40.2,-40,-41.2,-41.9,-39.6,-45],"lon":[173.0221405,179.5200195,172.16794,166.58707,164.11501,165.31691,166.83005,-178.47597,179.48859,166.03,172.03999,176.48,178.80322,166.12,-179.8,167,176.28999,177.5,177,172.2,171.83,176.5,176.4,172.55,173,176.5,175.2,173.6,176.2,167],"type":"scattergeo","mode":"markers","text":["12:02am, Monday 14 November 2016<br />7.8 Mw(mB), 15km deep"," 4:37am, Friday  2 September 2016<br />7.1 M, 22km deep"," 4:35am, Saturday  4 September 2010<br />7.2 Mw, 11km deep"," 9:22pm, Wednesday 15 July 2009<br />7.8 Mw, 12km deep"," 6:23pm, Sunday 30 September 2007<br />7.3 Mw, 10km deep"," 9:26am, Tuesday 23 November 2004<br />7 Mw, 12km deep","12:12am, Friday 22 August 2003<br />7.1 Mw, 24km deep"," 6:51pm, Tuesday 21 August 2001<br />7.1 ML, 33km deep","11:51am, Monday  6 February 1995<br />7.2 Mw, 12km deep","10:25pm, Friday 12 October 1979<br />7.3 Mw, 12km deep"," 5:24am, Friday 24 May 1968<br />7.1 Mw, 12km deep"," 1:36pm, Tuesday 29 September 1953<br />7.2 ML, 273km deep"," 8:32am, Wednesday 26 March 1947<br />7 Mw, 12km deep","10:44am, Sunday  2 September 1945<br />7.4 Mw, 12km deep"," 2:16am, Wednesday  7 October 1942<br />7.1 M, 285km deep"," 3:35am, Saturday 11 February 1939<br />7 M, 25km deep","11:46pm, Monday  5 March 1934<br />7.2 Mw, 12km deep"," 1:27pm, Friday 13 February 1931<br />7.3 Mw, 30km deep","10:47am, Tuesday  3 February 1931<br />7.4 Mw, 20km deep","10:17am, Monday 17 June 1929<br />7.3 Mw, 20km deep","10:50pm, Saturday  9 March 1929<br />7 Mw, 12km deep"," 7:44pm, Sunday 22 November 1914<br />7.3 Mw, 300km deep","10:20am, Tuesday  9 August 1904<br />7 Mw, 16km deep"," 4:15am, Saturday  1 September 1888<br />7 Mw, 12km deep","12:14am, Monday 19 October 1868<br />7.2 Mw, 12km deep","12:39am, Monday 23 February 1863<br />7.5 M, 25km deep"," 9:11pm, Tuesday 23 January 1855<br />8.2 Mw, 33km deep"," 1:49am, Monday 16 October 1848<br />7.4 Mw, 12km deep"," 5:09pm, Saturday  8 July 1843<br />7.6 Mw, 12km deep","11:39am, Sunday  1 January 1826<br />7.5 M, 25km deep"],"name":"Earthquakes","hoverinfo":"text","marker":{"size":10,"sizemode":"area","colorbar":{"title":"Year","ticklen":2},"cmin":1826,"cmax":2016,"colorscale":[["0","rgba(68,1,84,1)"],["0.0949561403508764","rgba(72,35,115,1)"],["0.131140350877192","rgba(71,47,123,1)"],["0.178947368421053","rgba(67,61,130,1)"],["0.216666666666666","rgba(63,72,136,1)"],["0.329824561403508","rgba(50,103,142,1)"],["0.423684210526316","rgba(41,125,142,1)"],["0.499342105263158","rgba(37,144,140,1)"],["0.542105263157895","rgba(33,155,138,1)"],["0.551315789473684","rgba(32,157,137,1)"],["0.553947368421053","rgba(31,158,137,1)"],["0.576096491228071","rgba(37,163,134,1)"],["0.602631578947368","rgba(43,168,130,1)"],["0.621710526315789","rgba(46,173,128,1)"],["0.635964912280703","rgba(49,176,126,1)"],["0.678289473684211","rgba(61,185,118,1)"],["0.766666666666666","rgba(105,203,93,1)"],["0.850877192982455","rgba(158,216,63,1)"],["0.913157894736842","rgba(197,224,43,1)"],["0.931140350877192","rgba(209,226,42,1)"],["0.939473684210526","rgba(214,226,41,1)"],["0.956578947368421","rgba(225,228,40,1)"],["0.966228070175439","rgba(231,229,39,1)"],["0.993421052631579","rgba(249,231,37,1)"],["1","rgba(253,231,37,1)"]],"showscale":false,"color":[2016,2016,2010,2009,2007,2004,2003,2001,1995,1979,1968,1953,1947,1945,1942,1939,1934,1931,1931,1929,1929,1914,1904,1888,1868,1863,1855,1848,1843,1826],"line":{"color":"transparent"}},"geo":"geo"},{"lat":[-36.84,-41.29,-43.53,-37.79,-37.68,-39.58,-45.87,-40.36,-41.27,-38.14,-39.07,-35.73,-46.41,-40.84,-39.93,-38.66,-41.51,-37.2,-44.4,-38.69,-40.95,-40.62,-43.91,-37.98,-43.3,-40.22,-45.03,-45.08,-38.23,-43.58,-39.58],"lon":[174.74,174.78,172.62,175.28,176.17,176.85,170.5,175.61,173.28,176.25,174.08,174.32,168.35,175.19,175.05,178.02,173.96,174.9,171.25,176.07,175.66,175.29,171.75,177,172.59,175.57,168.66,170.98,175.87,172.38,174.28],"type":"scattergeo","mode":"markers","text":["Auckland Urban Area <br /> Population 1,495,000","Wellington Urban Area <br /> Population 405,000","Christchurch Urban Area <br /> Population 389,700","Hamilton Urban Area <br /> Population 230,000","Tauranga Urban Area <br /> Population 134,400","Napier-Hastings Urban Area <br /> Population 131,000","Dunedin Urban Area <br /> Population 118,500","Palmerston North Urban Area <br /> Population 84,300","Nelson Urban Area <br /> Population 65,700","Rotorua Urban Area <br /> Population 57,800","New Plymouth Urban Area <br /> Population 56,800","Whangarei Urban Area <br /> Population 56,400","Invercargill Urban Area <br /> Population 50,700","Kapiti Urban Area <br /> Population 41,800","Whanganui Urban Area <br /> Population 39,600","Gisborne Urban Area <br /> Population 36,100","Blenheim Urban Area <br /> Population 30,700","Pukekohe Urban Area <br /> Population 29,800","Timaru Urban Area <br /> Population 28,800","Taupo Urban Area <br /> Population 24,100","Masterton Urban Area <br /> Population 21,200","Levin Urban Area <br /> Population 20,600","Ashburton Urban Area <br /> Population 19,850","Whakatane Urban Area <br /> Population 19,600","Rangiora Urban Area <br /> Population 17,350","Feilding Urban Area <br /> Population 16,250","Queenstown Urban Area <br /> Population 14,300","Oamaru Urban Area <br /> Population 13,850","Tokoroa Urban Area <br /> Population 13,700","Rolleston Urban Area <br /> Population 13,100","Hawera Urban Area <br /> Population 11,800"],"hoverinfo":"text","name":"Urban areas","showlegend":true,"marker":{"size":5,"sizemode":"area","fillcolor":"rgba(0,0,0,1)","color":"rgba(0,0,0,1)","line":{"color":"transparent"}},"geo":"geo"},{"type":"scattergeo","mode":"markers","opacity":0,"hoverinfo":"none","showlegend":false,"marker":{"colorbar":{"len":0.5,"lenmode":"fraction","y":1,"yanchor":"top","title":"Year","ticklen":2},"cmin":1826,"cmax":2016,"colorscale":[["0","rgba(68,1,84,1)"],["0.0949561403508764","rgba(72,35,115,1)"],["0.131140350877192","rgba(71,47,123,1)"],["0.178947368421053","rgba(67,61,130,1)"],["0.216666666666666","rgba(63,72,136,1)"],["0.329824561403508","rgba(50,103,142,1)"],["0.423684210526316","rgba(41,125,142,1)"],["0.499342105263158","rgba(37,144,140,1)"],["0.542105263157895","rgba(33,155,138,1)"],["0.551315789473684","rgba(32,157,137,1)"],["0.553947368421053","rgba(31,158,137,1)"],["0.576096491228071","rgba(37,163,134,1)"],["0.602631578947368","rgba(43,168,130,1)"],["0.621710526315789","rgba(46,173,128,1)"],["0.635964912280703","rgba(49,176,126,1)"],["0.678289473684211","rgba(61,185,118,1)"],["0.766666666666666","rgba(105,203,93,1)"],["0.850877192982455","rgba(158,216,63,1)"],["0.913157894736842","rgba(197,224,43,1)"],["0.931140350877192","rgba(209,226,42,1)"],["0.939473684210526","rgba(214,226,41,1)"],["0.956578947368421","rgba(225,228,40,1)"],["0.966228070175439","rgba(231,229,39,1)"],["0.993421052631579","rgba(249,231,37,1)"],["1","rgba(253,231,37,1)"]],"showscale":true,"color":[1826,2016]},"lat":[-49.27101,-33.7],"lon":[-179.8,179.5200195],"geo":"geo"}],"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+<p>Notes on the code (display with the “Code” toggle above):</p>
+<ul>
+<li><a href="https://github.com/hadley/lubridate">Lubridate</a> is great for processing dates; <code>with_tz</code> allows easy conversion from UTC. I had thought that <code>stamp</code> might allow me easy display formatting, but I couldn’t get it to work sensibly so reverted to <code>format</code>.</li>
+<li>I considered sizing the points based on magnitude, but it didn’t work when I added the second trace. I figured it didn’t add a lot to the “story” so didn’t bother pursuing it.</li>
+<li>Frustratingly, I didn’t figure out how to make the map bigger. Both the knitr <code>fig.height</code> option, and the height option in Plotly’s <code>layout</code> function made the figure area bigger, but not the box with the map in.</li>
+</ul>
+<p>On the whole, I’m not entirely happy with this. If I’d had more time I’m sure I would have thought more about the design, and hopefully solved all of the technical issues I ran in to. It was interesting to try out Plotly’s mapping capabilities, but next time I think I’ll reach for <a href="https://rstudio.github.io/leaflet/">leaflet</a> first.</p>
+</div>
+
+<hr />
+
+<footer>
+<p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="images/cc.png" /></a><br />All original content by David Friggens, licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30013353-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>
