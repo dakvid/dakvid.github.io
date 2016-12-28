@@ -8,6 +8,8 @@ navbar:
     - text: "Posts"
       icon: fa-newspaper-o
       menu:
+        - text: "Earthquake Excuses"
+          href: 2016-12-election-excuses.html
         - text: "Election Transparency"
           href: 2016-12-election-transparency.html
         - text: "Earthquake Depth"

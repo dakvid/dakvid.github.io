@@ -28,7 +28,9 @@ blurb_post <- function(latest = FALSE, title = "Untitled", pub_date = Sys.Date()
 ```
 
 ```{r blurbs, echo=FALSE}
-blurb_post(TRUE, "Election Transparency", "20 December 2016", "2016-12-election-transparency.html",
+blurb_post(TRUE, "Earthquake Excuses", "28 December 2016", "2016-12-earthquake-excuses.html",
+           "After my first foray into earthquake data I poked around a bit more but didn't produce anything hugely revelatory. I thought I'd use the data though as an excuse to try out a couple of new things: zooming facets in ggplot2, and creating maps with Plotly.")
+blurb_post(FALSE, "Election Transparency", "20 December 2016", "2016-12-election-transparency.html",
            "Despite the timing, this post is not about the recent sorry excuse for democracy in
 North America. I've been looking into the results of the recent local body elections in New Zealand
 that used Single Transferable Vote (STV), and have some reflections on the transparency of results.
