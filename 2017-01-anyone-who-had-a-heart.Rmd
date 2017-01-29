@@ -1,0 +1,233 @@
+---
+title: "Anyone Who Had a Heart"
+date: "29 January 2017"
+output:
+  html_document:
+    df_print: kable
+---
+
+```{r opts, echo = FALSE}
+knitr::opts_chunk$set(message = FALSE)
+knitr::opts_chunk$set(
+  fig.path = "images/"
+)
+```
+
+One of my goals for the year is to blog at least once a month - and time
+is nearly up for January! I've got a couple of things I've started on,
+notably my "quantified self" data, though I'm still [letting the data
+ramble](https://flowingdata.com/2017/01/24/one-dataset-visualized-25-ways/).
+Inspired by Maëlle Salmon's [Catan visualisation](http://www.masalmon.eu/2017/01/27/catan/)
+I thought I'd finish up a visualisation of Hearts that I poked at last
+weekend. 
+
+I've played a fair bit of Hearts over the years, and occasionally wondered
+about visualising the results. I played two games last weekend with my
+parents; the following morning, left at home sick whilst everyone else
+went to the National Aquarium, I thought I'd give it a go.
+
+I'm not convinced they particularly add anything, but sometimes you have
+to try in order to find out.
+
+# Hearts
+
+If you don't know [Hearts](https://en.wikipedia.org/wiki/Hearts),
+it's fairly straightforward. Four players
+are dealt all the cards and play 13 hands, with the highest card in
+the suit led winning. Points are for certain cards won, not for the
+number of hands. Each heart is 1 point (hence the name) and the Queen
+of Spades is 13 points. The catch is that points are bad --- the first
+to 100 points loses, and the player with the lowest score is the winner.
+
+So there are 26 points to be distributed each round, which means the
+game has to take at least 4 rounds, and (I think) can't last any more
+than 16 rounds. The other catch is that if one player gets all 26 points
+then they score 0 and the other three score 26. This is called "shooting
+the moon" and is harder than it sounds.^[I managed it in one of these
+games, but it's the first time I've been successful in ages.]
+
+OK, so let's load the data. I saved the points per round, and we can
+calculate the scores as we go, taking into account possibly shooting
+the moon.
+
+```{r load_data}
+library(readr)
+library(dplyr)
+points1 <- 
+  read_csv("data/hearts-g1.csv") %>% 
+  mutate(round = row_number())
+points2 <- 
+  read_csv("data/hearts-g2.csv") %>% 
+  mutate(round = row_number())
+shoot_the_moon <- 
+  function(df) {
+    df %>% 
+      # Lazily hard-code column names
+      mutate(zeros = (B==0) + (O==0) + (N==0) + (D==0)) %>%
+      mutate(B = ifelse(zeros == 3, ifelse(B == 0, 26, 0), B),
+             O = ifelse(zeros == 3, ifelse(O == 0, 26, 0), O),
+             N = ifelse(zeros == 3, ifelse(N == 0, 26, 0), N),
+             D = ifelse(zeros == 3, ifelse(D == 0, 26, 0), D)) %>% 
+      select(-zeros)
+  }
+score1 <- 
+  points1 %>% 
+  shoot_the_moon() %>% 
+  mutate_at(1:4, cumsum)
+score2 <- 
+  points2 %>% 
+  shoot_the_moon() %>% 
+  mutate_at(1:4, cumsum)
+```
+
+The standard way to look at the results is just to tabulate the scores
+at each round. The first game took 8 rounds, and I managed to win by
+a comfortable margin. I shot the moon successfully in round 5, and
+tried again less successfully in round 7. 
+The second game was shorter, due to one player lucking out with the
+queen of spades nearly every round.
+<div class = "row">
+<div class = "col-md-6">
+```{r table1}
+score1 %>% select(-round)
+```
+</div><div class = "col-md-6">
+```{r table2}
+score2 %>% select(-round)
+```
+</div></div>
+
+If we want to graph anything, we're going to need
+[tidy data](ftp://cran.r-project.org/pub/R/web/packages/tidyr/vignettes/tidy-data.html).
+
+```{r tidy}
+library(tidyr)
+library(magrittr)
+points1 %<>% gather(player, points, -round)
+points2 %<>% gather(player, points, -round)
+score1 %<>% gather(player, score, -round)
+score2 %<>% gather(player, score, -round)
+```
+
+
+# Cumulative score {.tabset}
+
+The most obvious first step to me is to graph the scores as they accumulate.
+Normally for this sort of thing I would use a line graph, but with the
+discrete jumps of the rounds I wondered if a step graph would work better.
+Looking at them, I'm still on the fence, so I've included both --- see the
+tabs below.
+
+Either way, I think it makes sense to reverse the y axis, given that points
+are effectively negative. And having a line to indicate the end-game
+condition of 100 points makes it clearer.
+
+I was tempted to highlight the player who got the Queen of Spades in each
+round, but since that's half the points on offer I think it's reasonably
+obvious in each case.
+
+
+```{r ggplot}
+library(ggplot2)
+library(ggthemes)
+```
+
+
+## Game 1, Steps
+```{r 2017-01-steps-1}
+ggplot(score1, aes(x = round, y = score, group = player, color = player)) +
+  geom_step(size = 1) + geom_hline(yintercept = 100, color = "black") + 
+  scale_x_continuous(breaks=1:8) + scale_y_reverse(breaks = seq(0, 110, 10))
+```
+
+## Game 1, Lines
+```{r 2017-01-lines-1}
+ggplot(score1, aes(x = round, y = score, group = player, color = player)) +
+  geom_line() + geom_point() + geom_hline(yintercept = 100, color = "black") +
+  scale_x_continuous(breaks=1:8) + scale_y_reverse(breaks = seq(0, 110, 10))
+```
+
+## Game 2, Steps
+```{r 2017-01-steps-2}
+ggplot(score2, aes(x = round, y = score, group = player, color = player)) +
+  geom_step(size = 1) + geom_hline(yintercept = 100, color = "black") +
+  scale_x_continuous(breaks=1:8) + scale_y_reverse(breaks = seq(0, 110, 10))
+```
+
+## Game 2, Lines
+```{r 2017-01-lines-2}
+ggplot(score2, aes(x = round, y = score, group = player, color = player)) +
+  geom_line() + geom_point() + geom_hline(yintercept = 100, color = "black") +
+  scale_x_continuous(breaks=1:8) + scale_y_reverse(breaks = seq(0, 110, 10))
+```
+
+# Rank {.tabset}
+
+Hiding inside the plots of the scores are the stories of the ranking
+leaderboard. We can look at the positions explicitly, to more easily
+see when/if they swap around.
+
+
+```{r}
+graph_by_rank <- 
+  function(df) {
+    df %>% 
+      group_by(round) %>% 
+      mutate(rank = min_rank(score)) %>% 
+      ungroup() %>% 
+      ggplot(aes(x = round, y = rank, group = player, colour = player)) +
+      geom_line(size = 2) + 
+      scale_x_continuous(breaks = 1:8) +
+      scale_y_reverse() +
+      theme_tufte()
+  }
+```
+
+
+## Game 1
+```{r 2017-01-rank-1}
+graph_by_rank(score1)
+```
+
+## Game 2
+```{r 2017-01-rank-2}
+graph_by_rank(score2)
+```
+
+
+# Points {.tabset}
+
+Given that there are the same number of points to be shared each round,
+we can plot the share of points per player.
+It gives you a clearer look at the results per round, and the variation
+between them, than the cumulative plots above.
+You get less of an insight into the game overall, but (at least for
+these two) it's fairly clear who came last.
+
+## Game 1
+```{r 2017-01-points-1}
+ggplot(points1, aes(x = round, y = points, group = player, fill = player)) +
+  geom_col() + theme_tufte() +
+  scale_x_continuous(breaks = 1:8) + scale_y_continuous(breaks = seq(0, 25, 5))
+```
+
+## Game 2
+```{r 2017-01-points-2}
+ggplot(points2, aes(x = round, y = points, group = player, fill = player)) +
+  geom_col() + theme_tufte() +
+  scale_x_continuous(breaks = 1:8) + scale_y_continuous(breaks = seq(0, 25, 5))
+```
+
+# Reflection
+
+I'll be honest --- before I started I thought these plots would be more
+interesting than they turned out. They're of some interest to the
+participants, but I don't think they add terribly much on top of the
+plain tables.
+
+In part, I think this is because of the small number of rounds. For a
+more closely fought game of Hearts, or for a similar but longer card game,
+I think the graphs might be a bit more interesting.
+
+I'm going to continue playing Hearts, but I think this is the last time
+I'll bother trying to visualise the results.
