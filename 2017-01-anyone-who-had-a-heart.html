@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+<meta name="date" content="2017-01-29" />
+
+<title>Anyone Who Had a Heart</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link rel="alternate" type="application/rss+xml" title="David's AdVentures In Data" href="/feed.xml">
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">David's AdVentures In Data</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-newspaper-o"></span>
+     
+    Posts
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="2017-01-anyone-who-had-a-heart.html">Anyone Who Had a Heart</a>
+    </li>
+    <li>
+      <a href="2016-12-earthquake-excuses.html">Earthquake Excuses</a>
+    </li>
+    <li>
+      <a href="2016-12-election-transparency.html">Election Transparency</a>
+    </li>
+    <li>
+      <a href="2016-11-earthquake-depth.html">Earthquake Depth</a>
+    </li>
+    <li>
+      <a href="2016-11-simple-to-vote.html">Simple To Vote</a>
+    </li>
+    <li>
+      <a href="2016-10-whither-local-democracy.html">W[h]ither Local Democracy?</a>
+    </li>
+    <li>
+      <a href="2016-08-the-luminaries.html">The Luminaries</a>
+    </li>
+    <li>
+      <a href="2016-08-unfamiliar-maps.html">Unfamiliar Maps</a>
+    </li>
+    <li>
+      <a href="2016-08-birthday-eve.html">Birthday Eve</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-question-circle"></span>
+     
+    About
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="about.html">
+        <span class="fa fa-question"></span>
+         
+        About Site
+      </a>
+    </li>
+    <li>
+      <a href="https://twitter.com/dakvid">
+        <span class="fa fa-twitter"></span>
+         
+        Twitter
+      </a>
+    </li>
+    <li>
+      <a href="https://nz.linkedin.com/in/dfriggens">
+        <span class="fa fa-linkedin"></span>
+         
+        LinkedIn
+      </a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="feed.xml">
+    <span class="fa fa-rss"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Anyone Who Had a Heart</h1>
+<h4 class="date"><em>29 January 2017</em></h4>
+
+</div>
+
+
+<p>One of my goals for the year is to blog at least once a month - and time is nearly up for January! I’ve got a couple of things I’ve started on, notably my “quantified self” data, though I’m still <a href="https://flowingdata.com/2017/01/24/one-dataset-visualized-25-ways/">letting the data ramble</a>. Inspired by Maëlle Salmon’s <a href="http://www.masalmon.eu/2017/01/27/catan/">Catan visualisation</a> I thought I’d finish up a visualisation of Hearts that I poked at last weekend.</p>
+<p>I’ve played a fair bit of Hearts over the years, and occasionally wondered about visualising the results. I played two games last weekend with my parents; the following morning, left at home sick whilst everyone else went to the National Aquarium, I thought I’d give it a go.</p>
+<p>I’m not convinced they particularly add anything, but sometimes you have to try in order to find out.</p>
+<div id="hearts" class="section level1">
+<h1>Hearts</h1>
+<p>If you don’t know <a href="https://en.wikipedia.org/wiki/Hearts">Hearts</a>, it’s fairly straightforward. Four players are dealt all the cards and play 13 hands, with the highest card in the suit led winning. Points are for certain cards won, not for the number of hands. Each heart is 1 point (hence the name) and the Queen of Spades is 13 points. The catch is that points are bad — the first to 100 points loses, and the player with the lowest score is the winner.</p>
+<p>So there are 26 points to be distributed each round, which means the game has to take at least 4 rounds, and (I think) can’t last any more than 16 rounds. The other catch is that if one player gets all 26 points then they score 0 and the other three score 26. This is called “shooting the moon” and is harder than it sounds.<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a></p>
+<p>OK, so let’s load the data. I saved the points per round, and we can calculate the scores as we go, taking into account possibly shooting the moon.</p>
+<pre class="r"><code>library(readr)
+library(dplyr)
+points1 &lt;- 
+  read_csv(&quot;data/hearts-g1.csv&quot;) %&gt;% 
+  mutate(round = row_number())
+points2 &lt;- 
+  read_csv(&quot;data/hearts-g2.csv&quot;) %&gt;% 
+  mutate(round = row_number())
+shoot_the_moon &lt;- 
+  function(df) {
+    df %&gt;% 
+      # Lazily hard-code column names
+      mutate(zeros = (B==0) + (O==0) + (N==0) + (D==0)) %&gt;%
+      mutate(B = ifelse(zeros == 3, ifelse(B == 0, 26, 0), B),
+             O = ifelse(zeros == 3, ifelse(O == 0, 26, 0), O),
+             N = ifelse(zeros == 3, ifelse(N == 0, 26, 0), N),
+             D = ifelse(zeros == 3, ifelse(D == 0, 26, 0), D)) %&gt;% 
+      select(-zeros)
+  }
+score1 &lt;- 
+  points1 %&gt;% 
+  shoot_the_moon() %&gt;% 
+  mutate_at(1:4, cumsum)
+score2 &lt;- 
+  points2 %&gt;% 
+  shoot_the_moon() %&gt;% 
+  mutate_at(1:4, cumsum)</code></pre>
+The standard way to look at the results is just to tabulate the scores at each round. The first game took 8 rounds, and I managed to win by a comfortable margin. I shot the moon successfully in round 5, and tried again less successfully in round 7. The second game was shorter, due to one player lucking out with the queen of spades nearly every round.
+<div class="row">
+<div class="col-md-6">
+<pre class="r"><code>score1 %&gt;% select(-round)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">O</th>
+<th align="right">N</th>
+<th align="right">B</th>
+<th align="right">D</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">0</td>
+<td align="right">8</td>
+<td align="right">14</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">1</td>
+<td align="right">10</td>
+<td align="right">37</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">22</td>
+<td align="right">10</td>
+<td align="right">42</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">30</td>
+<td align="right">28</td>
+<td align="right">42</td>
+<td align="right">4</td>
+</tr>
+<tr class="odd">
+<td align="right">56</td>
+<td align="right">54</td>
+<td align="right">68</td>
+<td align="right">4</td>
+</tr>
+<tr class="even">
+<td align="right">57</td>
+<td align="right">58</td>
+<td align="right">88</td>
+<td align="right">5</td>
+</tr>
+<tr class="odd">
+<td align="right">57</td>
+<td align="right">60</td>
+<td align="right">88</td>
+<td align="right">29</td>
+</tr>
+<tr class="even">
+<td align="right">57</td>
+<td align="right">61</td>
+<td align="right">109</td>
+<td align="right">33</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="col-md-6">
+<pre class="r"><code>score2 %&gt;% select(-round)</code></pre>
+<div class="kable-table">
+<table>
+<thead>
+<tr class="header">
+<th align="right">O</th>
+<th align="right">N</th>
+<th align="right">B</th>
+<th align="right">D</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">25</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">1</td>
+</tr>
+<tr class="even">
+<td align="right">41</td>
+<td align="right">3</td>
+<td align="right">6</td>
+<td align="right">2</td>
+</tr>
+<tr class="odd">
+<td align="right">59</td>
+<td align="right">3</td>
+<td align="right">11</td>
+<td align="right">5</td>
+</tr>
+<tr class="even">
+<td align="right">59</td>
+<td align="right">3</td>
+<td align="right">29</td>
+<td align="right">13</td>
+</tr>
+<tr class="odd">
+<td align="right">82</td>
+<td align="right">3</td>
+<td align="right">29</td>
+<td align="right">16</td>
+</tr>
+<tr class="even">
+<td align="right">101</td>
+<td align="right">7</td>
+<td align="right">32</td>
+<td align="right">16</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>If we want to graph anything, we’re going to need <a href="ftp://cran.r-project.org/pub/R/web/packages/tidyr/vignettes/tidy-data.html">tidy data</a>.</p>
+<pre class="r"><code>library(tidyr)
+library(magrittr)
+points1 %&lt;&gt;% gather(player, points, -round)
+points2 %&lt;&gt;% gather(player, points, -round)
+score1 %&lt;&gt;% gather(player, score, -round)
+score2 %&lt;&gt;% gather(player, score, -round)</code></pre>
+</div>
+<div id="cumulative-score" class="section level1 tabset">
+<h1>Cumulative score</h1>
+<p>The most obvious first step to me is to graph the scores as they accumulate. Normally for this sort of thing I would use a line graph, but with the discrete jumps of the rounds I wondered if a step graph would work better. Looking at them, I’m still on the fence, so I’ve included both — see the tabs below.</p>
+<p>Either way, I think it makes sense to reverse the y axis, given that points are effectively negative. And having a line to indicate the end-game condition of 100 points makes it clearer.</p>
+<p>I was tempted to highlight the player who got the Queen of Spades in each round, but since that’s half the points on offer I think it’s reasonably obvious in each case.</p>
+<pre class="r"><code>library(ggplot2)
+library(ggthemes)</code></pre>
+<div id="game-1-steps" class="section level2">
+<h2>Game 1, Steps</h2>
+<pre class="r"><code>ggplot(score1, aes(x = round, y = score, group = player, color = player)) +
+  geom_step(size = 1) + geom_hline(yintercept = 100, color = &quot;black&quot;) + 
+  scale_x_continuous(breaks=1:8) + scale_y_reverse(breaks = seq(0, 110, 10))</code></pre>
+<p><img src="images/2017-01-steps-1-1.png" width="672" /></p>
+</div>
+<div id="game-1-lines" class="section level2">
+<h2>Game 1, Lines</h2>
+<pre class="r"><code>ggplot(score1, aes(x = round, y = score, group = player, color = player)) +
+  geom_line() + geom_point() + geom_hline(yintercept = 100, color = &quot;black&quot;) +
+  scale_x_continuous(breaks=1:8) + scale_y_reverse(breaks = seq(0, 110, 10))</code></pre>
+<p><img src="images/2017-01-lines-1-1.png" width="672" /></p>
+</div>
+<div id="game-2-steps" class="section level2">
+<h2>Game 2, Steps</h2>
+<pre class="r"><code>ggplot(score2, aes(x = round, y = score, group = player, color = player)) +
+  geom_step(size = 1) + geom_hline(yintercept = 100, color = &quot;black&quot;) +
+  scale_x_continuous(breaks=1:8) + scale_y_reverse(breaks = seq(0, 110, 10))</code></pre>
+<p><img src="images/2017-01-steps-2-1.png" width="672" /></p>
+</div>
+<div id="game-2-lines" class="section level2">
+<h2>Game 2, Lines</h2>
+<pre class="r"><code>ggplot(score2, aes(x = round, y = score, group = player, color = player)) +
+  geom_line() + geom_point() + geom_hline(yintercept = 100, color = &quot;black&quot;) +
+  scale_x_continuous(breaks=1:8) + scale_y_reverse(breaks = seq(0, 110, 10))</code></pre>
+<p><img src="images/2017-01-lines-2-1.png" width="672" /></p>
+</div>
+</div>
+<div id="rank" class="section level1 tabset">
+<h1>Rank</h1>
+<p>Hiding inside the plots of the scores are the stories of the ranking leaderboard. We can look at the positions explicitly, to more easily see when/if they swap around.</p>
+<pre class="r"><code>graph_by_rank &lt;- 
+  function(df) {
+    df %&gt;% 
+      group_by(round) %&gt;% 
+      mutate(rank = min_rank(score)) %&gt;% 
+      ungroup() %&gt;% 
+      ggplot(aes(x = round, y = rank, group = player, colour = player)) +
+      geom_line(size = 2) + 
+      scale_x_continuous(breaks = 1:8) +
+      scale_y_reverse() +
+      theme_tufte()
+  }</code></pre>
+<div id="game-1" class="section level2">
+<h2>Game 1</h2>
+<pre class="r"><code>graph_by_rank(score1)</code></pre>
+<p><img src="images/2017-01-rank-1-1.png" width="672" /></p>
+</div>
+<div id="game-2" class="section level2">
+<h2>Game 2</h2>
+<pre class="r"><code>graph_by_rank(score2)</code></pre>
+<p><img src="images/2017-01-rank-2-1.png" width="672" /></p>
+</div>
+</div>
+<div id="points" class="section level1 tabset">
+<h1>Points</h1>
+<p>Given that there are the same number of points to be shared each round, we can plot the share of points per player. It gives you a clearer look at the results per round, and the variation between them, than the cumulative plots above. You get less of an insight into the game overall, but (at least for these two) it’s fairly clear who came last.</p>
+<div id="game-1-1" class="section level2">
+<h2>Game 1</h2>
+<pre class="r"><code>ggplot(points1, aes(x = round, y = points, group = player, fill = player)) +
+  geom_col() + theme_tufte() +
+  scale_x_continuous(breaks = 1:8) + scale_y_continuous(breaks = seq(0, 25, 5))</code></pre>
+<p><img src="images/2017-01-points-1-1.png" width="672" /></p>
+</div>
+<div id="game-2-1" class="section level2">
+<h2>Game 2</h2>
+<pre class="r"><code>ggplot(points2, aes(x = round, y = points, group = player, fill = player)) +
+  geom_col() + theme_tufte() +
+  scale_x_continuous(breaks = 1:8) + scale_y_continuous(breaks = seq(0, 25, 5))</code></pre>
+<p><img src="images/2017-01-points-2-1.png" width="672" /></p>
+</div>
+</div>
+<div id="reflection" class="section level1">
+<h1>Reflection</h1>
+<p>I’ll be honest — before I started I thought these plots would be more interesting than they turned out. They’re of some interest to the participants, but I don’t think they add terribly much on top of the plain tables.</p>
+<p>In part, I think this is because of the small number of rounds. For a more closely fought game of Hearts, or for a similar but longer card game, I think the graphs might be a bit more interesting.</p>
+<p>I’m going to continue playing Hearts, but I think this is the last time I’ll bother trying to visualise the results.</p>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I managed it in one of these games, but it’s the first time I’ve been successful in ages.<a href="#fnref1">↩</a></p></li>
+</ol>
+</div>
+
+<hr />
+
+<footer>
+<p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="images/cc.png" /></a><br />All original content by David Friggens, licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.</p>
+</footer>
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-30013353-2', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+
+</body>
+</html>

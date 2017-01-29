@@ -28,7 +28,13 @@ blurb_post <- function(latest = FALSE, title = "Untitled", pub_date = Sys.Date()
 ```
 
 ```{r blurbs, echo=FALSE}
-blurb_post(TRUE, "Earthquake Excuses", "28 December 2016", "2016-12-earthquake-excuses.html",
+blurb_post(TRUE, "Anyone Who Had a Heart", "29 January 2017", "2017-01-anyone-who-had-a-heart.html",
+           "One of my goals for the year is to blog at least once a month - and time is nearly up for January! I've got a couple of things I've started on, notably my \"quantified self\" data, though I'm still letting the data ramble. Inspired by Maëlle Salmon's Catan visualisation I thought I'd finish up a visualisation of Hearts that I poked at last weekend. 
+
+I've played a fair bit of Hearts over the years, and occasionally wondered about visualising the results. I played two games last weekend with my parents; the following morning, left at home sick whilst everyone else went to the National Aquarium, I thought I'd give it a go.
+
+I'm not convinced they particularly add anything, but sometimes you have to try in order to find out.")
+blurb_post(FALSE, "Earthquake Excuses", "28 December 2016", "2016-12-earthquake-excuses.html",
            "After my first foray into earthquake data I poked around a bit more but didn't produce anything hugely revelatory. I thought I'd use the data though as an excuse to try out a couple of new things: zooming facets in ggplot2, and creating maps with Plotly.")
 blurb_post(FALSE, "Election Transparency", "20 December 2016", "2016-12-election-transparency.html",
            "Despite the timing, this post is not about the recent sorry excuse for democracy in
