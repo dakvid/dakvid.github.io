@@ -1,12 +1,23 @@
 ---
 title: "Simple To Vote"
-date: "8 November 2016"
-output: 
-  html_document: 
-    fig_caption: no
+description: Animations to visualise New Zealand local body elections using STV (Single Transferable Vote).
+author: "David Friggens"
+date: 2016-11-08
+preview: images/stv2016_wrc_porirua-tawa.gif
+categories:
+  - all
+  - R
+  - elections
+  - animation
+  - New Zealand
+  - bar charts
+  - scatter plots
+output:
+  radix::radix_article:
+    self_contained: false
 ---
 
-Recently we had local body elections in New Zealand. (You may [have heard](2016-10-whither-local-democracy.html).)
+Recently we had local body elections in New Zealand. (You may [have heard](../2016-10-whither-local-democracy/).)
 [Single Transferable Vote](http://www.stv.govt.nz) (STV) was used for 7 of the 67
 territorial authorities (city and district councils),
 for 1 of the 11 regional councils, and for 19 of the 20 district health boards^[The
@@ -52,20 +63,29 @@ One advantage of this is when candidates withdraw. There were several cases in 2
 for both mayor and council ward, or council ward and community board --- if they win the former then
 they are [automatically withdrawn](http://www.legislation.govt.nz/act/public/2001/0035/latest/DLM94710.html)
 from the latter. In areas using FPP, their votes in the latter race are
-wasted.^[For example, in [Waipa District Council](http://www.waipadc.govt.nz/our-council/Elections/Pages/Results.aspx),
+wasted.
+
+<aside>
+For example, in [Waipa District Council](http://www.waipadc.govt.nz/our-council/Elections/Pages/Results.aspx),
 Sue Milner was elected to the council in the Cambridge Ward. She also stood for the Cambridge Subdivision
 (a community board), where she was the third highest polling of seven candidates for four seats.
 This meant that 16.8% of votes cast --- alternatively, one of the four votes cast by 67.1% of voters --- were
 wasted. Given that she received 2,722 votes, and the gap between 4th and 7th was 506 votes, it's quite
 conceivable that one or two of the candidates elected could have been different if she had not stood.
-]
-In areas using STV, the election is no different to if they had not been on the ballot paper.^[For example,
+</aside>
+
+In areas using STV, the election is no different to if they had not been on the ballot paper.
+
+<aside>
+For example,
 in [Kapiti Coast District Council](http://www.kapiticoast.govt.nz/Your-Council/The-Role-of-Council/elections2016/),
 K Gurunathan won the mayoralty so all of the votes cast for him as
 a Districtwide councillor just passed on to the next preference. There were 490 people (2.8%) who voted
 for him only so their votes could be seen to be wasted. But considering there were 13 people standing
 for 5 seats I think we can assume that they thought the others were ratbags and wouldn't have voted
-for anyone if "Guru" wasn't on the ballot. `:-)`]
+for anyone if "Guru" wasn't on the ballot. `:-)`
+</aside>
+
 
 ## Counting
 
@@ -96,7 +116,7 @@ on first preferences, giving exactly the same result as FPP. Incumbant mayor Gra
 9,899 votes. [Convicted child assaulter](http://www.stuff.co.nz/manawatu-standard/news/83124328/mayoral-contest-in-palmerston-north-to-cost-30000)
 Ross Barber received only 1,024 votes (5.2%).
 
-![](images/stv/stv2016_pncc_mayor.png)
+![](images/stv2016_pncc_mayor.png)
 
 
 #### Example: Wellington Regional Council, Kapiti Coast 2016
@@ -118,7 +138,7 @@ Here is the same information in an animated chart. You'll see that I've split ea
 into three steps to make it a little clearer --- assigning the votes, calculating the quota, 
 and making a decision on what to do next.
 
-![animated bar graph of 2016 Wellington Regional Council Kapiti Coast Constituency STV election results](images/stv/stv2016_wrc_kapiti.gif)
+![animated bar graph of 2016 Wellington Regional Council Kapiti Coast Constituency STV election results](images/stv2016_wrc_kapiti.gif)
 
 
 
@@ -134,12 +154,12 @@ Interestingly, in the 7th and final iteration 8,434 voters (13.0%) ranked neithe
 two candidates (and up to 66.0% of those had voted only for the third place getter Jo Coughlan).
 
 <div id="wcc_mayor_2016">
-<img src="images/stv/placeholder_stv2016_wcc_mayor.png" alt="Placeholder for 5.1MB animated graph. Click to load with JavaScript" />
+<img src="images/placeholder_stv2016_wcc_mayor.png" alt="Placeholder for 5.1MB animated graph. Click to load with JavaScript" />
 </div>
 <script>
 $(function(){
     $("#wcc_mayor_2016 img").click(function(e){
-        $(this).attr("src", "images/stv/stv2016_wcc_mayor.gif");
+        $(this).attr("src", "images/stv2016_wcc_mayor.gif");
         $(this).attr("alt", "animated bar graph of 2016 Wellington City Council Mayor STV election")
         return false;
     });
@@ -169,12 +189,12 @@ Running the STV iterations allows us to discover that more voters preferred Wade
 Prendergast, so her election is the most democratic outcome (given the low voter turnout).
 
 <div id="wcc_mayor_2010">
-<img src="images/stv/placeholder_stv2010_wcc_mayor.png" alt="Placeholder for 3.5MB animated graph. Click to load with JavaScript" />
+<img src="images/placeholder_stv2010_wcc_mayor.png" alt="Placeholder for 3.5MB animated graph. Click to load with JavaScript" />
 </div>
 <script>
 $(function(){
     $("#wcc_mayor_2010 img").click(function(e){
-        $(this).attr("src", "images/stv/stv2010_wcc_mayor.gif");
+        $(this).attr("src", "images/stv2010_wcc_mayor.gif");
         $(this).attr("alt", "animated bar graph of 2010 Wellington City Council Mayor STV election")
         return false;
     });
@@ -234,7 +254,7 @@ Donaldson's votes exceed the quota, so she is elected.
 
 Here is an animation of the calculations.
 
-![animated bar graph of 2016 Wellington Regional Council Porirua-Tawa constituancy STV election](images/stv/stv2016_wrc_porirua-tawa.gif)
+![animated bar graph of 2016 Wellington Regional Council Porirua-Tawa constituancy STV election](images/stv2016_wrc_porirua-tawa.gif)
 
 Note that if there had been a third seat in contention, the next action would not have been
 to exclude the lowest polling candidate but again to transfer surplus votes. Donaldson
@@ -265,12 +285,12 @@ Finally, at iteration 11, the final seat is decided as Jeremy Seamark narrowly e
 the quota. Incumbant Eric Gregory is excluded.
 
 <div id="kcdc_waikanae-cb">
-<img src="images/stv/placeholder_stv2016_kcdc_waikanae_cb.png" alt="Placeholder for 7.8MB animated graph. Click to load with JavaScript" />
+<img src="images/placeholder_stv2016_kcdc_waikanae_cb.png" alt="Placeholder for 7.8MB animated graph. Click to load with JavaScript" />
 </div>
 <script>
 $(function(){
     $("#kcdc_waikanae-cb img").click(function(e){
-        $(this).attr("src", "images/stv/stv2016_kcdc_waikanae_cb.gif");
+        $(this).attr("src", "images/stv2016_kcdc_waikanae_cb.gif");
         $(this).attr("alt", "animated bar graph of 2016 Kapiti District Council STV election for Waikanae Community Board")
         return false;
     });
@@ -289,7 +309,7 @@ the strongest single variable looks, unsurprisingly, to be the number of candida
 
 ```{r iterations, echo=FALSE, message=FALSE, warning=FALSE}
 library(readr)
-stv16 <- read_csv("data/local2016/summary_stv_counts.csv")
+stv16 <- read_csv("data/summary_stv_counts.csv")
 library(plotly)
 plot_ly() %>% 
   add_markers(data = stv16, 
@@ -363,3 +383,9 @@ as well as the bars.
 
 #### Te be continued...
 
+
+## Code unlisting {.appendix}
+
+I produced the animations separately, so don't have the code available.
+The API for [`gganimate`](https://github.com/thomasp85/gganimate) has
+changed considerably since then anyway.

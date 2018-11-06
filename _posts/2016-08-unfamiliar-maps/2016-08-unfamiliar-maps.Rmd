@@ -1,9 +1,18 @@
 ---
 title: "Unfamiliar Maps"
-date: "14 August 2016"
+description: Many towns and cities share the same name. Some are less well known than others. Let's take a look.
+author: "David Friggens"
+date: 2016-08-14
+preview: images/preview.png
+categories:
+  - all
+  - R
+  - maps
+  - names
+  - rpkg leaflet
 output:
-  html_document:
-    code_folding: hide
+  radix::radix_article:
+    self_contained: false
 ---
 
 At least 3 people have booked flights to Sydney, Nova Scotia (population 30,000) intending to holiday in
@@ -47,11 +56,10 @@ unfamiliar <-
   select(-num_familiar, -num_unfamiliar, -rank_asc)
 ```
 
-We can add labels to the map using the latest version of the ```leaflet``` package.
-I had to install from Github - the CRAN version (1.0.1) doesn't support this.
+We can add labels to the map using the ```leaflet``` package.
 The cities are grouped by the continental region of the (main) familiar city.
 
-```{r map, warning=FALSE, message=FALSE}
+```{r map, layout="l-screen-inset shaded", fig.height=7, warning=FALSE, message=FALSE}
 leaflet(width = "100%") %>% 
   addProviderTiles("Esri.WorldGrayCanvas") %>% 
   addCircleMarkers(
@@ -121,13 +129,18 @@ leaflet(width = "100%") %>%
   hideGroup("Europe/Africa - Familiar")
 ```
 
-#### Notes
+### Notes
 
-* Click to expand the code in the post (if it wasn't obvious).
 * I left out Alexandria, Buenos Aires and San Francisco as there were so many alternatives.
 * The labels on the map are a bit cluttered in places. Perhaps with more thought they could be handled better.
 * Popups with more information (population etc) would be a nice improvement, but given that the data is outdated and unreliable I opted not to.
-* The manually curated CSV file is structured as follows:
-```{r headcsv}
-head(my_cities)
+* The manually curated CSV file is [available here](data/familiarcities.csv).
+
+
+
+## Code listing {.appendix}
+
+The R code to generate the map:
+
+```{r ref.label=knitr::all_labels(), echo = T, eval = F}
 ```

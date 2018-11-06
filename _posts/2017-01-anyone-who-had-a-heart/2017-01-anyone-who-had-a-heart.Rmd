@@ -1,9 +1,18 @@
 ---
 title: "Anyone Who Had a Heart"
-date: "29 January 2017"
+description: Visualising card game results. Less exciting than it sounds.
+author: "David Friggens"
+date: 2017-01-29
+categories:
+  - all
+  - R
+  - games
+  - rpkg ggplot2
+  - line charts
+  - bar charts
 output:
-  html_document:
-    df_print: kable
+  radix::radix_article:
+    self_contained: false
 ---
 
 ```{r opts, echo = FALSE}
@@ -29,7 +38,12 @@ went to the National Aquarium, I thought I'd give it a go.
 I'm not convinced they particularly add anything, but sometimes you have
 to try in order to find out.
 
-# Hearts
+**Edit:** the post isn't terribly well structured, as I wrote it using features
+in Rmarkdown websites (eg code folding, Bootstrap tabs) that aren't available
+in Radix. There are better things to do with life than rewriting old blog posts,
+so it is what it is.
+
+## Hearts
 
 If you don't know [Hearts](https://en.wikipedia.org/wiki/Hearts),
 it's fairly straightforward. Four players
@@ -50,7 +64,7 @@ OK, so let's load the data. I saved the points per round, and we can
 calculate the scores as we go, taking into account possibly shooting
 the moon.
 
-```{r load_data}
+```{r load_data, echo=TRUE}
 library(readr)
 library(dplyr)
 points1 <- 
@@ -86,21 +100,20 @@ a comfortable margin. I shot the moon successfully in round 5, and
 tried again less successfully in round 7. 
 The second game was shorter, due to one player lucking out with the
 queen of spades nearly every round.
-<div class = "row">
-<div class = "col-md-6">
-```{r table1}
+
+```{r table1, echo=TRUE}
 score1 %>% select(-round)
 ```
-</div><div class = "col-md-6">
-```{r table2}
+
+```{r table2, echo=TRUE}
 score2 %>% select(-round)
 ```
-</div></div>
+
 
 If we want to graph anything, we're going to need
 [tidy data](ftp://cran.r-project.org/pub/R/web/packages/tidyr/vignettes/tidy-data.html).
 
-```{r tidy}
+```{r tidy, echo=TRUE}
 library(tidyr)
 library(magrittr)
 points1 %<>% gather(player, points, -round)
@@ -110,13 +123,12 @@ score2 %<>% gather(player, score, -round)
 ```
 
 
-# Cumulative score {.tabset}
+## Cumulative score
 
 The most obvious first step to me is to graph the scores as they accumulate.
 Normally for this sort of thing I would use a line graph, but with the
 discrete jumps of the rounds I wondered if a step graph would work better.
-Looking at them, I'm still on the fence, so I've included both --- see the
-tabs below.
+Looking at them, I'm still on the fence, so I've included both.
 
 Either way, I think it makes sense to reverse the y axis, given that points
 are effectively negative. And having a line to indicate the end-game
@@ -127,48 +139,48 @@ round, but since that's half the points on offer I think it's reasonably
 obvious in each case.
 
 
-```{r ggplot}
+```{r ggplot, echo=TRUE}
 library(ggplot2)
 library(ggthemes)
 ```
 
 
-## Game 1, Steps
-```{r 2017-01-steps-1}
+### Game 1, Steps
+```{r 2017-01-steps-1, echo=TRUE}
 ggplot(score1, aes(x = round, y = score, group = player, color = player)) +
   geom_step(size = 1) + geom_hline(yintercept = 100, color = "black") + 
   scale_x_continuous(breaks=1:8) + scale_y_reverse(breaks = seq(0, 110, 10))
 ```
 
-## Game 1, Lines
-```{r 2017-01-lines-1}
+### Game 1, Lines
+```{r 2017-01-lines-1, echo=TRUE}
 ggplot(score1, aes(x = round, y = score, group = player, color = player)) +
   geom_line() + geom_point() + geom_hline(yintercept = 100, color = "black") +
   scale_x_continuous(breaks=1:8) + scale_y_reverse(breaks = seq(0, 110, 10))
 ```
 
-## Game 2, Steps
-```{r 2017-01-steps-2}
+### Game 2, Steps
+```{r 2017-01-steps-2, echo=TRUE}
 ggplot(score2, aes(x = round, y = score, group = player, color = player)) +
   geom_step(size = 1) + geom_hline(yintercept = 100, color = "black") +
   scale_x_continuous(breaks=1:8) + scale_y_reverse(breaks = seq(0, 110, 10))
 ```
 
-## Game 2, Lines
-```{r 2017-01-lines-2}
+### Game 2, Lines
+```{r 2017-01-lines-2, echo=TRUE}
 ggplot(score2, aes(x = round, y = score, group = player, color = player)) +
   geom_line() + geom_point() + geom_hline(yintercept = 100, color = "black") +
   scale_x_continuous(breaks=1:8) + scale_y_reverse(breaks = seq(0, 110, 10))
 ```
 
-# Rank {.tabset}
+## Rank
 
 Hiding inside the plots of the scores are the stories of the ranking
 leaderboard. We can look at the positions explicitly, to more easily
 see when/if they swap around.
 
 
-```{r}
+```{r, echo=TRUE}
 graph_by_rank <- 
   function(df) {
     df %>% 
@@ -184,18 +196,18 @@ graph_by_rank <-
 ```
 
 
-## Game 1
-```{r 2017-01-rank-1}
+### Game 1
+```{r 2017-01-rank-1, echo=TRUE}
 graph_by_rank(score1)
 ```
 
-## Game 2
-```{r 2017-01-rank-2}
+### Game 2
+```{r 2017-01-rank-2, echo=TRUE}
 graph_by_rank(score2)
 ```
 
 
-# Points {.tabset}
+## Points
 
 Given that there are the same number of points to be shared each round,
 we can plot the share of points per player.
@@ -204,21 +216,21 @@ between them, than the cumulative plots above.
 You get less of an insight into the game overall, but (at least for
 these two) it's fairly clear who came last.
 
-## Game 1
-```{r 2017-01-points-1}
+### Game 1
+```{r 2017-01-points-1, echo=TRUE}
 ggplot(points1, aes(x = round, y = points, group = player, fill = player)) +
   geom_col() + theme_tufte() +
   scale_x_continuous(breaks = 1:8) + scale_y_continuous(breaks = seq(0, 25, 5))
 ```
 
-## Game 2
-```{r 2017-01-points-2}
+### Game 2
+```{r 2017-01-points-2, echo=TRUE}
 ggplot(points2, aes(x = round, y = points, group = player, fill = player)) +
   geom_col() + theme_tufte() +
   scale_x_continuous(breaks = 1:8) + scale_y_continuous(breaks = seq(0, 25, 5))
 ```
 
-# Reflection
+## Reflection
 
 I'll be honest --- before I started I thought these plots would be more
 interesting than they turned out. They're of some interest to the

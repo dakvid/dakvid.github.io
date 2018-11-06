@@ -1,6 +1,19 @@
 ---
 title: "The Luminaries"
-date: "26 August 2016"
+description: Do the the parts of Eleanor Catton's The Luminaries incrementally reduce by half? (TL;DR - no. There is a method, but it's not that.)
+author: "David Friggens"
+date: 2016-08-26
+preview: images/preview.png
+categories:
+  - all
+  - R
+  - books
+  - rpkg plotly
+  - bar charts
+  - scatter plots
+output:
+  radix::radix_article:
+    self_contained: false
 ---
 
 ```{r setup, include=FALSE, message=FALSE, warning=FALSE}
@@ -32,7 +45,10 @@ plot_ly(
   hardback,
   x = ~Part,
   y = ~Pages,
-  text = ~Title,
+  text = ~paste0("Part ", Part, "<br>",
+                 Title, "<br>",
+                 Pages, " pages"),
+  hoverinfo = "text",
   type = "bar"
 ) %>% 
   layout(
@@ -63,7 +79,10 @@ chapters %>%
   plot_ly(
     x = ~Part,
     y = ~Words,
-    text = ~Title,
+    text = ~paste0("Part ", Part, "<br>",
+                   Title, "<br>",
+                   prettyNum(Words, big.mark = ","), " words"),
+    hoverinfo = "text",
     type = "bar"
   ) %>% 
   layout(
@@ -149,10 +168,13 @@ inner_join(
   )
 ```
 
-
-Looking at this, you can see^[The summary text for Part 7 is a massive outlier that makes the rest of it hard to see.
+<aside>
+The summary text for Part 7 is a massive outlier that makes the rest of it hard to see.
 You can click on the legend for "Summary text" to remove that series, or just click and drag a box to zoom in. 
-Plotly and interactive graphics FTW!] 
+Plotly and interactive graphics FTW!
+</aside>
+
+Looking at this, you can see
 that only a few parts are actually half their predecessor, even if you're being generous and allow a 10% margin
 on either side.
 
@@ -164,7 +186,7 @@ Including or excluding the summary text doesn't seem to have a consistent effect
 As mentioned, each part is split into 13--_n_ chapters. Naturally, the next question is "what do the chapters
 look like?"
 
-```{r chapters}
+```{r chapters, layout="l-body-outset"}
 chapters %>% 
   group_by(Part) %>% 
   plot_ly(
@@ -174,7 +196,10 @@ chapters %>%
     marker = list(color = c(rep("#1f77b4",12),rep("#ff7f0e",11),rep("#2ca02c",10),rep("#d62728",9),
                             rep("#9467bd",8),rep("#8c564b",7),rep("#e377c2",6),rep("#7f7f7f",5),
                             rep("#bcbd22",4),rep("#17becf",3),rep("#1f77b4",2),"#ff7f0e")),
-    text = ~Name,
+    text = ~paste0("Part ", Part, "<br>",
+                   "Chapter ", Number, ": ", Name, "<br>",
+                   "Body text: ", prettyNum(Text, big.mark = ","), " words"),
+    hoverinfo = "text",
     type = "bar"
   ) %>% 
   add_trace(
@@ -184,7 +209,10 @@ chapters %>%
     marker = list(color = c(rep("#2ca02c",12),rep("#d62728",11),rep("#9467bd",10),rep("#8c564b",9),
                             rep("#e377c2",8),rep("#7f7f7f",7),rep("#bcbd22",6),rep("#17becf",5),
                             rep("#1f77b4",4),rep("#ff7f0e",3),rep("#2ca02c",2),"#d62728")),
-    text = "summary text",
+    text = ~paste0("Part ", Part, "<br>",
+                   "Chapter ", Number, ": ", Name, "<br>",
+                   "Summary text: ", Summary, " words"),
+    hoverinfo = "text",
     type = "bar"
   ) %>% 
   layout(
@@ -196,10 +224,15 @@ chapters %>%
   )
 ```
 
-There's no clear pattern I can see here.^[Again, feel free to make liberal use of the zoom functionality.]
+There's no clear pattern I can see here.
 On the whole, the lengths are decreasing, but certainly not in a uniform way. Chapter 13 is very obvious at
 one end, and 35/37 at the other. The latter two offer an explanation for why Part 4 is about the same length
 as Part 3.
+
+<aside>
+Again, feel free to make liberal use of the zoom functionality, especially to see the summary text details at
+the top of each bar.
+</aside>
 
 
 ### Conclusion
@@ -209,9 +242,24 @@ _The Luminaries_. The only constraint seems to be the number of chapters in each
 one each time. This combines with the general trend for the chapters to get smaller to produce the
 descreasing trend that many people have mistaken for halving.
 
-I haven't included the code (or raw 
-[data](https://github.com/dakvid/dakvid.github.io/tree/source/data)
-) in this post, but if you're interested, 
-[it's available](https://raw.githubusercontent.com/dakvid/dakvid.github.io/source/2016-08-the-luminaries.Rmd) 
-in the source branch on GitHub.
 
+
+
+## Data {.appendix}
+
+Manually collected counts of 
+[pages by part](data/luminaries_hardback.csv)
+and
+[words by chapter](data/luminaries_chapters.csv).
+
+## Code listing {.appendix}
+
+The final graph is created with the following code.
+When I initially created this with Plotly 3 the colouring by part was achieved
+with the commented out `color` argument. This stopped working (along with many
+other things) with Plotly 4 and the ungainly marker list was my quick and dirty
+approach to getting it going again --- there's probably a better way I didn't have
+time to figure out.
+
+```{r ref.label='chapters', echo = T, eval = F}
+```

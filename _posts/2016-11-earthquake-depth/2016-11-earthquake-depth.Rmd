@@ -1,10 +1,20 @@
 ---
 title: "Earthquake Depth"
-date: "18 November 2016"
+description: Some visualisations of the depths of the recent New Zealand earthquakes.
+author: "David Friggens"
+date: 2016-11-18
+preview: images/eqnz_depth_time.gif
+categories:
+  - all
+  - R
+  - earthquakes
+  - New Zealand
+  - animation
+  - rpkg gganimate
+  - scatter plots
 output:
-  html_document:
-    code_folding: hide
-    fig_caption: no
+  radix::radix_article:
+    self_contained: false
 ---
 
 There have been a number of interesting visualisations of this weeks earthquakes: I
@@ -54,7 +64,7 @@ If depth is your primary dimension then you're probably going to have to give up
 2d geography. I picked a line bisecting the South Island as well I could (manually chosen in
 Google Maps --- nothing special about it) that could serve as a reasonable 1d projection.
 
-```{r projectionmap}
+```{r projectionmap, eval=FALSE}
 nzsw_long <- 166.46484
 nzsw_lat <- -47.18971
 nzne_long <- 178.90136
@@ -77,7 +87,7 @@ and faintly remain, to show the cumulative effect. It's hard to get a realistic
 comparison of the magnitudes, given that it's an exponential scale, so I've
 "highlighted" the larger ones in blue (>5M), green (>6M) and red (>7M).
 
-```{r depthanim}
+```{r depthanim, eval=FALSE}
 get_projection <- function(my_long, my_lat) {
   t <- 
     ( (my_long - nzsw_long) * (nzne_long - nzsw_long) +
@@ -176,7 +186,7 @@ gg_animate(ggeq,
 
 Alternatively, we could look at depth against time.
 
-```{r depthtime}
+```{r depthtime, eval=FALSE}
 ggeq2 <- 
   ggplot(eqnz) +
   theme_tufte() +
@@ -214,3 +224,10 @@ In both these plots you can see that not much was happening on Sunday, but
 we started getting pummelled by quakes from midnight, Monday morning. (Two minutes
 past midnight, to be specific --- I remember it well!) A few are quite deep down,
 but most --- especially the big ones --- are relatively shallow. 
+
+
+## Code unlisting {.appendix}
+
+The code for the animations can be found in the Rmd source in the repository, but
+[`gganimate`](http://github.com/thomasp85/gganimate) has changed considerably since
+I made these so I wouldn't use them as a guide.

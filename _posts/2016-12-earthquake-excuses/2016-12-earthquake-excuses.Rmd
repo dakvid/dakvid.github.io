@@ -1,13 +1,25 @@
 ---
 title: "Earthquake Excuses"
-date: "28 December 2016"
+description: Some visualisation experiments using earthquake data. Facet zooming in ggplot and maps with Plotly. (Why didn't I make these separate posts?)
+author: "David Friggens"
+date: 2016-12-28
+preview: images/eqnz_depth_comparison.png
+categories:
+  - all
+  - R
+  - earthquakes
+  - New Zealand
+  - rpkg ggforce
+  - density plots
+  - rpkg plotly
+  - maps
 output:
-  html_document:
-    code_folding: hide
-    fig_caption: no
+  radix::radix_article:
+    self_contained: false
+    toc: true
 ---
 
-After my [first foray into earthquake data](2016-11-earthquake-depth.html) I poked around a bit more
+After my [first foray into earthquake data](../2016-11-earthquake-depth/) I poked around a bit more
 but didn't produce anything hugely revelatory. I thought I'd use the data though as an excuse to try
 out a couple of new things: zooming facets in `ggplot2`, and creating maps with Plotly.
 
@@ -19,7 +31,7 @@ on the matter have been:
 
 ## Quake patterns differ, or, How to zoom a facet
 
-It was interesting to look at the [depths of the recent earthquakes](2016-11-earthquake-depth.html),
+It was interesting to look at the [depths of the recent earthquakes](../2016-11-earthquake-depth/),
 but it did leave me wondering if these were typical. Are NZ quakes typically distributed like this?
 Were the last canterbury quakes this shallow?
 
@@ -33,7 +45,11 @@ Enter `facet_zoom` from the new
 but also zoom in on the detail of interest.
 
 
-```{r density, message=FALSE, warning=FALSE, eval=FALSE}
+![](images/eqnz_depth_comparison.png)
+
+### Code listing
+
+```{r density, message=FALSE, warning=FALSE, eval=FALSE, echo=TRUE}
 library(readr)
 library(purrr)
 library(dplyr)
@@ -81,9 +97,7 @@ ggplot(eq_24h %>% mutate(Event = fct_inorder(Event)),
 dev.off()
 ```
 
-![density plot of earthquake depths](images/eqnz_depth_comparison.png)
-
-Notes on the code (display with the "Code" toggle above):
+Notes on the code:
 
 * We include blank event types, as these are probably earthquakes. See the [Geonet docs](http://info.geonet.org.nz/display/appdata/Catalogue+Output), and [Peter Ellis's post](http://ellisp.github.io/blog/2016/11/19/earthquakes) for the result of filtering them out.
 * I'm enjoying using [purrr](https://github.com/hadley/purrr) more and more. Creating lists and mapping across them is starting to feel more natural to me.
@@ -109,7 +123,7 @@ I've plotted the 30 big quakes, coloured by date.
 For reference, especially for non-kiwis, I've also plotted the main towns and cities,
 scraping this data from Wikipedia.
 
-```{r bigguns, message=FALSE, warning=FALSE, fig.height=4}
+```{r bigguns, message=FALSE, warning=FALSE, layout="l-page", fig.height=7}
 library(readr)
 library(dplyr)
 library(plotly)
@@ -129,11 +143,13 @@ plot_geo(big_eq,
   add_markers(text = ~paste0(format(origintime, "%l:%M%p, %A %e %B %Y"), "<br />",
                              magnitude, " ", magnitudetype, ", ", depth, "km deep"),
               size = I(10),
+              marker = list(sizemode = 'diameter'),
               color = ~Year,
               name = "Earthquakes",
               hoverinfo = "text") %>% 
   add_markers(data = nzua %>% rename(latitude = Latitude, longitude = Longitude),
               size = I(5),
+              marker = list(sizemode = 'diameter'),
               color = I("black"),
               text = ~paste0(Name, " Urban Area <br /> Population ", Population),
               hoverinfo = "text",
@@ -151,11 +167,18 @@ plot_geo(big_eq,
                     lataxis = list(range = c(-50,-33))))
 ```
 
-Notes on the code (display with the "Code" toggle above):
+
+### Code listing
+
+```{r ref.label='bigguns', echo = T, eval = F}
+```
+
+Notes on the code:
 
 * [Lubridate](https://github.com/hadley/lubridate) is great for processing dates; `with_tz` allows easy conversion from UTC. I had thought that `stamp` might allow me easy display formatting, but I couldn't get it to work sensibly so reverted to `format`.
 * I considered sizing the points based on magnitude, but it didn't work when I added the second trace. I figured it didn't add a lot to the "story" so didn't bother pursuing it.
-* Frustratingly, I didn't figure out how to make the map bigger. Both the knitr `fig.height` option, and the height option in Plotly's `layout` function made the figure area bigger, but not the box with the map in.
+* ~~Frustratingly, I didn't figure out how to make the map bigger. Both the knitr `fig.height` option, and the height option in Plotly's `layout` function made the figure area bigger, but not the box with the map in.~~ **Nov 2018:** This seems to work better now, but I'm not sure whether it's changes in Plotly, or due to the switch to Radix for publishing.
+* **Nov 2018:** In recompiling this code, the markers (nearly) all disappeared. I had set the sizing to diameter, as per [issue 1133](https://github.com/ropensci/plotly/issues/1133).
 
 On the whole, I'm not entirely happy with this. If I'd had more time I'm sure I would have thought more
 about the design, and hopefully solved all of the  technical issues I ran in to.

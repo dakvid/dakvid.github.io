@@ -1,21 +1,31 @@
 ---
 title: "Election Transparency"
-date: "20 December 2016"
+description: Some reflections on trying to find out information about local government elections.
+author: "David Friggens"
+date: 2016-12-20
+preview: images/preview.png
+categories:
+  - all
+  - R
+  - elections
+  - rpkg plotly
+  - bar charts
+  - New Zealand
+  - Official Information requests
 output:
-  html_document:
-    code_folding: hide
+  radix::radix_article:
+    self_contained: false
 ---
 
 Despite the timing, this post is not about the recent sorry excuse for democracy in
 North America. I've been looking into the results of the recent local body elections in New Zealand
 that used Single Transferable Vote (STV), and have some reflections on the transparency of results.
 
-<div class="panel panel-info">
-<div class="panel-heading"><h3 class="panel-title">Recommendations</h3></div><div class="panel-body">
+### Recommendations
 
 * All STV elections should provide the iteration report with the results.
 * Councils and (especially) DHBs should do better responding to OIAs (including, but not limited to, avoiding breaking the law).
-</div></div>
+
 
 ## STV Iteration Reports
 
@@ -24,7 +34,7 @@ number of votes (depending on the number of seats available) and you can just li
 votes each candidate received. The official results are brief and complete, and it's completely
 clear to members of the public who got elected and why.
 
-STV elections, as I've [recently discovered](2016-11-simple-to-vote.html), are not so straightforward.
+STV elections, as I've [recently discovered](../2016-11-simple-to-vote/), are not so straightforward.
 The councils and DHBs appear to be mandated
 to report the iteration number and count of votes when each candidate was excluded or elected^[I
 haven't come across the exact requirements, but this was the minimum that was reported for
@@ -35,7 +45,7 @@ the vote counting process proceeded.
 Understanding how the election results were determined is important for giving the public a
 sense of ownership and engagement with the voting process, which in turn seems like
 an important issue given the
-[low voter turnout](2016-10-whither-local-democracy.html) in local body elections.
+[low voter turnout](../2016-10-whither-local-democracy/) in local body elections.
 And the transparency this brings is important for making it clear that the elections are
 free and fair.
 
@@ -124,7 +134,7 @@ make_image_list <- function(my_event) {
   oia %>%
     filter(event == my_event) %>% 
     transpose() %>% 
-    map(~ list(source = paste0("images/icons/",my_event,".png"),
+    map(~ list(source = paste0("images/",my_event,".png"),
                xref = "x", yref = "y",
                x = .x$day %>% subtract(0.5) %>% add(.x$adjust),
                y = num_bodies - (.x$body %>% as.integer() %>% subtract(0.4)),
@@ -233,4 +243,17 @@ http://github.com/dakvid/stvnz
 I was keen to try and get and get hold of the more detailed data of all preferences, to be able
 to look at other counting methods, such as [Condorcet](https://en.wikipedia.org/wiki/Condorcet_method),
 but it seems that that information is not stored for long. But there's enough to work with for now.
+
+
+
+## Data {.appendix}
+
+The [CSV file](data/stv_oia_events.csv) of event data.
+
+## Code listing {.appendix}
+
+The R code to generate the plot:
+
+```{r ref.label=knitr::all_labels(), echo = T, eval = F}
+```
 

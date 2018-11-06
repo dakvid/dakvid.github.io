@@ -1,6 +1,19 @@
 ---
 title: "W[h]ither Local Democracy?"
-date: "14 October 2016"
+description: If you live in New Zealand you would have been hard pressed not to notice that we had local body elections recently. It seems that all anyone can talk about is the turnout. Is it all bad news?
+author: "David Friggens"
+date: 2016-10-14
+preview: images/preview.png
+categories:
+  - all
+  - R
+  - elections
+  - New Zealand
+  - rpkg plotly
+  - dumbbell plots
+output:
+  radix::radix_article:
+    self_contained: false
 ---
 
 If you live in New Zealand you would have been hard pressed not to notice that we had
@@ -23,8 +36,8 @@ library(plotly)
 ### Turnout
 
 ```{r get_turnout_data}
-if(!file.exists("data/local2016/summary_turnout.csv") |
-   !file.exists("data/local2016/council_turnout.csv")) {
+if(!file.exists("data/summary_turnout.csv") |
+   !file.exists("data/council_turnout.csv")) {
   lg_tables <- 
     read_html("http://www.lgnz.co.nz/vote2016/preliminary-voter-turnout-2016/") %>% 
     html_nodes("table") %>% 
@@ -44,7 +57,7 @@ if(!file.exists("data/local2016/summary_turnout.csv") |
         set_names(c("Group", 2010, 2013, 2016)) %>% 
         gather(Year, Turnout, -Group)
     )
-    write_csv(summary_turnout, "data/local2016/summary_turnout.csv")
+    write_csv(summary_turnout, "data/summary_turnout.csv")
 
     council_turnout <- 
       bind_rows(
@@ -71,10 +84,10 @@ if(!file.exists("data/local2016/summary_turnout.csv") |
       mutate(Council = sub("*", "", Council, fixed = TRUE),
              Council = gsub(intToUtf8(160), "", Council),
              Turnout = Turnout %>% gsub(intToUtf8(160), "", .) %>% as.numeric())
-    write_csv(council_turnout, "data/local2016/council_turnout.csv")
+    write_csv(council_turnout, "data/council_turnout.csv")
 } else {
-  summary_turnout <- read_csv("data/local2016/summary_turnout.csv")
-  council_turnout <- read_csv("data/local2016/council_turnout.csv")
+  summary_turnout <- read_csv("data/summary_turnout.csv")
+  council_turnout <- read_csv("data/council_turnout.csv")
 }
 ```
 
@@ -88,7 +101,7 @@ These elections haven't been much better than last time.
 Here's a graph comparing the turnouts of the last three elections, both nationally and
 grouping the councils as "metro", "provincial" and "rural".
 
-```{r turnout_summary, fig.height=2}
+```{r turnout_summary, fig.height=2, preview=TRUE}
 nto <- 
   summary_turnout %>% 
   spread(Year, Turnout) %>% 
@@ -238,3 +251,8 @@ human-readable. If graphs are provided in addition it doesn't hurt (though keep 
 them if you say you will!), but I would be inclined to leave it to the
 [experts](http://insights.nzherald.co.nz/article/local-elections-2016).
 
+
+## Data {.appendix}
+
+Turnout data [by area type](data/summary_turnout.csv) and
+[by council](data/council_turnout.csv).

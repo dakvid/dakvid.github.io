@@ -1,8 +1,19 @@
 ---
 title: "Birthday Eve"
-date: "9 August 2016"
+description: Some time ago I had a thought - if you had a daughter and she was born on Christmas Eve or New Year's Eve, would you be tempted to name her Eve?
+author: "David Friggens"
+date: 2016-08-09
+categories:
+  - all
+  - names
+output:
+  radix::radix_article:
+    self_contained: false
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 Some time ago I had a thought --- if you had a daughter and she was born on Christmas Eve or New Year's Eve, would you be tempted to name her Eve?
 
 At the time, I had access to a database with a large number of names and birthdays,^[I won't say
