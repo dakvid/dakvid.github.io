@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="radix" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+  <!--radix_placeholder_meta_tags-->
+<title>David's AdVentures In Data: Simple To Vote</title>
+
+<meta property="description" itemprop="description" content="Animations to visualise New Zealand local body elections using STV (Single Transferable Vote)."/>
+
+<link rel="canonical" href="https://david.frigge.nz/posts/2016-11-simple-to-vote/"/>
+<link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2016-11-08"/>
+<meta property="article:created" itemprop="dateCreated" content="2016-11-08"/>
+<meta name="article:author" content="David Friggens"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="David&#39;s AdVentures In Data: Simple To Vote"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="Animations to visualise New Zealand local body elections using STV (Single Transferable Vote)."/>
+<meta property="og:url" content="https://david.frigge.nz/posts/2016-11-simple-to-vote/"/>
+<meta property="og:image" content="https://david.frigge.nz/posts/2016-11-simple-to-vote/images/stv2016_wrc_porirua-tawa.gif"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="David&#39;s AdVentures In Data"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:title" content="David&#39;s AdVentures In Data: Simple To Vote"/>
+<meta property="twitter:description" content="Animations to visualise New Zealand local body elections using STV (Single Transferable Vote)."/>
+<meta property="twitter:url" content="https://david.frigge.nz/posts/2016-11-simple-to-vote/"/>
+<meta property="twitter:image" content="https://david.frigge.nz/posts/2016-11-simple-to-vote/images/stv2016_wrc_porirua-tawa.gif"/>
+<meta property="twitter:site" content="@dakvid"/>
+
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","preview","categories","output","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["Simple To Vote"]},{"type":"character","attributes":{},"value":["Animations to visualise New Zealand local body elections using STV (Single Transferable Vote)."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["David Friggens"]}]}]},{"type":"character","attributes":{},"value":["2016-11-08"]},{"type":"character","attributes":{},"value":["images/stv2016_wrc_porirua-tawa.gif"]},{"type":"character","attributes":{},"value":["all","R","elections","animation","New Zealand","bar charts","scatter plots"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["radix::radix_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://david.frigge.nz/posts/2016-11-simple-to-vote/"]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["data/summary_stv_counts.csv","images/placeholder_stv2010_wcc_mayor.png","images/placeholder_stv2016_kcdc_waikanae_cb.png","images/placeholder_stv2016_wcc_mayor.png","images/stv2010_wcc_mayor.gif","images/stv2016_kcdc_waikanae_cb.gif","images/stv2016_pncc_mayor.png","images/stv2016_wcc_mayor.gif","images/stv2016_wrc_kapiti.gif","images/stv2016_wrc_porirua-tawa.gif"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.radix-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.radix-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #455a64;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.radix-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.radix-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .radix-site-nav {
+    display: none;
+  }
+}
+
+.radix-site-header {
+
+}
+
+.radix-site-footer {
+
+}
+
+
+/* Site Header */
+
+.radix-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.radix-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .radix-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.radix-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.radix-site-header a,
+.radix-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.radix-site-header .title {
+  font-size: 18px;
+}
+
+.radix-site-header .logo {
+  padding: 0;
+}
+
+.radix-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.radix-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .radix-site-header .logo img {
+    display: inline-block;
+  }
+  .radix-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .radix-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .radix-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.radix-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .radix-site-header a, .radix-site-header .nav-dropdown  {display: none;}
+  .radix-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .radix-site-header .title {
+    margin-left: 0;
+  }
+  .radix-site-header .nav-right {
+    margin-right: 0;
+  }
+  .radix-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .radix-site-header.responsive {position: relative;}
+  .radix-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .radix-site-header.responsive a,
+  .radix-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .radix-site-header.responsive .nav-left,
+  .radix-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .radix-site-header.responsive .nav-dropdown {float: none;}
+  .radix-site-header.responsive .nav-dropdown-content {position: relative;}
+  .radix-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.radix-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+</style>
+
+<link href="../../site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet"/>
+<script src="../../site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="../../site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+d-article {
+  padding-bottom: 30px;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for table of contents */
+
+.d-toc {
+  color: rgba(0,0,0,0.8);
+  font-size: 0.8em;
+  line-height: 1em;
+}
+
+.d-toc-header {
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 1.3em;
+}
+
+.d-toc a {
+  border-bottom: none;
+}
+
+.d-toc ul {
+  padding-left: 0;
+}
+
+.d-toc li>ul {
+  padding-top: 0.8em;
+  padding-left: 16px;
+  margin-bottom: 0.6em;
+}
+
+.d-toc ul,
+.d-toc li {
+  list-style-type: none;
+}
+
+.d-toc li {
+  margin-bottom: 0.9em;
+}
+
+.d-toc-separator {
+  margin-top: 20px;
+  margin-bottom: 2em;
+}
+
+.d-article-with-toc {
+  border-top: none;
+  padding-top: 0;
+}
+
+
+
+/* Tweak code blocks (note that this CSS is repeated above in an injection
+   into the d-code shadow dom) */
+
+pre.d-code code.d-code {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+pre.text-output {
+
+  font-size: 12px;
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+@media(min-width: 768px) {
+pre.d-code code.d-code  {
+    padding-left: 18px;
+    font-size: 14px;
+}
+pre.text-output {
+  font-size: 14px;
+}
+}
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // create d-bibliography
+  var bibliography = $('<d-bibliography></d-bibliography>');
+  $('#distill-bibliography').wrap(bibliography);
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace citations with <d-cite>
+  $('.citation').each(function(i, val) {
+    appendix = true;
+    var cites = $(this).attr('data-cites').split(" ");
+    var dt_cite = $('<d-cite></d-cite>');
+    dt_cite.attr('key', cites.join());
+    $(this).replaceWith(dt_cite);
+  });
+  // remove refs
+  $('#refs').remove();
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-toc a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // replace code blocks with d-code
+  $('pre>code').each(function(i, val) {
+    var code = $(this);
+    var pre = code.parent();
+    var clz = "";
+    var language = pre.attr('class');
+    if (language) {
+      // map unknown languages to "clike" (without this they just dissapear)
+      if ($.inArray(language, ["bash", "clike", "css", "go", "html",
+                               "javascript", "js", "julia", "lua", "markdown",
+                               "markup", "mathml", "python", "svg", "xml"]) == -1)
+        language = "clike";
+      language = ' language="' + language + '"';
+      var dt_code = $('<d-code block' + language + clz + '></d-code>');
+      dt_code.text(code.text());
+      pre.replaceWith(dt_code);
+    } else {
+      code.addClass('text-output').unwrap().changeElementType('pre');
+    }
+  });
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('d-code, pre.text-output, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // table of contents
+    if (have_authors) // adjust border if we are in authors
+      $('.d-toc').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // inject pre code styles (can't do this with a global stylesheet b/c a shadow root is used)
+    $('d-code').each(function(i, val) {
+      var style = document.createElement('style');
+      style.innerHTML = 'pre code { padding-left: 10px; font-size: 12px; border-left: 2px solid rgba(0,0,0,0.1); } ' +
+                        '@media(min-width: 768px) { pre code { padding-left: 18px; font-size: 14px; } }';
+      if (this.shadowRoot)
+        this.shadowRoot.appendChild(style);
+    });
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-toc-header').remove();
+  $('.d-toc').remove();
+  $('.d-toc-separator').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.radix-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<!--/radix_placeholder_distill-->
+  <script src="../../site_libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+  <script src="../../site_libs/plotly-binding-4.8.0/plotly.js"></script>
+  <script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <link href="../../site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+  <script src="../../site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+  <link href="../../site_libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+  <script src="../../site_libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+  <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-30013353-2"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-30013353-2');
+</script>
+<!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Simple To Vote","description":"Animations to visualise New Zealand local body elections using STV (Single Transferable Vote).","authors":[{"author":"David Friggens","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2016-11-08T00:00:00.000+13:00","citationText":"Friggens, 2016"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="radix-site-nav radix-site-header">
+<div class="nav-left">
+<a href="../../index.html" class="title">David's AdVentures In Data</a>
+</div>
+<div class="nav-right">
+<a href="../../index.html">Blog</a>
+<a href="../../projects.html">Projects</a>
+<a href="../../about.html">About</a>
+<a href="https://twitter.com/dakvid">
+<i class="fa fa-twitter"></i>
+</a>
+<a href="../../index.xml">
+<i class="fa fa-rss"></i>
+</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Simple To Vote</h1>
+<p>Animations to visualise New Zealand local body elections using STV (Single Transferable Vote).</p>
+</div>
+
+<div class="d-byline">
+  
+  David Friggens
+  
+<br/>2016-11-08
+</div>
+
+<div class="d-article">
+<p>Recently we had local body elections in New Zealand. (You may <a href="../2016-10-whither-local-democracy/">have heard</a>.) <a href="http://www.stv.govt.nz">Single Transferable Vote</a> (STV) was used for 7 of the 67 territorial authorities (city and district councils), for 1 of the 11 regional councils, and for 19 of the 20 district health boards<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. STV is Simple To Vote, but it can also be Strenuous To Vet — understanding how the votes are counted and the results are calculated is much less intuitive than First Past the Post (FPP).</p>
+<p>So here are some animations to hopefully make the process in New Zealand a little easier to understand.</p>
+<h2 id="voting">Voting</h2>
+<p>Voting is pretty straightforward. Instead of picking the single candidate you prefer (or <em>n</em> candidates if there are <em>n</em> seats), you rank all of the candidates in your order of preference. In theory this is pretty simple, but it can be quite an exercise if there are a lot of candidates and you don’t know much about them (a common complaint about the district health boards).</p>
+<p>One nice thing is that you don’t really need to think “strategically”. The best strategy really is to rank Person A ahead of Person B if you would prefer them to be elected, and vice versa. In comparison, with FPP (and <a href="http://www.elections.org.nz/voting-system/mmp-voting-system">MMP</a> party selection) you have to consider “wasted” votes, the threat of “<a href="https://en.wikipedia.org/wiki/Vote_splitting">splitting</a>” the vote etc. Graham Edgeler <a href="http://publicaddress.net/legalbeagle/voting-in-an-stv-election/">has a good discussion</a> of some of the facts.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
+<p>In New Zealand, unlike some other jurisdictions, we are not required to rank all candidates. A ballot only needs to have a single candidate ranked 1 to be valid. Some people just do this (at a guess, people who are used to FPP and haven’t cottoned on to STV yet); some only vote for the number of seats available. Others only vote for those they like — though there is still benefit to ranking people you dislike higher than people you despise. Another phenomenon is people ranking the tail of candidates in the order they appear on the paper — some jurisdictions randomise the ballot listing to avoid advantaging Aaron Aardvark over Ziggy Zebra.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p>
+<p>An important point is that you only have one vote at a time — initially your first preference. If your current vote doesn’t count anymore (we’ll get to that) then it transfers to your next preference.</p>
+<p>One advantage of this is when candidates withdraw. There were several cases in 2016 of people running for both mayor and council ward, or council ward and community board — if they win the former then they are <a href="http://www.legislation.govt.nz/act/public/2001/0035/latest/DLM94710.html">automatically withdrawn</a> from the latter. In areas using FPP, their votes in the latter race are wasted.</p>
+<aside>
+For example, in <a href="http://www.waipadc.govt.nz/our-council/Elections/Pages/Results.aspx">Waipa District Council</a>, Sue Milner was elected to the council in the Cambridge Ward. She also stood for the Cambridge Subdivision (a community board), where she was the third highest polling of seven candidates for four seats. This meant that 16.8% of votes cast — alternatively, one of the four votes cast by 67.1% of voters — were wasted. Given that she received 2,722 votes, and the gap between 4th and 7th was 506 votes, it’s quite conceivable that one or two of the candidates elected could have been different if she had not stood.
+</aside>
+<p>In areas using STV, the election is no different to if they had not been on the ballot paper.</p>
+<aside>
+For example, in <a href="http://www.kapiticoast.govt.nz/Your-Council/The-Role-of-Council/elections2016/">Kapiti Coast District Council</a>, K Gurunathan won the mayoralty so all of the votes cast for him as a Districtwide councillor just passed on to the next preference. There were 490 people (2.8%) who voted for him only so their votes could be seen to be wasted. But considering there were 13 people standing for 5 seats I think we can assume that they thought the others were ratbags and wouldn’t have voted for anyone if “Guru” wasn’t on the ballot. <code>:-)</code>
+</aside>
+<h2 id="counting">Counting</h2>
+<p>What happens after the initial first preferences are tallied is an interesting question with many answers. STV is actually a family of voting systems, and there are a variety of methods for determining quotas, excluding candidates and transferring votes. A <a href="https://en.wikipedia.org/wiki/Counting_single_transferable_votes">Wikipedia article provides a reasonable summary</a>. The systems used in Scotland, Ireland, Australia and New Zealand (and elsewhere) all differ slightly.</p>
+<p>In New Zealand we use a system devised by <a href="http://www.votingmatters.org.uk/ISSUE1/P1.HTM">Meek in 1969</a> and enshrined in the <a href="http://www.legislation.govt.nz/act/public/2001/0035/latest/DLM93435.html">Local Electoral Act 2001</a>.</p>
+<h3 id="single-seat">Single Seat</h3>
+<p>For a single seat election, STV is also known as Instant-Runoff Voting (IRV) and Preferential Voting. Simply, a candidate needs to get 50% of the votes to win — if no candidate has enough votes then the lowest polling candidates are eliminated, transferring their votes to the next preferences. Candidates are eliminated until somebody reaches the 50% quota / threshold.</p>
+<h4 id="example-palmerston-north-city-council-mayor-2016">Example: Palmerston North City Council, Mayor 2016</h4>
+<p>The 2016 mayoralty race in Palmerston North is a simple example of an election being determined on first preferences, giving exactly the same result as FPP. Incumbant mayor Grant Smith received 18,773 votes (94.8%) and was elected on the first iteration, having exceeded the 50% quota of 9,899 votes. <a href="http://www.stuff.co.nz/manawatu-standard/news/83124328/mayoral-contest-in-palmerston-north-to-cost-30000">Convicted child assaulter</a> Ross Barber received only 1,024 votes (5.2%).</p>
+<p><img src="images/stv2016_pncc_mayor.png" /></p>
+<h4 id="example-wellington-regional-council-kapiti-coast-2016">Example: Wellington Regional Council, Kapiti Coast 2016</h4>
+<p>In 2016, the Kapiti Coast constituency of the Wellington Regional Council had three candidates vying for one seat. 16,455 valid ballots were returned, so the initial quota to be elected was <code>16455 / 2 = 8227.5</code>.</p>
+<p>First preferences were distributed among Penny Gaylor (6,736 / 40.9%), Nigel Wilson (6,704 / 40.7%) and Peter Bollmann (3,015 / 18.3%). Since nobody reached the quota Bollmann, the lowest candidate, was excluded and his votes transferred to their next preferences.</p>
+<p>Of those that preferred Bollmann, 1,010 next preferred Gaylor and 687 preferred Wilson. Additionally, 1,318 didn’t rank anyone else at all so their votes are set aside. Now the quota is half of the remaining votes, i.e. <code>(16455 - 1318) / 2 = 7568.5</code>. Gaylor now has 7,746 votes so is elected. Wilson is excluded as the seat has been filled.</p>
+<p>Here is the same information in an animated chart. You’ll see that I’ve split each iteration into three steps to make it a little clearer — assigning the votes, calculating the quota, and making a decision on what to do next.</p>
+<figure>
+<img src="images/stv2016_wrc_kapiti.gif" alt="animated bar graph of 2016 Wellington Regional Council Kapiti Coast Constituency STV election results" /><figcaption>animated bar graph of 2016 Wellington Regional Council Kapiti Coast Constituency STV election results</figcaption>
+</figure>
+<h4 id="example-wellington-city-council-mayor-2016">Example: Wellington City Council, Mayor 2016</h4>
+<p>The 2016 election for Wellington Mayor featured eight hopeful candidates. This was a longer but still simple election. The order of the candidates never changes from first preference, with winner Justin Lester rising from 36.5% of first preferences to 56.4% going head-to-head against runner up Nick Leggett.</p>
+<p>Interestingly, in the 7th and final iteration 8,434 voters (13.0%) ranked neither of the top two candidates (and up to 66.0% of those had voted only for the third place getter Jo Coughlan).</p>
+<div id="wcc_mayor_2016">
+<p><img src="images/placeholder_stv2016_wcc_mayor.png" alt="Placeholder for 5.1MB animated graph. Click to load with JavaScript" /></p>
+</div>
+<script>
+$(function(){
+    $("#wcc_mayor_2016 img").click(function(e){
+        $(this).attr("src", "images/stv2016_wcc_mayor.gif");
+        $(this).attr("alt", "animated bar graph of 2016 Wellington City Council Mayor STV election")
+        return false;
+    });
+});
+</script>
+<h4 id="example-wellington-city-council-mayor-2010">Example: Wellington City Council, Mayor 2010</h4>
+<p>The same election six years previous provides an interesting example of the difference that STV can make.</p>
+<p>In the first iteration, incumbant two-term mayor Kerry Prendergast led challenger Celia Wade-Brown 21,809 votes (40.9%) to 18,560 votes (34.8%). In the fifth iteration, Wade-Brown finally pipped Prendergast to win 24,881 votes (50.2%) to 24,705 (49.8%).</p>
+<p>Prendergast, who came to power under FPP<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> and won a second term under STV, <a href="http://www.stuff.co.nz/dominion-post/news/4225729/STV-system-may-cost-me-election-says-Prendergast">claimed this result was “undemocratic”</a>. I disagree. I read the first preference votes not that “more voters prefer Prendergast to any other candidate”, but that “3/5th of voters would rather have someone other than Prendergast”. Running the STV iterations allows us to discover that more voters preferred Wade-Brown to Prendergast, so her election is the most democratic outcome (given the low voter turnout).</p>
+<div id="wcc_mayor_2010">
+<p><img src="images/placeholder_stv2010_wcc_mayor.png" alt="Placeholder for 3.5MB animated graph. Click to load with JavaScript" /></p>
+</div>
+<script>
+$(function(){
+    $("#wcc_mayor_2010 img").click(function(e){
+        $(this).attr("src", "images/stv2010_wcc_mayor.gif");
+        $(this).attr("alt", "animated bar graph of 2010 Wellington City Council Mayor STV election")
+        return false;
+    });
+});
+</script>
+<h3 id="multiple-seats">Multiple Seats</h3>
+<p>STV elections for multiple seats work similarly to a single seat in that first preference votes are used initially, and the lowest polling candidate is excluded and their votes are transferred to the next preference (if any). The quota that has to be reached in order to be elected is the number of votes divided by one plus the number of seats. So if there are two seats you need one third of the votes, for three seats you need one quarter, and so on.</p>
+<p>The main difference is what to do with the votes of candidates who are elected when there are still unfilled seats. In the Meek system, the elected candidate keeps just enough votes to stay over the threshold, and their “surplus” votes are transferred to the subsequent preferences. Importantly (and perhaps confusingly), the surplus votes are transferred proportionately based on the subsequent preferences of <em>all</em> votes for the candidate, so there are likely to be fractional votes from this point.</p>
+<h4 id="example-wellington-regional-council-porirua-tawa-2016">Example: Wellington Regional Council, Porirua-Tawa 2016</h4>
+<p>Moving south from the Kapiti Coast, the Porirua-Tawa constituency had four candidates vying for two seats on the Wellington Regional Council in 2016. On first preferences, Jenny Brash has 7,705 (45%) of the 17,003 votes, easily surpassing the quota of <code>17003 / 3 = 5667.7</code>. Trailing behind are Barbara Donaldson with 4,649 votes (27.3%), Joern Scherzer with 2,709 votes (15.9%), and Heidi Mills with 1,940 votes (11.4%).</p>
+<p>Now Brash has 2,037.3 surplus votes she “doesn’t need”, as they are above the quota, and which can be transferred to the other candidates.</p>
+<p>Of the 7,705 people who preferred Brash, 3,728 people (48.4%) next preferred Donaldson, 1,013 people (13.1%) preferred Scherzer, 1,129 (14.7%) preferred Mills, and 1,835 people (23.8%) had ranked nobody else.</p>
+<div class="layout-chunk" data-layout="l-body">
+
+</div>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">First Pref</th>
+<th style="text-align: left;">Second Pref</th>
+<th style="text-align: left;">Third Pref</th>
+<th style="text-align: left;">Voters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Brash</td>
+<td style="text-align: left;">Donaldson</td>
+<td style="text-align: left;">?</td>
+<td style="text-align: left;">3,728</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brash</td>
+<td style="text-align: left;">Scherzer</td>
+<td style="text-align: left;">?</td>
+<td style="text-align: left;">1,013</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Brash</td>
+<td style="text-align: left;">Mills</td>
+<td style="text-align: left;">?</td>
+<td style="text-align: left;">1,129</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brash</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">—</td>
+<td style="text-align: left;">1,835</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Donaldson</td>
+<td style="text-align: left;">?</td>
+<td style="text-align: left;">?</td>
+<td style="text-align: left;">4,649</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Scherzer</td>
+<td style="text-align: left;">?</td>
+<td style="text-align: left;">?</td>
+<td style="text-align: left;">2,709</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mills</td>
+<td style="text-align: left;">?</td>
+<td style="text-align: left;">?</td>
+<td style="text-align: left;">1,940</td>
+</tr>
+</tbody>
+</table>
+<p>Thus, in the second iteration, Donaldson now has 5,634.7 votes — her original 4,649 first preference votes and 48.4% (985.7) of Brash’s 2,037.3 surplus votes. Since 485.2 votes (23.8% of 2,037.3) have been removed from Brash and not transferred to anyone else, the quota now drops to <code>(17003 - 485.2) / 3 = 5505.9</code>. Donaldson’s votes exceed the quota, so she is elected.</p>
+<p>Here is an animation of the calculations.</p>
+<figure>
+<img src="images/stv2016_wrc_porirua-tawa.gif" alt="animated bar graph of 2016 Wellington Regional Council Porirua-Tawa constituancy STV election" /><figcaption>animated bar graph of 2016 Wellington Regional Council Porirua-Tawa constituancy STV election</figcaption>
+</figure>
+<p>Note that if there had been a third seat in contention, the next action would not have been to exclude the lowest polling candidate but again to transfer surplus votes. Donaldson has 128.8 surplus votes, but Brash also has 161.8 surplus votes, as the quota has reduced since the original surplus was calculated. Brash would transfer a few more votes to Donaldson, but it is likely that Donaldson will also transfer some votes to Brash, as there may have been voters that ranked Donaldson 1st and Brash 2nd. In larger elections these mutual transfers can take several iterations to reach an equilibrium.</p>
+<h4 id="example-kapiti-coast-district-council-waikanae-community-board-2016">Example: Kapiti Coast District Council, Waikanae Community Board 2016</h4>
+<p>The 2016 Waikanae Community Board was the result of a strongly contested race between nine candidates for four seats, with a count lasting 11 iterations.</p>
+<p>Incumbant and local pharmacist James Westbury is elected in the first iteration, with 1,592 votes (29.9%) easily surpassing the quota of 1064.6 votes.</p>
+<p>In the following five iterations, Westbury’s surplus is transferred, and the bottom four candidates are excluded.</p>
+<p>In the 7th iteration, Jocelyn Prvanov and Tonchi Begovich both exceed the quota and are elected.</p>
+<p>Over the following three iterations the surplus of the three winners is transferred. There is a lot of mutual transfer, perhaps not surprising as they campaigned together.</p>
+<p>Finally, at iteration 11, the final seat is decided as Jeremy Seamark narrowly exceeds the quota. Incumbant Eric Gregory is excluded.</p>
+<div id="kcdc_waikanae-cb">
+<p><img src="images/placeholder_stv2016_kcdc_waikanae_cb.png" alt="Placeholder for 7.8MB animated graph. Click to load with JavaScript" /></p>
+</div>
+<script>
+$(function(){
+    $("#kcdc_waikanae-cb img").click(function(e){
+        $(this).attr("src", "images/stv2016_kcdc_waikanae_cb.gif");
+        $(this).attr("alt", "animated bar graph of 2016 Kapiti District Council STV election for Waikanae Community Board")
+        return false;
+    });
+});
+</script>
+<h2 id="iterations">Iterations</h2>
+<p>I found it interesting to see the variation in length of the counting process for the elections. Some were over in a couple of iterations, others in a couple of dozen. The clear winner was the Dunedin City Council’s At Large election, which took 79 iterations to be decided.</p>
+<p>There are no doubt a range of factors that can increase or decrease the number of iterations, but the strongest single variable looks, unsurprisingly, to be the number of candidates standing.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div id="htmlwidget-40c8475a186a3008b574" style="width:624px;height:384px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-40c8475a186a3008b574">{"x":{"visdat":{"3e6876f5313a":["function () ","plotlyVisDat"],"3e68711229cf":["function () ","data"]},"cur_data":"3e68711229cf","attrs":{"3e68711229cf":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"scatter","mode":"markers","size":{},"text":{},"hoverinfo":"text","inherit":true}},"layout":{"margin":{"b":40,"l":60,"t":25,"r":10},"xaxis":{"domain":[0,1],"automargin":true,"title":"Number of Candidates"},"yaxis":{"domain":[0,1],"automargin":true,"title":"Number of Iterations"},"title":"2016 NZ Local Body Elections, STV Vote Counting","hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"data":[{"x":[28,20,20,22,28,11,43,15,17,6,14,2,5,4,6,9,4,3,8,4,26,18,4,5,5,15,21,15,6,13,10,14,6,3,2,28,14,15,28,20,13,16,8,6,7,8,6,5,8,11,15,3,8,4,5,11],"y":[34,28,24,23,30,10,79,17,21,5,15,1,3,3,1,11,1,2,9,3,34,18,2,5,4,17,24,17,5,16,9,16,4,2,1,61,30,18,56,23,18,38,7,5,6,9,5,2,5,9,25,2,10,2,4,14],"type":"scatter","mode":"markers","text":["Auckland District Health Board (7 seats)<br />28 candidates took 34 iterations","Bay of Plenty District Health Board (7 seats)<br />20 candidates took 28 iterations","Capital and Coast District Health Board (7 seats)<br />20 candidates took 24 iterations","Canterbury District Health Board (7 seats)<br />22 candidates took 23 iterations","Counties Manukou District Health Board (7 seats)<br />28 candidates took 30 iterations","Dunedin City Council,  Mayor (1 seats)<br />11 candidates took 10 iterations","Dunedin City Council,  At Large (14 seats)<br />43 candidates took 79 iterations","Hawkes Bay District Health Board (7 seats)<br />15 candidates took 17 iterations","Hutt Valley District Health Board (7 seats)<br />17 candidates took 21 iterations","Kāpiti Coast District Council,  Mayor (1 seats)<br />6 candidates took 5 iterations","Kāpiti Coast District Council,  Districtwide (5 seats)<br />14 candidates took 15 iterations","Kāpiti Coast District Council,  Paekakariki-Raumati Ward (1 seats)<br />2 candidates took 1 iterations","Kāpiti Coast District Council,  Paraparaumu Ward (2 seats)<br />5 candidates took 3 iterations","Kāpiti Coast District Council,  Waikanae Ward (1 seats)<br />4 candidates took 3 iterations","Kāpiti Coast District Council,  Paraparaumu-Raumati Community Board (4 seats)<br />6 candidates took 1 iterations","Kāpiti Coast District Council,  Waikanae Community Board (4 seats)<br />9 candidates took 11 iterations","Kaipara District Council,  Mayor (1 seats)<br />4 candidates took 1 iterations","Kaipara District Council,  Dargaville Ward (2 seats)<br />3 candidates took 2 iterations","Kaipara District Council,  Otamatea Ward (4 seats)<br />8 candidates took 9 iterations","Kaipara District Council,  West Coast - Central Ward (3 seats)<br />4 candidates took 3 iterations","Lakes District Health Board (7 seats)<br />26 candidates took 34 iterations","MidCentral District Health Board (7 seats)<br />18 candidates took 18 iterations","Marlborough District Council,  Mayor (1 seats)<br />4 candidates took 2 iterations","Marlborough District Council,  Marlborough Sounds Ward (3 seats)<br />5 candidates took 5 iterations","Marlborough District Council,  Wairau-Awatere Ward (3 seats)<br />5 candidates took 4 iterations","Marlborough District Council,  Blenheim Ward (7 seats)<br />15 candidates took 17 iterations","Northland District Health Board (7 seats)<br />21 candidates took 24 iterations","Nelson Marlborough District Health Board (7 seats)<br />15 candidates took 17 iterations","Porirua City Council,  Mayor (1 seats)<br />6 candidates took 5 iterations","Porirua City Council,  Northern Ward (4 seats)<br />13 candidates took 16 iterations","Porirua City Council,  Western Ward (2 seats)<br />10 candidates took 9 iterations","Porirua City Council,  Eastern Ward (4 seats)<br />14 candidates took 16 iterations","Porirua City Council,  Porirua Community Trust - Ward 1 (4 seats)<br />6 candidates took 4 iterations","Porirua City Council,  Hutt Mana Charitable Trust (1 seats)<br />3 candidates took 2 iterations","Palmerston North City Council,  Mayor (1 seats)<br />2 candidates took 1 iterations","Palmerston North City Council,  Councillors (15 seats)<br />28 candidates took 61 iterations","South Canterbury District Health Board (7 seats)<br />14 candidates took 30 iterations","Tairawhiti District Health Board (7 seats)<br />15 candidates took 18 iterations","Taranaki District Health Board (7 seats)<br />28 candidates took 56 iterations","Waikato District Health Board (7 seats)<br />20 candidates took 23 iterations","Wairarapa District Health Board (7 seats)<br />13 candidates took 18 iterations","Waitemata District Health Board (7 seats)<br />16 candidates took 38 iterations","Wellington City Council,  Mayor (1 seats)<br />8 candidates took 7 iterations","Wellington City Council,  Northern Ward (3 seats)<br />6 candidates took 5 iterations","Wellington City Council,  Onslow-Western Ward (3 seats)<br />7 candidates took 6 iterations","Wellington City Council,  Lambton Ward (3 seats)<br />8 candidates took 9 iterations","Wellington City Council,  Eastern Ward (3 seats)<br />6 candidates took 5 iterations","Wellington City Council,  Southern Ward (2 seats)<br />5 candidates took 2 iterations","Wellington City Council,  Makara-Ohariu Community Board (6 seats)<br />8 candidates took 5 iterations","West Coast District Health Board (7 seats)<br />11 candidates took 9 iterations","Whanganui District Health Board (7 seats)<br />15 candidates took 25 iterations","Wellington Regional Council,  Kapiti Coast constituency (1 seats)<br />3 candidates took 2 iterations","Wellington Regional Council,  Lower Hutt constituency (3 seats)<br />8 candidates took 10 iterations","Wellington Regional Council,  Porirua-Tawa constituency (2 seats)<br />4 candidates took 2 iterations","Wellington Regional Council,  Wairarapa constituency (1 seats)<br />5 candidates took 4 iterations","Wellington Regional Council,  Wellington constituency (5 seats)<br />11 candidates took 14 iterations"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"marker":{"color":"rgba(31,119,180,1)","size":[48.5714285714286,48.5714285714286,48.5714285714286,48.5714285714286,48.5714285714286,10,93.5714285714286,48.5714285714286,48.5714285714286,10,35.7142857142857,10,16.4285714285714,10,29.2857142857143,29.2857142857143,10,16.4285714285714,29.2857142857143,22.8571428571429,48.5714285714286,48.5714285714286,10,22.8571428571429,22.8571428571429,48.5714285714286,48.5714285714286,48.5714285714286,10,29.2857142857143,16.4285714285714,29.2857142857143,29.2857142857143,10,10,100,48.5714285714286,48.5714285714286,48.5714285714286,48.5714285714286,48.5714285714286,48.5714285714286,10,22.8571428571429,22.8571428571429,22.8571428571429,22.8571428571429,16.4285714285714,42.1428571428571,48.5714285714286,48.5714285714286,10,22.8571428571429,16.4285714285714,10,35.7142857142857],"sizemode":"area","line":{"color":"rgba(31,119,180,1)"}},"textfont":{"size":[48.5714285714286,48.5714285714286,48.5714285714286,48.5714285714286,48.5714285714286,10,93.5714285714286,48.5714285714286,48.5714285714286,10,35.7142857142857,10,16.4285714285714,10,29.2857142857143,29.2857142857143,10,16.4285714285714,29.2857142857143,22.8571428571429,48.5714285714286,48.5714285714286,10,22.8571428571429,22.8571428571429,48.5714285714286,48.5714285714286,48.5714285714286,10,29.2857142857143,16.4285714285714,29.2857142857143,29.2857142857143,10,10,100,48.5714285714286,48.5714285714286,48.5714285714286,48.5714285714286,48.5714285714286,48.5714285714286,10,22.8571428571429,22.8571428571429,22.8571428571429,22.8571428571429,16.4285714285714,42.1428571428571,48.5714285714286,48.5714285714286,10,22.8571428571429,16.4285714285714,10,35.7142857142857]},"error_y":{"color":"rgba(31,119,180,1)","width":[]},"error_x":{"color":"rgba(31,119,180,1)","width":[]},"line":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+</div>
+<h2 id="post-script">Post Script</h2>
+<p>I’ve found this an interesting process, both for the insights and the technical experimentation.</p>
+<h4 id="elections-and-officials">Elections and Officials</h4>
+<p>I’ve always been in favour of using STV for local body elections (but prefer MMP for parliament) and thought I had a good idea of how it works. I’ve discovered though that there was a reasonable amount I was unclear on. Getting closer to grokking how the multi-seat counting works and what the fractional votes mean has been enlightening. I’m still a little uneasy about the fractional votes, and am interested to dig a little deeper, especially to look at the differences between the different STV methods.</p>
+<p>Also interesting has been an extension of experiencing, as mentioned in the last post, the variety in different councils’ and DHBs’ approaches to making information available. Six of the eight councils, and one of the nineteen DHBs made the iteration report available on their websites. Only one supplied the original XML used by the voting software; the others used PDF, RTF or XLSX. So I put out several <a href="https://fyi.org.nz/user/david_friggens/requests">OIA/LGOIMA requests</a> for the rest, which similarly elicited a range of responses. One quickly put it up on their website the next day, six have yet to respond, two weeks later. Some passed it through to the 3rd party election company who supplied the XML, others just sent a PDF or Word DOC (not DOCX) and said “that’s all we have!” Finally, two helpfully printed and scanned the datatable (one with a “RELEASED UNDER THE OIA” watermark) to make text extraction impossible. Thankfully they both eventually supplied something more usable.</p>
+<h4 id="data-and-graphs">Data and Graphs</h4>
+<p>More mundanely, this post has been in gestation for 2-3 weeks. Partly because I’ve been amassing quite a bit of data from the various elections and trying to make sense of them (including retyping some from unhelpful PDFs). I want to have a broader look across it all, and I think it’s grown a bit too big for the blog, so I plan to start a separate repository for it all.</p>
+<p>Also, I attempted to create these graphs in three (3!) different formats — ggplot, Plot.ly and Highcharts. First, I spent a reasonable amount of time figuring out how to make the animated gifs I’ve included in the post, created with <a href="https://github.com/dgrtwo/gganimate">gganimate</a> and <a href="https://github.com/thomasp85/tweenr">tweenr</a> (and I have to give a huge thank you to Len Kiefer’s excellent posts for helping with this.<a href="#fn5" class="footnote-ref" id="fnref5"><sup>5</sup></a>). I really like how these have turned out — they’re pretty close to what I had in mind from the outset. My main complaints are that it would be nice to have some (user) controls over the animation, and the files can get quite large (20-40MB for the DHBs).</p>
+<p>I gave a talk on this subject at Toastmasters last week, and redid all of these graphs in <a href="http://plot.ly/r/">Plot.ly</a>. This gave me separate graphs for each of the iterations to step through manually, as well as interactive control to zoom in etc. Later, I tried to see if they could be animated, but the best that seems possible is hiding and revealing different series (i.e. not having smooth transformations between them), and controlling the changes by selecting from a drop-down box rather than having a “play” or “next” button.</p>
+<p>Just recently I discovered Highcharts’ <a href="http://jkunst.com/highcharter/plugins.html">motion plugin</a> and have tried to recreate the graphs with this too. I’ve successfully created a static plot, but have struggled with the animation. I’ve decided to give up for now and possibly try again later, though it’s not clear to me from the documentation and examples whether I would be able to animate the quota line as well as the bars.</p>
+<h4 id="te-be-continued">Te be continued…</h4>
+<h2 id="code-unlisting" class="appendix">Code unlisting</h2>
+<p>I produced the animations separately, so don’t have the code available. The API for <a href="https://github.com/thomasp85/gganimate"><code>gganimate</code></a> has changed considerably since then anyway.</p>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>The DHBs are legally mandated to use STV — one of them didn’t have elections this year.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>It is theoretically possible to vote “strategically” in STV, but it is NP-complete to determine, so it’s not really something that comes into play. <a href="http://diafaneia.ee.auth.gr/sites/default/files/stv.pdf">(Bartholdi and Orlin, 1990)</a><a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>I trust that concrete evidence exists for all of the things I’ve mentioned in this paragraph, but I’ve only seen them mentioned in discussion and haven’t felt moved to try and track down references for you. Sorry.<a href="#fnref3" class="footnote-back">↩</a></p></li>
+<li id="fn4"><p>I haven’t located any speculation or data on this, but I recall my feeling at the time being that she would not have won under STV.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn5"><p><a href="http://lenkiefer.com/2016/05/29/improving-R-animated-gifs-with-tweenr">Improving R animated GIFs with tweenr</a> and <a href="http://lenkiefer.com/2016/05/30/more-tweenr-animations">More tweenr animation examples</a><a href="#fnref5" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom">
+  <h3 id="updates-and-corrections">Corrections</h3>
+  <p>If you see mistakes or want to suggest changes, please <a href="https://github.com/dakvid/dakvid.github.io/issues/new">create an issue</a> on the source repository.</p>
+  <h3 id="reuse">Reuse</h3>
+  <p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Source code is available at <a href="https://github.com/dakvid/dakvid.github.io">https://github.com/dakvid/dakvid.github.io</a>, unless otherwise noted. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
+</div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

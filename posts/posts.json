@@ -1,5 +1,198 @@
 [
   {
+    "path": "posts/2017-01-anyone-who-had-a-heart/",
+    "title": "Anyone Who Had a Heart",
+    "description": "Visualising card game results. Less exciting than it sounds.",
+    "author": [
+      {
+        "name": "David Friggens",
+        "url": {}
+      }
+    ],
+    "date": "2017-01-29",
+    "categories": [
+      "all",
+      "R",
+      "games",
+      "rpkg ggplot2",
+      "line charts",
+      "bar charts"
+    ],
+    "preview": "posts/2017-01-anyone-who-had-a-heart/images/2017-01-steps-1-1.png",
+    "last_modified": "2018-11-10T23:14:44+13:00",
+    "preview_width": 1248,
+    "preview_height": 768
+  },
+  {
+    "path": "posts/2016-12-earthquake-excuses/",
+    "title": "Earthquake Excuses",
+    "description": "Some visualisation experiments using earthquake data. Facet zooming in ggplot and maps with Plotly. (Why didn't I make these separate posts?)",
+    "author": [
+      {
+        "name": "David Friggens",
+        "url": {}
+      }
+    ],
+    "date": "2016-12-28",
+    "categories": [
+      "all",
+      "R",
+      "earthquakes",
+      "New Zealand",
+      "rpkg ggplot2",
+      "rpkg ggforce",
+      "density plots",
+      "rpkg plotly",
+      "maps"
+    ],
+    "preview": "posts/2016-12-earthquake-excuses/images/eqnz_depth_comparison.png",
+    "last_modified": "2018-11-10T23:18:43+13:00",
+    "preview_width": 800,
+    "preview_height": 600
+  },
+  {
+    "path": "posts/2016-12-election-transparency/",
+    "title": "Election Transparency",
+    "description": "Some reflections on trying to find out information about local government elections.",
+    "author": [
+      {
+        "name": "David Friggens",
+        "url": {}
+      }
+    ],
+    "date": "2016-12-20",
+    "categories": [
+      "all",
+      "R",
+      "elections",
+      "rpkg plotly",
+      "bar charts",
+      "New Zealand",
+      "Official Information requests"
+    ],
+    "preview": "posts/2016-12-election-transparency/images/preview.png",
+    "last_modified": "2018-11-10T23:14:07+13:00",
+    "preview_width": 704,
+    "preview_height": 739
+  },
+  {
+    "path": "posts/2016-11-earthquake-depth/",
+    "title": "Earthquake Depth",
+    "description": "Some visualisations of the depths of the recent New Zealand earthquakes.",
+    "author": [
+      {
+        "name": "David Friggens",
+        "url": {}
+      }
+    ],
+    "date": "2016-11-18",
+    "categories": [
+      "all",
+      "R",
+      "earthquakes",
+      "New Zealand",
+      "animation",
+      "rpkg gganimate",
+      "scatter plots"
+    ],
+    "preview": "posts/2016-11-earthquake-depth/images/eqnz_depth_time.gif",
+    "last_modified": "2018-11-10T23:13:40+13:00"
+  },
+  {
+    "path": "posts/2016-11-simple-to-vote/",
+    "title": "Simple To Vote",
+    "description": "Animations to visualise New Zealand local body elections using STV (Single Transferable Vote).",
+    "author": [
+      {
+        "name": "David Friggens",
+        "url": {}
+      }
+    ],
+    "date": "2016-11-08",
+    "categories": [
+      "all",
+      "R",
+      "elections",
+      "animation",
+      "New Zealand",
+      "bar charts",
+      "scatter plots"
+    ],
+    "preview": "posts/2016-11-simple-to-vote/images/stv2016_wrc_porirua-tawa.gif",
+    "last_modified": "2018-11-10T23:13:29+13:00"
+  },
+  {
+    "path": "posts/2016-10-whither-local-democracy/",
+    "title": "W[h]ither Local Democracy?",
+    "description": "If you live in New Zealand you would have been hard pressed not to notice that we had local body elections recently. It seems that all anyone can talk about is the turnout. Is it all bad news?",
+    "author": [
+      {
+        "name": "David Friggens",
+        "url": {}
+      }
+    ],
+    "date": "2016-10-14",
+    "categories": [
+      "all",
+      "R",
+      "elections",
+      "New Zealand",
+      "rpkg plotly",
+      "dumbbell plots"
+    ],
+    "preview": "posts/2016-10-whither-local-democracy/images/preview.png",
+    "last_modified": "2018-11-10T23:13:04+13:00",
+    "preview_width": 700,
+    "preview_height": 450
+  },
+  {
+    "path": "posts/2016-08-the-luminaries/",
+    "title": "The Luminaries",
+    "description": "Do the the parts of Eleanor Catton's The Luminaries incrementally reduce by half? (TL;DR - no. There is a method, but it's not that.)",
+    "author": [
+      {
+        "name": "David Friggens",
+        "url": {}
+      }
+    ],
+    "date": "2016-08-26",
+    "categories": [
+      "all",
+      "R",
+      "books",
+      "rpkg plotly",
+      "bar charts",
+      "scatter plots"
+    ],
+    "preview": "posts/2016-08-the-luminaries/images/preview.png",
+    "last_modified": "2018-11-10T23:12:56+13:00",
+    "preview_width": 700,
+    "preview_height": 450
+  },
+  {
+    "path": "posts/2016-08-unfamiliar-maps/",
+    "title": "Unfamiliar Maps",
+    "description": "Many towns and cities share the same name. Some are less well known than others. Let's take a look.",
+    "author": [
+      {
+        "name": "David Friggens",
+        "url": {}
+      }
+    ],
+    "date": "2016-08-14",
+    "categories": [
+      "all",
+      "R",
+      "maps",
+      "names",
+      "rpkg leaflet"
+    ],
+    "preview": "posts/2016-08-unfamiliar-maps/images/preview.png",
+    "last_modified": "2018-11-10T23:12:48+13:00",
+    "preview_width": 432,
+    "preview_height": 460
+  },
+  {
     "path": "posts/2016-08-birthday-eve/",
     "title": "Birthday Eve",
     "description": "Some time ago I had a thought - if you had a daughter and she was born on Christmas Eve or New Year's Eve, would you be tempted to name her Eve?",
@@ -15,6 +208,6 @@
       "names"
     ],
     "preview": {},
-    "last_modified": "2018-11-10T22:48:38+13:00"
+    "last_modified": "2018-11-10T23:12:39+13:00"
   }
 ]

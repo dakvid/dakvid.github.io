@@ -7,14 +7,86 @@
     <description>A personal website of data exploration.
 </description>
     <generator>Radix</generator>
-    <lastBuildDate>Mon, 08 Aug 2016 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 29 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Anyone Who Had a Heart</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2017-01-anyone-who-had-a-heart</link>
+      <description>Visualising card game results. Less exciting than it sounds.</description>
+      <guid>https://david.frigge.nz/posts/2017-01-anyone-who-had-a-heart</guid>
+      <pubDate>Sun, 29 Jan 2017 00:00:00 +0000</pubDate>
+      <media:content url="https://david.frigge.nz/posts/2017-01-anyone-who-had-a-heart/images/2017-01-steps-1-1.png" medium="image" type="image/png" width="1248" height="768"/>
+    </item>
+    <item>
+      <title>Earthquake Excuses</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2016-12-earthquake-excuses</link>
+      <description>Some visualisation experiments using earthquake data. Facet zooming in ggplot and maps with Plotly. (Why didn't I make these separate posts?)</description>
+      <guid>https://david.frigge.nz/posts/2016-12-earthquake-excuses</guid>
+      <pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate>
+      <media:content url="https://david.frigge.nz/posts/2016-12-earthquake-excuses/images/eqnz_depth_comparison.png" medium="image" type="image/png" width="800" height="600"/>
+    </item>
+    <item>
+      <title>Election Transparency</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2016-12-election-transparency</link>
+      <description>Some reflections on trying to find out information about local government elections.</description>
+      <guid>https://david.frigge.nz/posts/2016-12-election-transparency</guid>
+      <pubDate>Tue, 20 Dec 2016 00:00:00 +0000</pubDate>
+      <media:content url="https://david.frigge.nz/posts/2016-12-election-transparency/images/preview.png" medium="image" type="image/png" width="704" height="739"/>
+    </item>
+    <item>
+      <title>Earthquake Depth</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2016-11-earthquake-depth</link>
+      <description>Some visualisations of the depths of the recent New Zealand earthquakes.</description>
+      <guid>https://david.frigge.nz/posts/2016-11-earthquake-depth</guid>
+      <pubDate>Fri, 18 Nov 2016 00:00:00 +0000</pubDate>
+      <media:content url="https://david.frigge.nz/posts/2016-11-earthquake-depth/images/eqnz_depth_time.gif" medium="image" type="image/gif"/>
+    </item>
+    <item>
+      <title>Simple To Vote</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2016-11-simple-to-vote</link>
+      <description>Animations to visualise New Zealand local body elections using STV (Single Transferable Vote).</description>
+      <guid>https://david.frigge.nz/posts/2016-11-simple-to-vote</guid>
+      <pubDate>Tue, 08 Nov 2016 00:00:00 +0000</pubDate>
+      <media:content url="https://david.frigge.nz/posts/2016-11-simple-to-vote/images/stv2016_wrc_porirua-tawa.gif" medium="image" type="image/gif"/>
+    </item>
+    <item>
+      <title>W[h]ither Local Democracy?</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2016-10-whither-local-democracy</link>
+      <description>If you live in New Zealand you would have been hard pressed not to notice that we had local body elections recently. It seems that all anyone can talk about is the turnout. Is it all bad news?</description>
+      <guid>https://david.frigge.nz/posts/2016-10-whither-local-democracy</guid>
+      <pubDate>Fri, 14 Oct 2016 00:00:00 +0000</pubDate>
+      <media:content url="https://david.frigge.nz/posts/2016-10-whither-local-democracy/images/preview.png" medium="image" type="image/png" width="700" height="450"/>
+    </item>
+    <item>
+      <title>The Luminaries</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2016-08-the-luminaries</link>
+      <description>Do the the parts of Eleanor Catton's The Luminaries incrementally reduce by half? (TL;DR - no. There is a method, but it's not that.)</description>
+      <guid>https://david.frigge.nz/posts/2016-08-the-luminaries</guid>
+      <pubDate>Fri, 26 Aug 2016 00:00:00 +0000</pubDate>
+      <media:content url="https://david.frigge.nz/posts/2016-08-the-luminaries/images/preview.png" medium="image" type="image/png" width="700" height="450"/>
+    </item>
+    <item>
+      <title>Unfamiliar Maps</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2016-08-unfamiliar-maps</link>
+      <description>Many towns and cities share the same name. Some are less well known than others. Let's take a look.</description>
+      <guid>https://david.frigge.nz/posts/2016-08-unfamiliar-maps</guid>
+      <pubDate>Sun, 14 Aug 2016 00:00:00 +0000</pubDate>
+      <media:content url="https://david.frigge.nz/posts/2016-08-unfamiliar-maps/images/preview.png" medium="image" type="image/png" width="432" height="460"/>
+    </item>
     <item>
       <title>Birthday Eve</title>
       <dc:creator>David Friggens</dc:creator>
       <link>https://david.frigge.nz/posts/2016-08-birthday-eve</link>
       <description>Some time ago I had a thought - if you had a daughter and she was born on Christmas Eve or New Year's Eve, would you be tempted to name her Eve?</description>
       <guid>https://david.frigge.nz/posts/2016-08-birthday-eve</guid>
-      <pubDate>Mon, 08 Aug 2016 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 09 Aug 2016 00:00:00 +0000</pubDate>
     </item>
   </channel>
 </rss>

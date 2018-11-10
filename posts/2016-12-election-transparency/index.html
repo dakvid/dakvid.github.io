@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
+  <meta name="generator" content="radix" />
+
+  <style type="text/css">
+  /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
+  body {
+    visibility: hidden;
+  }
+  </style>
+
+ <!--radix_placeholder_import_source-->
+ <!--/radix_placeholder_import_source-->
+
+  <!--radix_placeholder_meta_tags-->
+<title>David's AdVentures In Data: Election Transparency</title>
+
+<meta property="description" itemprop="description" content="Some reflections on trying to find out information about local government elections."/>
+
+<link rel="canonical" href="https://david.frigge.nz/posts/2016-12-election-transparency/"/>
+<link rel="license" href="https://creativecommons.org/licenses/by/4.0/"/>
+
+<!--  https://schema.org/Article -->
+<meta property="article:published" itemprop="datePublished" content="2016-12-20"/>
+<meta property="article:created" itemprop="dateCreated" content="2016-12-20"/>
+<meta name="article:author" content="David Friggens"/>
+
+<!--  https://developers.facebook.com/docs/sharing/webmasters#markup -->
+<meta property="og:title" content="David&#39;s AdVentures In Data: Election Transparency"/>
+<meta property="og:type" content="article"/>
+<meta property="og:description" content="Some reflections on trying to find out information about local government elections."/>
+<meta property="og:url" content="https://david.frigge.nz/posts/2016-12-election-transparency/"/>
+<meta property="og:image" content="https://david.frigge.nz/posts/2016-12-election-transparency/images/preview.png"/>
+<meta property="og:image:width" content="704"/>
+<meta property="og:image:height" content="739"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:site_name" content="David&#39;s AdVentures In Data"/>
+
+<!--  https://dev.twitter.com/cards/types/summary -->
+<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:title" content="David&#39;s AdVentures In Data: Election Transparency"/>
+<meta property="twitter:description" content="Some reflections on trying to find out information about local government elections."/>
+<meta property="twitter:url" content="https://david.frigge.nz/posts/2016-12-election-transparency/"/>
+<meta property="twitter:image" content="https://david.frigge.nz/posts/2016-12-election-transparency/images/preview.png"/>
+<meta property="twitter:image:width" content="704"/>
+<meta property="twitter:image:height" content="739"/>
+<meta property="twitter:site" content="@dakvid"/>
+
+<!--/radix_placeholder_meta_tags-->
+  <!--radix_placeholder_rmarkdown_metadata-->
+
+<script type="text/json" id="radix-rmarkdown-metadata">
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["creative_commons","title","description","author","date","preview","categories","output","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["CC BY"]},{"type":"character","attributes":{},"value":["Election Transparency"]},{"type":"character","attributes":{},"value":["Some reflections on trying to find out information about local government elections."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["David Friggens"]}]}]},{"type":"character","attributes":{},"value":["2016-12-20"]},{"type":"character","attributes":{},"value":["images/preview.png"]},{"type":"character","attributes":{},"value":["all","R","elections","rpkg plotly","bar charts","New Zealand","Official Information requests"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["radix::radix_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["https://david.frigge.nz/posts/2016-12-election-transparency/"]}]}
+</script>
+<!--/radix_placeholder_rmarkdown_metadata-->
+  
+  <script type="text/json" id="radix-resource-manifest">
+  {"type":"character","attributes":{},"value":["data/stv_oia_events.csv","images/ack.png","images/doc.png","images/docx.png","images/eqnz.png","images/nodata.png","images/pdf.png","images/ping.png","images/preview.png","images/scanned.png","images/wrongdata.png","images/xlsx.png","images/xml.png"]}
+  </script>
+  <!--radix_placeholder_navigation_in_header-->
+
+<script type="application/javascript">
+
+  window.headroom_prevent_pin = false;
+
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+
+    // initialize headroom for banner
+    var header = $('header').get(0);
+    var headerHeight = header.offsetHeight;
+    var headroom = new Headroom(header, {
+      onPin : function() {
+        if (window.headroom_prevent_pin) {
+          window.headroom_prevent_pin = false;
+          headroom.unpin();
+        }
+      }
+    });
+    headroom.init();
+    if(window.location.hash)
+      headroom.unpin();
+    $(header).addClass('headroom--transition');
+
+    // offset scroll location for banner on hash change
+    // (see: https://github.com/WickyNilliams/headroom.js/issues/38)
+    window.addEventListener("hashchange", function(event) {
+      window.scrollTo(0, window.pageYOffset - (headerHeight + 25));
+    });
+
+    // responsive menu
+    $('.radix-site-header').each(function(i, val) {
+      var topnav = $(this);
+      var toggle = topnav.find('.nav-toggle');
+      toggle.on('click', function() {
+        topnav.toggleClass('responsive');
+      });
+    });
+
+    // nav dropdowns
+    $('.nav-dropbtn').click(function(e) {
+      $(this).next('.nav-dropdown-content').toggleClass('nav-dropdown-active');
+      $(this).parent().siblings('.nav-dropdown')
+         .children('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $("body").click(function(e){
+      $('.nav-dropdown-content').removeClass('nav-dropdown-active');
+    });
+    $(".nav-dropdown").click(function(e){
+      e.stopPropagation();
+    });
+  });
+</script>
+
+<style type="text/css">
+
+/* Theme (user-documented overrideables for nav appearance) */
+
+.radix-site-nav {
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #455a64;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.radix-site-nav a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.radix-site-nav a:hover {
+  color: white;
+}
+
+@media print {
+  .radix-site-nav {
+    display: none;
+  }
+}
+
+.radix-site-header {
+
+}
+
+.radix-site-footer {
+
+}
+
+
+/* Site Header */
+
+.radix-site-header {
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 3;
+}
+
+.radix-site-header .nav-left {
+  display: inline-block;
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 768px) {
+  .radix-site-header .nav-left {
+    margin-left: 0;
+  }
+}
+
+
+.radix-site-header .nav-right {
+  float: right;
+  margin-right: 8px;
+}
+
+.radix-site-header a,
+.radix-site-header .title {
+  display: inline-block;
+  text-align: center;
+  padding: 14px 10px 14px 10px;
+}
+
+.radix-site-header .title {
+  font-size: 18px;
+}
+
+.radix-site-header .logo {
+  padding: 0;
+}
+
+.radix-site-header .logo img {
+  display: none;
+  max-height: 20px;
+  width: auto;
+  margin-bottom: -4px;
+}
+
+.radix-site-header .nav-image img {
+  max-height: 18px;
+  width: auto;
+  display: inline-block;
+  margin-bottom: -3px;
+}
+
+
+
+@media screen and (min-width: 1000px) {
+  .radix-site-header .logo img {
+    display: inline-block;
+  }
+  .radix-site-header .nav-left {
+    margin-left: 20px;
+  }
+  .radix-site-header .nav-right {
+    margin-right: 20px;
+  }
+  .radix-site-header .title {
+    padding-left: 12px;
+  }
+}
+
+
+.radix-site-header .nav-toggle {
+  display: none;
+}
+
+.nav-dropdown {
+  display: inline-block;
+  position: relative;
+}
+
+.nav-dropdown .nav-dropbtn {
+  border: none;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 16px 10px;
+  background-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  margin: 0;
+  margin-top: 1px;
+  z-index: 2;
+}
+
+.nav-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  min-width: 200px;
+  border: 1px solid rgba(0,0,0,0.15);
+  border-radius: 4px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+  z-index: 1;
+  margin-top: 2px;
+  white-space: nowrap;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.nav-dropdown-content hr {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.nav-dropdown-active {
+  display: block;
+}
+
+.nav-dropdown-content a, .nav-dropdown-content .nav-dropdown-header {
+  color: black;
+  padding: 6px 24px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.nav-dropdown-content .nav-dropdown-header {
+  display: block;
+  padding: 5px 24px;
+  padding-bottom: 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #999999;
+  white-space: nowrap;
+}
+
+.nav-dropdown:hover .nav-dropbtn {
+  color: white;
+}
+
+.nav-dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.nav-right .nav-dropdown-content {
+  margin-left: -45%;
+  right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .radix-site-header a, .radix-site-header .nav-dropdown  {display: none;}
+  .radix-site-header a.nav-toggle {
+    float: right;
+    display: block;
+  }
+  .radix-site-header .title {
+    margin-left: 0;
+  }
+  .radix-site-header .nav-right {
+    margin-right: 0;
+  }
+  .radix-site-header {
+    overflow: hidden;
+  }
+  .nav-right .nav-dropdown-content {
+    margin-left: 0;
+  }
+}
+
+
+@media screen and (max-width: 768px) {
+  .radix-site-header.responsive {position: relative;}
+  .radix-site-header.responsive a.nav-toggle {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .radix-site-header.responsive a,
+  .radix-site-header.responsive .nav-dropdown {
+    display: block;
+    text-align: left;
+  }
+  .radix-site-header.responsive .nav-left,
+  .radix-site-header.responsive .nav-right {
+    width: 100%;
+  }
+  .radix-site-header.responsive .nav-dropdown {float: none;}
+  .radix-site-header.responsive .nav-dropdown-content {position: relative;}
+  .radix-site-header.responsive .nav-dropdown .nav-dropbtn {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+}
+
+/* Site Footer */
+
+.radix-site-footer {
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 3;
+  margin-top: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  text-align: center;
+}
+
+/* Headroom */
+
+d-title {
+  padding-top: 6rem;
+}
+
+@media print {
+  d-title {
+    padding-top: 4rem;
+  }
+}
+
+.headroom {
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.headroom--transition {
+  transition: all .4s ease-in-out;
+}
+
+.headroom--unpinned {
+  top: -100px;
+}
+
+.headroom--pinned {
+  top: 0;
+}
+
+</style>
+
+<link href="../../site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet"/>
+<script src="../../site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="../../site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+<script src="../../site_libs/headroom-0.9.4/headroom.min.js"></script>
+<!--/radix_placeholder_navigation_in_header-->
+  <!--radix_placeholder_distill-->
+
+<style type="text/css">
+
+body {
+  background-color: white;
+}
+
+.pandoc-table {
+  width: 100%;
+}
+
+.pandoc-table>caption {
+  margin-bottom: 10px;
+}
+
+.pandoc-table th:not([align]) {
+  text-align: left;
+}
+
+.pagedtable-footer {
+  font-size: 15px;
+}
+
+.html-widget {
+  margin-bottom: 2.0em;
+}
+
+.l-screen-inset {
+  padding-right: 16px;
+}
+
+.l-screen .caption {
+  margin-left: 10px;
+}
+
+.shaded {
+  background: rgb(247, 247, 247);
+  padding-top: 20px;
+  padding-bottom: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .html-widget {
+  margin-bottom: 0;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.shaded .shaded-content {
+  background: white;
+}
+
+.text-output {
+  margin-top: 0;
+  line-height: 1.5em;
+}
+
+.hidden {
+  display: none !important;
+}
+
+d-article {
+  padding-bottom: 30px;
+}
+
+d-appendix {
+  padding-top: 30px;
+}
+
+d-article>p>img {
+  width: 100%;
+}
+
+d-article iframe {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 2.0em;
+  width: 100%;
+}
+
+figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+/* CSS for table of contents */
+
+.d-toc {
+  color: rgba(0,0,0,0.8);
+  font-size: 0.8em;
+  line-height: 1em;
+}
+
+.d-toc-header {
+  font-size: 0.6rem;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+  text-transform: uppercase;
+  margin-top: 0;
+  margin-bottom: 1.3em;
+}
+
+.d-toc a {
+  border-bottom: none;
+}
+
+.d-toc ul {
+  padding-left: 0;
+}
+
+.d-toc li>ul {
+  padding-top: 0.8em;
+  padding-left: 16px;
+  margin-bottom: 0.6em;
+}
+
+.d-toc ul,
+.d-toc li {
+  list-style-type: none;
+}
+
+.d-toc li {
+  margin-bottom: 0.9em;
+}
+
+.d-toc-separator {
+  margin-top: 20px;
+  margin-bottom: 2em;
+}
+
+.d-article-with-toc {
+  border-top: none;
+  padding-top: 0;
+}
+
+
+
+/* Tweak code blocks (note that this CSS is repeated above in an injection
+   into the d-code shadow dom) */
+
+pre.d-code code.d-code {
+  padding-left: 10px;
+  font-size: 12px;
+  border-left: 2px solid rgba(0,0,0,0.1);
+}
+
+pre.text-output {
+
+  font-size: 12px;
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+@media(min-width: 768px) {
+pre.d-code code.d-code  {
+    padding-left: 18px;
+    font-size: 14px;
+}
+pre.text-output {
+  font-size: 14px;
+}
+}
+
+/* Figure */
+
+.figure {
+  position: relative;
+  margin-bottom: 2.5em;
+  margin-top: 1.5em;
+}
+
+.figure img {
+  width: 100%;
+}
+
+.figure .caption {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 12px;
+  line-height: 1.5em;
+}
+
+.figure img.external {
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
+  padding: 18px;
+  box-sizing: border-box;
+}
+
+.figure .caption a {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.figure .caption b,
+.figure .caption strong, {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 1.0);
+}
+
+
+
+/* Tweak 1000px media break to show more text */
+
+@media(min-width: 1000px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 80px [middle-start] 50px [text-start kicker-end] 65px 65px 65px 65px 65px 65px 65px 65px [text-end gutter-start] 65px [middle-end] 65px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 16px;
+  }
+
+  .grid {
+    grid-column-gap: 16px;
+  }
+
+  d-article {
+    font-size: 1.06rem;
+    line-height: 1.7em;
+  }
+  figure .caption, .figure .caption, figure figcaption {
+    font-size: 13px;
+  }
+}
+
+@media(min-width: 1180px) {
+  .base-grid,
+  distill-header,
+  d-title,
+  d-abstract,
+  d-article,
+  d-appendix,
+  distill-appendix,
+  d-byline,
+  d-footnote-list,
+  d-citation-list,
+  distill-footer {
+    grid-template-columns: [screen-start] 1fr [page-start kicker-start] 60px [middle-start] 60px [text-start kicker-end] 60px 60px 60px 60px 60px 60px 60px 60px [text-end gutter-start] 60px [middle-end] 60px [page-end gutter-end] 1fr [screen-end];
+    grid-column-gap: 32px;
+  }
+
+  .grid {
+    grid-column-gap: 32px;
+  }
+}
+
+
+/* Get the citation styles for the appendix (not auto-injected on render since
+   we do our own rendering of the citation appendix) */
+
+d-appendix .citation-appendix,
+.d-appendix .citation-appendix {
+  font-size: 11px;
+  line-height: 15px;
+  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding-left: 18px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: rgba(0, 0, 0, 0.02);
+  padding: 10px 18px;
+  border-radius: 3px;
+  color: rgba(150, 150, 150, 1);
+  overflow: hidden;
+  margin-top: -12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
+/* Social footer */
+
+.social_footer {
+  margin-top: 30px;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.67);
+}
+
+.disqus-comments {
+  margin-right: 30px;
+}
+
+.disqus-comment-count {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+}
+
+#disqus_thread {
+  margin-top: 30px;
+}
+
+.article-sharing a {
+  border-bottom: none;
+  margin-right: 8px;
+}
+
+.article-sharing a:hover {
+  border-bottom: none;
+}
+
+.sidebar-section.subscribe {
+  font-size: 12px;
+  line-height: 1.6em;
+}
+
+.subscribe p {
+  margin-bottom: 0.5em;
+}
+
+
+.article-footer .subscribe {
+  font-size: 15px;
+  margin-top: 45px;
+}
+
+
+/* Improve display for browsers without grid (IE/Edge <= 15) */
+
+.downlevel {
+  line-height: 1.6em;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", Arial, sans-serif;
+  margin: 0;
+}
+
+.downlevel .d-title {
+  padding-top: 6rem;
+  padding-bottom: 1.5rem;
+}
+
+.downlevel .d-title h1 {
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 1.1em;
+  margin: 0 0 0.5rem;
+}
+
+.downlevel .d-title p {
+  font-weight: 300;
+  font-size: 1.2rem;
+  line-height: 1.55em;
+  margin-top: 0;
+}
+
+.downlevel .d-byline {
+  padding-top: 0.8em;
+  padding-bottom: 0.8em;
+  font-size: 0.8rem;
+  line-height: 1.8em;
+}
+
+.downlevel .section-separator {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.downlevel .d-article {
+  font-size: 1.06rem;
+  line-height: 1.7em;
+  padding-top: 1rem;
+  padding-bottom: 2rem;
+}
+
+
+.downlevel .d-appendix {
+  padding-left: 0;
+  padding-right: 0;
+  max-width: none;
+  font-size: 0.8em;
+  line-height: 1.7em;
+  margin-bottom: 0;
+  color: rgba(0,0,0,0.5);
+  padding-top: 40px;
+  padding-bottom: 48px;
+}
+
+.downlevel .footnotes ol {
+  padding-left: 13px;
+}
+
+.downlevel .base-grid,
+.downlevel .distill-header,
+.downlevel .d-title,
+.downlevel .d-abstract,
+.downlevel .d-article,
+.downlevel .d-appendix,
+.downlevel .distill-appendix,
+.downlevel .d-byline,
+.downlevel .d-footnote-list,
+.downlevel .d-citation-list,
+.downlevel .distill-footer,
+.downlevel .appendix-bottom,
+.downlevel .posts-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+@media(min-width: 768px) {
+  .downlevel .base-grid,
+  .downlevel .distill-header,
+  .downlevel .d-title,
+  .downlevel .d-abstract,
+  .downlevel .d-article,
+  .downlevel .d-appendix,
+  .downlevel .distill-appendix,
+  .downlevel .d-byline,
+  .downlevel .d-footnote-list,
+  .downlevel .d-citation-list,
+  .downlevel .distill-footer,
+  .downlevel .appendix-bottom,
+  .downlevel .posts-container {
+  padding-left: 150px;
+  padding-right: 150px;
+  max-width: 900px;
+}
+}
+
+.downlevel pre code {
+  display: block;
+  border-left: 2px solid rgba(0, 0, 0, .1);
+  padding: 0 0 0 20px;
+  font-size: 14px;
+}
+
+.downlevel code, .downlevel pre {
+  color: black;
+  background: none;
+  font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  tab-size: 4;
+
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+}
+
+</style>
+
+<script type="application/javascript">
+
+function is_downlevel_browser() {
+  if (bowser.isUnsupportedBrowser({ msie: "12", msedge: "16"},
+                                 window.navigator.userAgent)) {
+    return true;
+  } else {
+    return window.load_distill_framework === undefined;
+  }
+}
+
+// show body when load is complete
+function on_load_complete() {
+
+  // set body to visible
+  document.body.style.visibility = 'visible';
+
+  // force redraw for leaflet widgets
+  if (window.HTMLWidgets) {
+    var maps = window.HTMLWidgets.findAll(".leaflet");
+    $.each(maps, function(i, el) {
+      var map = this.getMap();
+      map.invalidateSize();
+      map.eachLayer(function(layer) {
+        if (layer instanceof L.TileLayer)
+          layer.redraw();
+      });
+    });
+  }
+
+  // trigger 'shown' so htmlwidgets resize
+  $('d-article').trigger('shown');
+}
+
+function init_distill() {
+
+  init_common();
+
+  // create front matter
+  var front_matter = $('<d-front-matter></d-front-matter>');
+  $('#distill-front-matter').wrap(front_matter);
+
+  // create d-title
+  $('.d-title').changeElementType('d-title');
+
+  // create d-byline
+  var byline = $('<d-byline></d-byline>');
+  $('.d-byline').replaceWith(byline);
+
+  // create d-article
+  var article = $('<d-article></d-article>');
+  $('.d-article').wrap(article).children().unwrap();
+
+  // move posts container into article
+  $('.posts-container').appendTo($('d-article'));
+
+  // create d-appendix
+  $('.d-appendix').changeElementType('d-appendix');
+
+  // create d-bibliography
+  var bibliography = $('<d-bibliography></d-bibliography>');
+  $('#distill-bibliography').wrap(bibliography);
+
+  // flag indicating that we have appendix items
+  var appendix = $('.appendix-bottom').children('h3').length > 0;
+
+  // replace citations with <d-cite>
+  $('.citation').each(function(i, val) {
+    appendix = true;
+    var cites = $(this).attr('data-cites').split(" ");
+    var dt_cite = $('<d-cite></d-cite>');
+    dt_cite.attr('key', cites.join());
+    $(this).replaceWith(dt_cite);
+  });
+  // remove refs
+  $('#refs').remove();
+
+  // replace footnotes with <d-footnote>
+  $('.footnote-ref').each(function(i, val) {
+    appendix = true;
+    var href = $(this).attr('href');
+    var id = href.replace('#', '');
+    var fn = $('#' + id);
+    var fn_p = $('#' + id + '>p');
+    fn_p.find('.footnote-back').remove();
+    var text = fn_p.html();
+    var dtfn = $('<d-footnote></d-footnote>');
+    dtfn.html(text);
+    $(this).replaceWith(dtfn);
+  });
+  // remove footnotes
+  $('.footnotes').remove();
+
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    var id = $(this).attr('id');
+    $('.d-toc a[href="#' + id + '"]').parent().remove();
+    appendix = true;
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('d-appendix'));
+  });
+
+  // show d-appendix if we have appendix content
+  $("d-appendix").css('display', appendix ? 'grid' : 'none');
+
+  // replace code blocks with d-code
+  $('pre>code').each(function(i, val) {
+    var code = $(this);
+    var pre = code.parent();
+    var clz = "";
+    var language = pre.attr('class');
+    if (language) {
+      // map unknown languages to "clike" (without this they just dissapear)
+      if ($.inArray(language, ["bash", "clike", "css", "go", "html",
+                               "javascript", "js", "julia", "lua", "markdown",
+                               "markup", "mathml", "python", "svg", "xml"]) == -1)
+        language = "clike";
+      language = ' language="' + language + '"';
+      var dt_code = $('<d-code block' + language + clz + '></d-code>');
+      dt_code.text(code.text());
+      pre.replaceWith(dt_code);
+    } else {
+      code.addClass('text-output').unwrap().changeElementType('pre');
+    }
+  });
+
+  // localize layout chunks to just output
+  $('.layout-chunk').each(function(i, val) {
+
+    // capture layout
+    var layout = $(this).attr('data-layout');
+
+    // apply layout to markdown level block elements
+    var elements = $(this).children().not('d-code, pre.text-output, script');
+    elements.each(function(i, el) {
+      var layout_div = $('<div class="' + layout + '"></div>');
+      if (layout_div.hasClass('shaded')) {
+        var shaded_content = $('<div class="shaded-content"></div>');
+        $(this).wrap(shaded_content);
+        $(this).parent().wrap(layout_div);
+      } else {
+        $(this).wrap(layout_div);
+      }
+    });
+
+
+    // unwrap the layout-chunk div
+    $(this).children().unwrap();
+  });
+
+  // load distill framework
+  load_distill_framework();
+
+  // wait for window.distillRunlevel == 4 to do post processing
+  function distill_post_process() {
+
+    if (!window.distillRunlevel || window.distillRunlevel < 4)
+      return;
+
+    // hide author/affiliations entirely if we have no authors
+    var front_matter = JSON.parse($("#distill-front-matter").html());
+    var have_authors = front_matter.authors && front_matter.authors.length > 0;
+    if (!have_authors)
+      $('d-byline').addClass('hidden');
+
+    // table of contents
+    if (have_authors) // adjust border if we are in authors
+      $('.d-toc').parent().addClass('d-article-with-toc');
+
+    // strip links that point to #
+    $('.authors-affiliations').find('a[href="#"]').removeAttr('href');
+
+    // hide elements of author/affiliations grid that have no value
+    function hide_byline_column(caption) {
+      $('d-byline').find('h3:contains("' + caption + '")').parent().css('visibility', 'hidden');
+    }
+
+    // affiliations
+    var have_affiliations = false;
+    for (var i = 0; i<front_matter.authors.length; ++i) {
+      var author = front_matter.authors[i];
+      if (author.affiliation !== "&nbsp;") {
+        have_affiliations = true;
+        break;
+      }
+    }
+    if (!have_affiliations)
+      $('d-byline').find('h3:contains("Affiliations")').css('visibility', 'hidden');
+
+    // published date
+    if (!front_matter.publishedDate)
+      hide_byline_column("Published");
+
+    // document object identifier
+    var doi = $('d-byline').find('h3:contains("DOI")');
+    var doi_p = doi.next().empty();
+    if (!front_matter.doi) {
+      // if we have a citation and valid citationText then link to that
+      if ($('#citation').length > 0 && front_matter.citationText) {
+        doi.html('Citation');
+        $('<a href="#citation"></a>')
+          .text(front_matter.citationText)
+          .appendTo(doi_p);
+      } else {
+        hide_byline_column("DOI");
+      }
+    } else {
+      $('<a></a>')
+         .attr('href', "https://doi.org/" + front_matter.doi)
+         .html(front_matter.doi)
+         .appendTo(doi_p);
+    }
+
+     // change plural form of authors/affiliations
+    if (front_matter.authors.length === 1) {
+      var grid = $('.authors-affiliations');
+      grid.children('h3:contains("Authors")').text('Author');
+      grid.children('h3:contains("Affiliations")').text('Affiliation');
+    }
+
+    // inject pre code styles (can't do this with a global stylesheet b/c a shadow root is used)
+    $('d-code').each(function(i, val) {
+      var style = document.createElement('style');
+      style.innerHTML = 'pre code { padding-left: 10px; font-size: 12px; border-left: 2px solid rgba(0,0,0,0.1); } ' +
+                        '@media(min-width: 768px) { pre code { padding-left: 18px; font-size: 14px; } }';
+      if (this.shadowRoot)
+        this.shadowRoot.appendChild(style);
+    });
+
+    // move appendix-bottom entries to the bottom
+    $('.appendix-bottom').appendTo('d-appendix').children().unwrap();
+    $('.appendix-bottom').remove();
+
+    // clear polling timer
+    clearInterval(tid);
+
+    // show body now that everything is ready
+    on_load_complete();
+  }
+
+  var tid = setInterval(distill_post_process, 50);
+  distill_post_process();
+
+}
+
+function init_downlevel() {
+
+  init_common();
+
+   // insert hr after d-title
+  $('.d-title').after($('<hr class="section-separator"/>'));
+
+  // check if we have authors
+  var front_matter = JSON.parse($("#distill-front-matter").html());
+  var have_authors = front_matter.authors && front_matter.authors.length > 0;
+
+  // manage byline/border
+  if (!have_authors)
+    $('.d-byline').remove();
+  $('.d-byline').after($('<hr class="section-separator"/>'));
+  $('.d-byline a').remove();
+
+  // remove toc
+  $('.d-toc-header').remove();
+  $('.d-toc').remove();
+  $('.d-toc-separator').remove();
+
+  // move appendix elements
+  $('h1.appendix, h2.appendix').each(function(i, val) {
+    $(this).changeElementType('h3');
+  });
+  $('h3.appendix').each(function(i, val) {
+    $(this).nextUntil($('h1, h2, h3')).addBack().appendTo($('.d-appendix'));
+  });
+
+
+  // inject headers into references and footnotes
+  var refs_header = $('<h3></h3>');
+  refs_header.text('References');
+  $('#refs').prepend(refs_header);
+
+  var footnotes_header = $('<h3></h3');
+  footnotes_header.text('Footnotes');
+  $('.footnotes').children('hr').first().replaceWith(footnotes_header);
+
+  // move appendix-bottom entries to the bottom
+  $('.appendix-bottom').appendTo('.d-appendix').children().unwrap();
+  $('.appendix-bottom').remove();
+
+  // remove appendix if it's empty
+  if ($('.d-appendix').children().length === 0)
+    $('.d-appendix').remove();
+
+  // prepend separator above appendix
+  $('.d-appendix').before($('<hr class="section-separator" style="clear: both"/>'));
+
+  // trim code
+  $('pre>code').each(function(i, val) {
+    $(this).html($.trim($(this).html()));
+  });
+
+  // move posts-container right before article
+  $('.posts-container').insertBefore($('.d-article'));
+
+  $('body').addClass('downlevel');
+
+  on_load_complete();
+}
+
+
+function init_common() {
+
+  // jquery plugin to change element types
+  (function($) {
+    $.fn.changeElementType = function(newType) {
+      var attrs = {};
+
+      $.each(this[0].attributes, function(idx, attr) {
+        attrs[attr.nodeName] = attr.nodeValue;
+      });
+
+      this.replaceWith(function() {
+        return $("<" + newType + "/>", attrs).append($(this).contents());
+      });
+    };
+  })(jQuery);
+
+  // prevent underline for linked images
+  $('a > img').parent().css({'border-bottom' : 'none'});
+
+  // mark non-body figures created by knitr chunks as 100% width
+  $('.layout-chunk').each(function(i, val) {
+    var figures = $(this).find('img, .html-widget');
+    if ($(this).attr('data-layout') !== "l-body") {
+      figures.css('width', '100%');
+    } else {
+      figures.css('max-width', '100%');
+      figures.filter("[width]").each(function(i, val) {
+        var fig = $(this);
+        fig.css('width', fig.attr('width') + 'px');
+      });
+
+    }
+  });
+
+  // auto-append index.html to post-preview links in file: protocol
+  // and in rstudio ide preview
+  $('.post-preview').each(function(i, val) {
+    if (window.location.protocol === "file:")
+      $(this).attr('href', $(this).attr('href') + "index.html");
+  });
+
+  // get rid of index.html references in header
+  if (window.location.protocol !== "file:") {
+    $('.radix-site-header a[href]').each(function(i,val) {
+      $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+    });
+  }
+
+  // add class to pandoc style tables
+  $('tr.header').parent('thead').parent('table').addClass('pandoc-table');
+  $('.kable-table').children('table').addClass('pandoc-table');
+
+  // add figcaption style to table captions
+  $('caption').parent('table').addClass("figcaption");
+
+  // initialize posts list
+  if (window.init_posts_list)
+    window.init_posts_list();
+
+  // implmement disqus comment link
+  $('.disqus-comment-count').click(function() {
+    window.headroom_prevent_pin = true;
+    $('#disqus_thread').toggleClass('hidden');
+    if (!$('#disqus_thread').hasClass('hidden')) {
+      var offset = $(this).offset();
+      $(window).resize();
+      $('html, body').animate({
+        scrollTop: offset.top - 35
+      });
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  if (is_downlevel_browser())
+    init_downlevel();
+  else
+    window.addEventListener('WebComponentsReady', init_distill);
+});
+
+</script>
+
+<!--/radix_placeholder_distill-->
+  <script src="../../site_libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+  <script src="../../site_libs/plotly-binding-4.8.0/plotly.js"></script>
+  <script src="../../site_libs/typedarray-0.1/typedarray.min.js"></script>
+  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <link href="../../site_libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+  <script src="../../site_libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+  <link href="../../site_libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+  <script src="../../site_libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+  <script src="../../site_libs/bowser-1.9.3/bowser.min.js"></script>
+  <script src="../../site_libs/webcomponents-2.0.0/webcomponents.js"></script>
+  <script src="../../site_libs/distill-2.2.21/template.v2.js"></script>
+  <!--radix_placeholder_site_in_header-->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-30013353-2"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'UA-30013353-2');
+</script>
+<!--/radix_placeholder_site_in_header-->
+
+
+</head>
+
+<body>
+
+<!--radix_placeholder_front_matter-->
+
+<script id="distill-front-matter" type="text/json">
+{"title":"Election Transparency","description":"Some reflections on trying to find out information about local government elections.","authors":[{"author":"David Friggens","authorURL":"#","affiliation":"&nbsp;","affiliationURL":"#"}],"publishedDate":"2016-12-20T00:00:00.000+13:00","citationText":"Friggens, 2016"}
+</script>
+
+<!--/radix_placeholder_front_matter-->
+<!--radix_placeholder_navigation_before_body-->
+<header class="header header--fixed" role="banner">
+<nav class="radix-site-nav radix-site-header">
+<div class="nav-left">
+<a href="../../index.html" class="title">David's AdVentures In Data</a>
+</div>
+<div class="nav-right">
+<a href="../../index.html">Blog</a>
+<a href="../../projects.html">Projects</a>
+<a href="../../about.html">About</a>
+<a href="https://twitter.com/dakvid">
+<i class="fa fa-twitter"></i>
+</a>
+<a href="../../index.xml">
+<i class="fa fa-rss"></i>
+</a>
+<a href="javascript:void(0);" class="nav-toggle">&#9776;</a>
+</div>
+</nav>
+</header>
+<!--/radix_placeholder_navigation_before_body-->
+<!--radix_placeholder_site_before_body-->
+<!--/radix_placeholder_site_before_body-->
+
+<div class="d-title">
+<h1>Election Transparency</h1>
+<p>Some reflections on trying to find out information about local government elections.</p>
+</div>
+
+<div class="d-byline">
+  
+  David Friggens
+  
+<br/>2016-12-20
+</div>
+
+<div class="d-article">
+<p>Despite the timing, this post is not about the recent sorry excuse for democracy in North America. I’ve been looking into the results of the recent local body elections in New Zealand that used Single Transferable Vote (STV), and have some reflections on the transparency of results.</p>
+<h3 id="recommendations">Recommendations</h3>
+<ul>
+<li>All STV elections should provide the iteration report with the results.</li>
+<li>Councils and (especially) DHBs should do better responding to OIAs (including, but not limited to, avoiding breaking the law).</li>
+</ul>
+<h2 id="stv-iteration-reports">STV Iteration Reports</h2>
+<p>First Past the Post (FPP) elections are pretty easy to report on — everybody makes a certain number of votes (depending on the number of seats available) and you can just list the number of votes each candidate received. The official results are brief and complete, and it’s completely clear to members of the public who got elected and why.</p>
+<p>STV elections, as I’ve <a href="../2016-11-simple-to-vote/">recently discovered</a>, are not so straightforward. The councils and DHBs appear to be mandated to report the iteration number and count of votes when each candidate was excluded or elected<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>, but that doesn’t provide any explanation or insight into what votes/preferences were cast, and how the vote counting process proceeded.</p>
+<p>Understanding how the election results were determined is important for giving the public a sense of ownership and engagement with the voting process, which in turn seems like an important issue given the <a href="../2016-10-whither-local-democracy/">low voter turnout</a> in local body elections. And the transparency this brings is important for making it clear that the elections are free and fair.</p>
+<p>STV is arguably a fairer system, but it won’t keep and gain support if voters don’t understand it. In my view, the only way to do this is to provide the votes for every candidate at every iteration of the counting process, thus making it clear how and why each candidate was elected or excluded. The STV iteration report provides this.</p>
+<p>Six of the eight councils proactively provided STV iteration reports, as did two of the 19 DHBs:</p>
+<ul>
+<li>Dunedin City Council (<a href="">PDF</a>)</li>
+<li>Kāpiti Coast District Council (<a href="">XML</a>)</li>
+<li>Porirua City Council (<a href="">PDF</a>)</li>
+<li>Wellington City Council (<a href="">PDF</a> and <a href="">RTF</a>)</li>
+<li>Wellington Regional Council (<a href="">PDF</a>)</li>
+<li>MidCentral DHB (<a href="">PDF</a>)</li>
+<li>South Canterbury DHB (<a href="">PDF</a>)</li>
+</ul>
+<p>Only one of these was completely machine readable, in that I could input it directly into <a href="http://r-project.org">R</a>. With the RTF and a few of the PDFs I could copy the data directly into a <a href="https://en.wikipedia.org/wiki/Tab-separated_values">TSV</a>, but the others would have required manually retyping if I hadn’t recently discovered <a href="https://github.com/ropenscilabs/tabulizer">tabulizer</a>.</p>
+<h2 id="official-information-requests">Official Information Requests</h2>
+<p>I wanted to look into the rest of the elections too, so I sent off 17 requests<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> under the Official Information Act (OIA) 1982 or Local Government Official Information and Meetings Act (LGOIMA) 1987 <a href="https://fyi.org.nz/user/david_friggens/requests">through FYI</a>.</p>
+<p>The responses were … variable.</p>
+<p>The Acts say that a request must be responded to “<a href="http://www.legislation.govt.nz/act/public/1982/0156/latest/DLM65390.html?search=sw_096be8ed81430379_as+soon+as+reasonably+practicable_25_se&amp;p=1&amp;sr=5">as soon as reasonably practicable</a>” with a hard deadline of 20 working days. A request like this, which is for an existing file that should be held by the electoral officer, could be completed the day it’s received (thanks Waikato DHB!), but it seems reasonable to allow up to a week.</p>
+<p>Ten of the local bodies gave me the file within a week, but six of them appeared to take the 20 day deadline as more of a target. Hawke’s Bay DHB on the other hand didn’t seem at all bothered by their legal responsibility, taking four days <em>after</em> the deadline to respond.</p>
+<h3 id="a-picture-is-worth-a-thousand-words">A picture is worth a thousand words</h3>
+<p>The following graph shows the time taken by each local body to respond, and each of the main communications back and forth. The icons give more detail when the mouse hovers, but if you’re on a mobile device you should be able to tap to display.</p>
+<p>Note that I have counted the day of request as Day 1, for nicer graphing. To be fairer, this makes the legal deadline Day 21.</p>
+<div class="layout-chunk" data-layout="l-body">
+<div id="htmlwidget-706bf85c40d25b5d9766" style="width:864px;height:739.2px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-706bf85c40d25b5d9766">{"x":{"visdat":{"39383f793c33":["function () ","plotlyVisDat"],"39381eaa46bb":["function () ","data"],"3938726b2aeb":["function () ","data"]},"cur_data":"3938726b2aeb","attrs":{"39381eaa46bb":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"x":{},"y":{},"type":"bar","orientation":"h","showlegend":false,"name":"Duration","hoverinfo":"none","inherit":true},"3938726b2aeb":{"alpha_stroke":1,"sizes":[10,100],"spans":[1,20],"y":{},"x":{},"type":"scatter","name":"Events","text":{},"hoverinfo":"text","showlegend":false,"inherit":true}},"layout":{"margin":{"b":40,"l":125,"t":25,"r":10},"annotations":[{"text":"reasonable<br>deadline?","x":8,"y":16,"showarrow":false,"font":{"color":"black","align":"left"}},{"text":"reasonable<br>deadline?","x":8,"y":16,"showarrow":false,"font":{"color":"black","align":"left"}},{"text":"LEGAL<br>DEADLINE","x":23,"y":1.5,"showarrow":false,"font":{"color":"red"}}],"title":"Response Times to Official Information Requests for Election Reports","xaxis":{"domain":[0,1],"automargin":true,"title":"Working Days"},"yaxis":{"domain":[0,1],"automargin":true,"title":"","type":"category","categoryorder":"array","categoryarray":["Hawke's Bay DHB","Bay of Plenty DHB","Tairawhiti DHB","Canterbury DHB","Wairarapa DHB","West Coast DHB","Southern DHB","Northland DHB","Kaipara DC","Hutt Valley DHB","Lakes DHB","Auckland Council","Whanganui DC","Marlborough DC","Taranaki DHB","Capital & Coast DHB","Waikato DHB"]},"shapes":[{"type":"line","line":{"color":"black"},"y0":-0.5,"y1":17,"x0":6.5,"x1":6.5},{"type":"Line","line":{"color":"red"},"y0":-0.5,"y1":17,"x0":21.5,"x1":21.5}],"images":[{"source":"images/wrongdata.png","xref":"x","yref":"y","x":1.5,"y":11.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/wrongdata.png","xref":"x","yref":"y","x":3.5,"y":7.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/wrongdata.png","xref":"x","yref":"y","x":13.5,"y":2.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/wrongdata.png","xref":"x","yref":"y","x":0.5,"y":14.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/wrongdata.png","xref":"x","yref":"y","x":2.5,"y":12.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ack.png","xref":"x","yref":"y","x":2.5,"y":11.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ack.png","xref":"x","yref":"y","x":17.7,"y":1.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ack.png","xref":"x","yref":"y","x":18.3,"y":1.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ack.png","xref":"x","yref":"y","x":0.5,"y":3.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ack.png","xref":"x","yref":"y","x":1.5,"y":3.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ack.png","xref":"x","yref":"y","x":3.5,"y":0.399999999999999,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ack.png","xref":"x","yref":"y","x":21.5,"y":0.399999999999999,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ack.png","xref":"x","yref":"y","x":1.5,"y":9.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ack.png","xref":"x","yref":"y","x":0.5,"y":8.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ack.png","xref":"x","yref":"y","x":1.5,"y":8.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ack.png","xref":"x","yref":"y","x":0.5,"y":13.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ack.png","xref":"x","yref":"y","x":0.5,"y":4.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ack.png","xref":"x","yref":"y","x":0.5,"y":5.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ack.png","xref":"x","yref":"y","x":1.5,"y":12.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/xml.png","xref":"x","yref":"y","x":3.5,"y":11.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/xml.png","xref":"x","yref":"y","x":18.8,"y":1.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/xml.png","xref":"x","yref":"y","x":4.5,"y":8.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/xml.png","xref":"x","yref":"y","x":4.5,"y":7.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/xml.png","xref":"x","yref":"y","x":17.5,"y":2.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/xml.png","xref":"x","yref":"y","x":1.5,"y":14.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ping.png","xref":"x","yref":"y","x":16.9,"y":1.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ping.png","xref":"x","yref":"y","x":16.5,"y":0.399999999999999,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ping.png","xref":"x","yref":"y","x":20.5,"y":0.399999999999999,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/ping.png","xref":"x","yref":"y","x":14.9,"y":4.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/eqnz.png","xref":"x","yref":"y","x":15.5,"y":3.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/eqnz.png","xref":"x","yref":"y","x":11.5,"y":5.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/pdf.png","xref":"x","yref":"y","x":17.5,"y":3.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/pdf.png","xref":"x","yref":"y","x":24.5,"y":0.399999999999999,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/pdf.png","xref":"x","yref":"y","x":3.5,"y":10.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/pdf.png","xref":"x","yref":"y","x":0.5,"y":16.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/pdf.png","xref":"x","yref":"y","x":13.5,"y":5.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/doc.png","xref":"x","yref":"y","x":1.5,"y":15.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/doc.png","xref":"x","yref":"y","x":4.5,"y":9.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/doc.png","xref":"x","yref":"y","x":2.5,"y":13.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/scanned.png","xref":"x","yref":"y","x":2.5,"y":9.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/scanned.png","xref":"x","yref":"y","x":2.5,"y":10.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/scanned.png","xref":"x","yref":"y","x":15.5,"y":4.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/nodata.png","xref":"x","yref":"y","x":7.5,"y":6.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/docx.png","xref":"x","yref":"y","x":16.1,"y":4.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"},{"source":"images/xlsx.png","xref":"x","yref":"y","x":2.5,"y":12.4,"sizex":1,"sizey":1,"opacity":1,"layer":"above"}],"hovermode":"closest","showlegend":false},"source":"A","config":{"modeBarButtonsToAdd":[{"name":"Collaborate","icon":{"width":1000,"ascent":500,"descent":-50,"path":"M487 375c7-10 9-23 5-36l-79-259c-3-12-11-23-22-31-11-8-22-12-35-12l-263 0c-15 0-29 5-43 15-13 10-23 23-28 37-5 13-5 25-1 37 0 0 0 3 1 7 1 5 1 8 1 11 0 2 0 4-1 6 0 3-1 5-1 6 1 2 2 4 3 6 1 2 2 4 4 6 2 3 4 5 5 7 5 7 9 16 13 26 4 10 7 19 9 26 0 2 0 5 0 9-1 4-1 6 0 8 0 2 2 5 4 8 3 3 5 5 5 7 4 6 8 15 12 26 4 11 7 19 7 26 1 1 0 4 0 9-1 4-1 7 0 8 1 2 3 5 6 8 4 4 6 6 6 7 4 5 8 13 13 24 4 11 7 20 7 28 1 1 0 4 0 7-1 3-1 6-1 7 0 2 1 4 3 6 1 1 3 4 5 6 2 3 3 5 5 6 1 2 3 5 4 9 2 3 3 7 5 10 1 3 2 6 4 10 2 4 4 7 6 9 2 3 4 5 7 7 3 2 7 3 11 3 3 0 8 0 13-1l0-1c7 2 12 2 14 2l218 0c14 0 25-5 32-16 8-10 10-23 6-37l-79-259c-7-22-13-37-20-43-7-7-19-10-37-10l-248 0c-5 0-9-2-11-5-2-3-2-7 0-12 4-13 18-20 41-20l264 0c5 0 10 2 16 5 5 3 8 6 10 11l85 282c2 5 2 10 2 17 7-3 13-7 17-13z m-304 0c-1-3-1-5 0-7 1-1 3-2 6-2l174 0c2 0 4 1 7 2 2 2 4 4 5 7l6 18c0 3 0 5-1 7-1 1-3 2-6 2l-173 0c-3 0-5-1-8-2-2-2-4-4-4-7z m-24-73c-1-3-1-5 0-7 2-2 3-2 6-2l174 0c2 0 5 0 7 2 3 2 4 4 5 7l6 18c1 2 0 5-1 6-1 2-3 3-5 3l-174 0c-3 0-5-1-7-3-3-1-4-4-5-6z"},"click":"function(gd) { \n        // is this being viewed in RStudio?\n        if (location.search == '?viewer_pane=1') {\n          alert('To learn about plotly for collaboration, visit:\\n https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html');\n        } else {\n          window.open('https://cpsievert.github.io/plotly_book/plot-ly-for-collaboration.html', '_blank');\n        }\n      }"}],"cloud":false},"data":[{"x":[4,19,18,2,25,5,5,4,3,5,8,18,2,1,16,14,3],"y":["Auckland Council","Bay of Plenty DHB","Canterbury DHB","Capital & Coast DHB","Hawke's Bay DHB","Hutt Valley DHB","Kaipara DC","Lakes DHB","Marlborough DC","Northland DHB","Southern DHB","Tairawhiti DHB","Taranaki DHB","Waikato DHB","Wairarapa DHB","West Coast DHB","Whanganui DC"],"type":"bar","orientation":"h","showlegend":false,"name":"Duration","hoverinfo":["none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none","none"],"marker":{"color":"rgba(31,119,180,1)","line":{"color":"rgba(31,119,180,1)"}},"error_y":{"color":"rgba(31,119,180,1)"},"error_x":{"color":"rgba(31,119,180,1)"},"xaxis":"x","yaxis":"y","frame":null},{"y":["Auckland Council","Auckland Council","Auckland Council","Bay of Plenty DHB","Bay of Plenty DHB","Bay of Plenty DHB","Bay of Plenty DHB","Canterbury DHB","Canterbury DHB","Canterbury DHB","Canterbury DHB","Capital & Coast DHB","Hawke's Bay DHB","Hawke's Bay DHB","Hawke's Bay DHB","Hawke's Bay DHB","Hawke's Bay DHB","Hutt Valley DHB","Hutt Valley DHB","Hutt Valley DHB","Kaipara DC","Kaipara DC","Kaipara DC","Lakes DHB","Lakes DHB","Marlborough DC","Marlborough DC","Northland DHB","Northland DHB","Southern DHB","Tairawhiti DHB","Tairawhiti DHB","Taranaki DHB","Taranaki DHB","Waikato DHB","Wairarapa DHB","Wairarapa DHB","Wairarapa DHB","Wairarapa DHB","West Coast DHB","West Coast DHB","West Coast DHB","Whanganui DC","Whanganui DC","Whanganui DC"],"x":[2,3,4,17.4,18.2,18.8,19.3,1,2,16,18,2,4,17,21,22,25,2,3,5,1,2,5,3,4,1,3,4,5,8,14,18,1,2,1,1,15.4,16,16.6,1,12,14,2,3,3],"type":"scatter","name":"Events","text":["<b>Day 2: Wrong Data<\/b><br> \"Grace\" said the data was on the website (it wasn't)","<b>Day 3: Transfer<\/b><br> Privacy and LGOIMA Business Partner advised request being transferred to 3rd party election company","<b>Day 4: Success<\/b><br> Electoral Officer (external) sent original XML reports","<b>Day 18: Request for Update<\/b><br> \"Could you please confirm that my request has been received<br />and is on track to be answered by the legal deadline?\"","<b>Day 18: Acknowledgement<\/b><br> Communications Manager: \"I am sorry but it seems that your earlier email<br />did not filter through from our communications email to me.\"","<b>Day 19: Transfer<\/b><br> General Manager Governance and Quality apologised for delay and<br />requested report from external Electoral Officer","<b>Day 19: Success<\/b><br> Electoral Officer (external) sent original XML report","<b>Day 1: Acknowledgement<\/b><br> Automated response","<b>Day 2: Acknowledgement<\/b><br> Project Facilitator sent letter from Project Specialist acknowledging the request","<b>Day 16: Potential Delay<\/b><br> Kaikoura 7.8M earthquake!","<b>Day 18: Success<\/b><br> Project Facilitator sent report as PDF.<br />Also attached West Coast DHB report and letter from General Manager","<b>Day 2: Success<\/b><br> Communications Advisor advised report now published on website as proprietary Word 97 document","<b>Day 4: Acknowledgement<\/b><br> PA to Communications Manager sent letter from Communications Manager acknowledging request","<b>Day 17: Request for Update<\/b><br> \"I was just wanting to check that my request hadn't been forgotten<br />and was on track to be responded to by next week.\"","<b>Day 21: Request for Update<\/b><br> \"Today was the legal deadline. Can I please have an update?\"","<b>Day 22: Acknowledgement<\/b><br> EA to CEO: \"I have forwarded your email to the administrator responsible for OIA requests.\"","<b>Day 25: Success<\/b><br> EA to CEO sent report as PDF.<br />Also attached letter from CEO, containing no acknowledgement or apology that the response was late.","<b>Day 2: Acknowledgement<\/b><br> EA to CE noted request","<b>Day 3: Partial Success<\/b><br> EA to CE sent scanned PDF (ie photos) of letter from CE and report<br />Letter called me Daniel.<br />Data was covered with \"RELEASED UNDER THE OFFICIAL INFORMATION ACT\" watermark","<b>Day 5: Success<\/b><br> Electoral Officer sent report as proprietary Word 97 document","<b>Day 1: Acknowledgement<\/b><br> Automated response","<b>Day 2: Acknowledgement<\/b><br> Customer Services advised request was forwarded to Electoral Officer","<b>Day 5: Success<\/b><br> Electoral Officer sent original XML reports","<b>Day 3: Partial Success<\/b><br> EA to CE sent scanned PDF (ie photos) of letter from CE and report","<b>Day 4: Success<\/b><br> EA to CE sent report as PDF","<b>Day 1: Acknowledgement<\/b><br> Automated response","<b>Day 3: Success<\/b><br> Electoral Officer sent reports as proprietary Word 97 document","<b>Day 4: Wrong Data<\/b><br> Director Governance & Compliance sent letter from CE advising report was on the website (it wasn't)","<b>Day 5: Success<\/b><br> Director Governance & Compliance sent original XML STV report","<b>Day 8: No Data<\/b><br> OIA Coordinator advised that no election was held this year","<b>Day 14: Wrong Data<\/b><br> Communications Advisor sent limited results summary","<b>Day 18: Success<\/b><br> Communications Advisor sent original XML report","<b>Day 1: Wrong Data<\/b><br> PA to CE sent limited results summary","<b>Day 2: Success<\/b><br> Electoral Officer (external) sent original XML report","<b>Day 1: Success<\/b><br> Executive Director Public & Organisational Affairs sent report as PDF","<b>Day 1: Acknowledgement<\/b><br> Communications Advisor noted receipt","<b>Day 16: Request for Update<\/b><br> \"I was just wanting to check that my request hadn't been forgotten<br />and was on track to be responded to by next week\"","<b>Day 16: Partial Success<\/b><br> PACS/RIS Administrator sent PDF (ie photos) of letter from CE with report","<b>Day 16: Success<\/b><br> PACS/RIS Administrator sent report as Word 2007 document","<b>Day 1: Acknowledgement<\/b><br> Automated out-of-office from Senior Communications Advisor (back tomorrow)","<b>Day 12: Potential Delay<\/b><br> Kaikoura 7.8M earthquake!","<b>Day 14: Success<\/b><br> PDF report included in response from Canterbury DHB","<b>Day 2: Acknowledgement<\/b><br> Customer Services Team Leader advised request was loaded into their CRM","<b>Day 3: Wrong Data<\/b><br> Legal Officer sent limited results summary","<b>Day 3: Success<\/b><br> Legal Officer sent report as Excel 2007 spreadsheet"],"hoverinfo":["text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text","text"],"showlegend":false,"mode":"markers","marker":{"color":"rgba(255,127,14,1)","line":{"color":"rgba(255,127,14,1)"}},"error_y":{"color":"rgba(255,127,14,1)"},"error_x":{"color":"rgba(255,127,14,1)"},"line":{"color":"rgba(255,127,14,1)"},"xaxis":"x","yaxis":"y","frame":null}],"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"base_url":"https://plot.ly"},"evals":["config.modeBarButtonsToAdd.0.click"],"jsHooks":[]}</script>
+</div>
+<h3 id="comments">Comments</h3>
+<p>There are various things to comment on. First and foremost, none of this would be necessary if the STV iteration reports were all proactively published with the election results. Hopefully that will be the case universally in 2019.</p>
+<p>One notable variation between the agencies is whether an initial acknowledgement is sent. Given that BOP DHB “lost” my original email I think it would be good practice to do this for every request so that there is no uncertainty. It’s frustrating to wait with no response for two weeks not knowing whether it’s legitimately in a queue or has just been forgotten about.</p>
+<p>I was surprised that there were a few agencies that sent me or directed me to something other than the full iteration report. I realise that it’s a bit technical and confusing if you don’t know anything about it, but I was specific about the information I wanted and I would have thought it wise to check the wording of the request before sending a response.</p>
+<p>Somewhat related, many of the elections were contracted to a third party election company. In some of these cases, the report was sourced from them and passed on to me, in others my request was forwarded and they responded directly to me. In a couple of cases there was an attempt to say “we don’t have the file — you’ll have to contact [the election company] yourself”. This demonstrates a lack of understanding of the OIA/LGOIMA: this is still deemed to be held by the council/board,<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> so shouldn’t be my responsibility to chase up. And either way the Acts’ duty of “reasonable assistance” requires a better response than <code>¯\_(ツ)_/¯</code>. The Ombudsman has <a href="http://www.ombudsman.parliament.nz/resources-and-publications/guides/official-information-legislation-guides">some useful guides</a>.</p>
+<p>Frustrating as it was to wait days and weeks for many responses, it was another level again to receive a PDF of images indicating that a machine-readable file had been printed and then scanned. With this, anything non-trivial on my part would require manually retyping pages and pages of names and numbers (hopefully mistake-free). Thankfully, I did manage to get the “original” file in each case after explaining the problem, but there didn’t seem to be an understanding of how and why data might be used, as opposed to text. More broadly, the variety of file formats were often less than ideal for extracting data from, but “they were all that we were given”. In hindsight I think I could have pushed for XML files from everyone (as above), but I managed to make them work. There are actually very good government guidelines from NZGOAL about <a href="https://www.ict.govt.nz/guidance-and-resources/open-government/new-zealand-government-open-access-and-licensing-nzgoal-framework/nzgoal-guidance-notes/nzgoal-guidance-note-2-file-formats-august-2015/">file formats for releasing data</a>; it would be great if these were more widely known.</p>
+<h2 id="stv-data-what-now">STV data: what now?</h2>
+<p>Having collected all of the STV reports, I’m planning to poke around and do some more analysis and visualisation. (Especially if my kids will stay out of hospital.) In the meantime, I’ve made the files, original and processed, available in a Github repository for anyone who’s interested: <a href="http://github.com/dakvid/stvnz" class="uri">http://github.com/dakvid/stvnz</a></p>
+<p>I was keen to try and get and get hold of the more detailed data of all preferences, to be able to look at other counting methods, such as <a href="https://en.wikipedia.org/wiki/Condorcet_method">Condorcet</a>, but it seems that that information is not stored for long. But there’s enough to work with for now.</p>
+<h2 id="data" class="appendix">Data</h2>
+<p>The <a href="data/stv_oia_events.csv">CSV file</a> of event data.</p>
+<h2 id="code-listing" class="appendix">Code listing</h2>
+<p>The R code to generate the plot:</p>
+<div class="layout-chunk" data-layout="l-body">
+<pre class="r"><code>
+# This graph is constructed in parts:
+# - a bar graph of total durations
+# - a scatter plot of events, with hover info
+# - line and text annotations
+# - image annotations to sit over the scatter dots.
+
+library(magrittr)
+library(readr)
+library(dplyr)
+library(purrr)
+library(forcats)
+library(plotly)
+oia &lt;- read_csv(&quot;data/stv_oia_events.csv&quot;)
+oia_days &lt;-
+  oia %&gt;% 
+  group_by(body) %&gt;% 
+  summarise(duration = max(day)) %&gt;% 
+  ungroup()
+
+
+oia_days %&lt;&gt;% mutate(body = fct_reorder(body, duration))
+oia %&lt;&gt;% mutate(body = factor(body, levels = levels(oia_days$body)))
+
+num_bodies &lt;- oia_days %&gt;% nrow()
+
+make_image_list &lt;- function(my_event) {
+  oia %&gt;%
+    filter(event == my_event) %&gt;% 
+    transpose() %&gt;% 
+    map(~ list(source = paste0(&quot;images/&quot;,my_event,&quot;.png&quot;),
+               xref = &quot;x&quot;, yref = &quot;y&quot;,
+               x = .x$day %&gt;% subtract(0.5) %&gt;% add(.x$adjust),
+               y = num_bodies - (.x$body %&gt;% as.integer() %&gt;% subtract(0.4)),
+               sizex = 1, sizey = 1,
+               opacity = 1,
+               layer = &quot;above&quot;))
+}
+
+plot_ly() %&gt;% 
+  add_bars(data = oia_days, 
+           y = ~body %&gt;% fct_rev(),
+           x = ~duration,
+           orientation = &quot;h&quot;,
+           showlegend = FALSE,
+           name = &quot;Duration&quot;,
+           hoverinfo = &quot;none&quot;) %&gt;% 
+  add_trace(data = oia,
+            y = ~body,
+            x = ~(day + adjust),
+            type = &quot;scatter&quot;,
+            name = &quot;Events&quot;,
+            text = ~paste0(&quot;&lt;b&gt;Day &quot;, day, &quot;: &quot;,status,&quot;&lt;/b&gt;&lt;br&gt; &quot;, comment),
+            hoverinfo = &quot;text&quot;,
+            showlegend = FALSE) %&gt;% 
+  add_annotations(x = 8,
+                  y = num_bodies - 1,
+                  text = &quot;reasonable&lt;br&gt;deadline?&quot;,
+                  showarrow = FALSE,
+                  font = list(color = &quot;black&quot;, align = &quot;left&quot;)) %&gt;% 
+  add_annotations(x = 23,
+                  y = 1.5,
+                  text = &quot;LEGAL&lt;br&gt;DEADLINE&quot;,
+                  showarrow = FALSE,
+                  font = list(color = &quot;red&quot;)) %&gt;% 
+  layout(title = &quot;Response Times to Official Information Requests for Election Reports&quot;,
+         xaxis = list(title = &quot;Working Days&quot;),
+         yaxis = list(title = &quot;&quot;),
+         margin = list(l = 125),
+         shapes = list(
+           list(type = &quot;line&quot;,
+                line = list(color = &quot;black&quot;),
+                y0 = -0.5, y1 = num_bodies, x0 = 6.5, x1 = 6.5),
+           list(type = &quot;Line&quot;,
+                line = list(color = &quot;red&quot;),
+                y0 = -0.5, y1 = num_bodies,
+                x0 = 21.5, x1 = 21.5)
+         ),
+         images = oia %&gt;% use_series(event) %&gt;% unique() %&gt;% map(make_image_list) %&gt;% flatten()
+         )</code></pre>
+</div>
+<section class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>I haven’t come across the exact requirements, but this was the minimum that was reported for each election. See eg the <a href="http://www.electionz.com/2016lgeresults/2016_results.htm">Electionz results</a>.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn2"><p>If that number doesn’t seem to add up, it’s because I asked Auckland Council about 3 DHBs, and asked Southern DHB, not realising they didn’t have an election this year. I also asked Whanganui District Council about Whanganui DHB, as they appeared to have run the election for them.<a href="#fnref2" class="footnote-back">↩</a></p></li>
+<li id="fn3"><p>Any information held by an independent contractor engaged by a body in his or her capacity as such contractor shall, for the purposes of this Act, be deemed to be held by the body. (<a href="http://www.legislation.govt.nz/act/public/1982/0156/latest/DLM64790.html">OIA</a>) (<a href="http://www.legislation.govt.nz/act/public/1987/0174/latest/DLM122247.html">LGOIMA</a>)<a href="#fnref3" class="footnote-back">↩</a></p></li>
+</ol>
+</section>
+<!--radix_placeholder_article_footer-->
+<!--/radix_placeholder_article_footer-->
+</div>
+
+<div class="d-appendix">
+</div>
+
+
+<!--radix_placeholder_site_after_body-->
+<!--/radix_placeholder_site_after_body-->
+<!--radix_placeholder_appendices-->
+<div class="appendix-bottom">
+  <h3 id="updates-and-corrections">Corrections</h3>
+  <p>If you see mistakes or want to suggest changes, please <a href="https://github.com/dakvid/dakvid.github.io/issues/new">create an issue</a> on the source repository.</p>
+  <h3 id="reuse">Reuse</h3>
+  <p>Text and figures are licensed under Creative Commons Attribution <a rel="license" href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Source code is available at <a href="https://github.com/dakvid/dakvid.github.io">https://github.com/dakvid/dakvid.github.io</a>, unless otherwise noted. The figures that have been reused from other sources don't fall under this license and can be recognized by a note in their caption: "Figure from ...".</p>
+</div>
+<!--/radix_placeholder_appendices-->
+<!--radix_placeholder_navigation_after_body-->
+<!--/radix_placeholder_navigation_after_body-->
+
+</body>
+
+</html>

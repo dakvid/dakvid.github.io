@@ -1,0 +1,46 @@
+body,day,adjust,event,status,comment
+Auckland Council,2,0,wrongdata,Wrong Data, "Grace" said the data was on the website (it wasn't)
+Auckland Council,3,0,ack,Transfer,Privacy and LGOIMA Business Partner advised request being transferred to 3rd party election company
+Auckland Council,4,0,xml,Success,Electoral Officer (external) sent original XML reports
+Bay of Plenty DHB,18,-0.6,ping,Request for Update, "Could you please confirm that my request has been received<br />and is on track to be answered by the legal deadline?" 
+Bay of Plenty DHB,18,0.2,ack,Acknowledgement, Communications Manager: "I am sorry but it seems that your earlier email<br />did not filter through from our communications email to me." 
+Bay of Plenty DHB,19,-0.2,ack,Transfer,General Manager Governance and Quality apologised for delay and<br />requested report from external Electoral Officer
+Bay of Plenty DHB,19,0.3,xml,Success,Electoral Officer (external) sent original XML report
+Canterbury DHB,1,0,ack,Acknowledgement,Automated response
+Canterbury DHB,2,0,ack,Acknowledgement,Project Facilitator sent letter from Project Specialist acknowledging the request
+Canterbury DHB,16,0,eqnz,Potential Delay,Kaikoura 7.8M earthquake!
+Canterbury DHB,18,0,pdf,Success,Project Facilitator sent report as PDF.<br />Also attached West Coast DHB report and letter from General Manager, Planning, Funding & Decision Support
+Capital & Coast DHB,2,0,doc,Success,Communications Advisor advised report now published on website as proprietary Word 97 document
+Hawke's Bay DHB,4,0,ack,Acknowledgement,PA to Communications Manager sent letter from Communications Manager acknowledging request
+Hawke's Bay DHB,17,0,ping,Request for Update, "I was just wanting to check that my request hadn't been forgotten<br />and was on track to be responded to by next week." 
+Hawke's Bay DHB,21,0,ping,Request for Update, "Today was the legal deadline. Can I please have an update?" 
+Hawke's Bay DHB,22,0,ack,Acknowledgement,EA to CEO: "I have forwarded your email to the administrator responsible for OIA requests." 
+Hawke's Bay DHB,25,0,pdf,Success,"EA to CEO sent report as PDF.<br />Also attached letter from CEO, containing no acknowledgement or apology that the response was late."
+Hutt Valley DHB,2,0,ack,Acknowledgement,EA to CE noted request
+Hutt Valley DHB,3,0,scanned,Partial Success,EA to CE sent scanned PDF (ie photos) of letter from CE and report<br />Letter called me Daniel.<br />Data was covered with "RELEASED UNDER THE OFFICIAL INFORMATION ACT" watermark
+Hutt Valley DHB,5,0,doc,Success,Electoral Officer sent report as proprietary Word 97 document
+Kaipara DC,1,0,ack,Acknowledgement,Automated response
+Kaipara DC,2,0,ack,Acknowledgement,Customer Services advised request was forwarded to Electoral Officer
+Kaipara DC,5,0,xml,Success,Electoral Officer sent original XML reports
+Lakes DHB,3,0,scanned,Partial Success,EA to CE sent scanned PDF (ie photos) of letter from CE and report
+Lakes DHB,4,0,pdf,Success,EA to CE sent report as PDF
+Marlborough DC,1,0,ack,Acknowledgement,Automated response
+Marlborough DC,3,0,doc,Success,Electoral Officer sent reports as proprietary Word 97 document
+Northland DHB,4,0,wrongdata,Wrong Data,Director Governance & Compliance sent letter from CE advising report was on the website (it wasn't)
+Northland DHB,5,0,xml,Success,Director Governance & Compliance sent original XML STV report
+Southern DHB,8,0,nodata,No Data,OIA Coordinator advised that no election was held this year
+Tairawhiti DHB,14,0,wrongdata,Wrong Data,Communications Advisor sent limited results summary
+Tairawhiti DHB,18,0,xml,Success,Communications Advisor sent original XML report
+Taranaki DHB,1,0,wrongdata,Wrong Data,PA to CE sent limited results summary
+Taranaki DHB,2,0,xml,Success,Electoral Officer (external) sent original XML report
+Waikato DHB,1,0,pdf,Success,Executive Director Public & Organisational Affairs sent report as PDF
+Wairarapa DHB,1,0,ack,Acknowledgement,Communications Advisor noted receipt
+Wairarapa DHB,16,-0.6,ping,Request for Update, "I was just wanting to check that my request hadn't been forgotten<br />and was on track to be responded to by next week" 
+Wairarapa DHB,16,0,scanned,Partial Success,PACS/RIS Administrator sent PDF (ie photos) of letter from CE with report
+Wairarapa DHB,16,0.6,docx,Success,PACS/RIS Administrator sent report as Word 2007 document
+West Coast DHB,1,0,ack,Acknowledgement,Automated out-of-office from Senior Communications Advisor (back tomorrow)
+West Coast DHB,12,0,eqnz,Potential Delay,Kaikoura 7.8M earthquake!
+West Coast DHB,14,0,pdf,Success,PDF report included in response from Canterbury DHB
+Whanganui DC,2,0,ack,Acknowledgement,Customer Services Team Leader advised request was loaded into their CRM
+Whanganui DC,3,0,wrongdata,Wrong Data,Legal Officer sent limited results summary
+Whanganui DC,3,0,xlsx,Success,Legal Officer sent report as Excel 2007 spreadsheet
