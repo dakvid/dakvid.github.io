@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>David's AdVentures In Data</title>
+    <link>https://david.frigge.nz/</link>
+    <atom:link href="https://david.frigge.nz/index.xml" rel="self" type="application/rss+xml"/>
+    <description>A personal website of data exploration.
+</description>
+    <generator>Radix</generator>
+    <lastBuildDate>Mon, 08 Aug 2016 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Birthday Eve</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2016-08-birthday-eve</link>
+      <description>Some time ago I had a thought - if you had a daughter and she was born on Christmas Eve or New Year's Eve, would you be tempted to name her Eve?</description>
+      <guid>https://david.frigge.nz/posts/2016-08-birthday-eve</guid>
+      <pubDate>Mon, 08 Aug 2016 00:00:00 +0000</pubDate>
+    </item>
+  </channel>
+</rss>
