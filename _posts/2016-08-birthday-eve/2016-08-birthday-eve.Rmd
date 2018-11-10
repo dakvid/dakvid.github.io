@@ -9,7 +9,6 @@ categories:
 output:
   radix::radix_article:
     self_contained: false
-    mathjax: NULL
 ---
 
 ```{r setup, include=FALSE}
