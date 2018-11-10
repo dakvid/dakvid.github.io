@@ -1,0 +1,31 @@
+---
+title: "Projects"
+description: |
+  Some of my projects that aren't in the blog.
+---
+
+[NZ Election Visualisation 2017](https://david.frigge.nz/election2017)
+
+:   Various visualisations of results from the 2017 general election in
+New Zealand - dumbbells of party gains/losses relative to the previous election,
+hexagonal cartograms of electorate results, and a foray into 3d hexagons.
+It's also a nice use of [flexdashboard](https://rmarkdown.rstudio.com/flexdashboard/).
+
+    Since the blog was having a snooze it got its own
+[GitHub repository](https://github.com/dakvid/election2017).
+
+[Single Transferable Voting Data](https://github.com/dakvid/stvnz)
+
+:   An attempt to collate STV voting data from NZ local body elections. Started,
+but something to come back to before the next elections.
+
+
+[NZ Election Visualisation 2014](https://david.frigge.nz/nzhex2014)
+
+:   Hexagonal cartograms of the 2014 general election results. This was before
+the blog and (my use of) GitHub, so I published them using Google Drive. Now
+that Google has killed that functionality they can live in perpetuity thanks to
+GitHub.
+
+    [Source repo](https://github.com/dakvid/nzhex2014)
+

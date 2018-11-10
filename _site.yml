@@ -1,0 +1,26 @@
+name: "blog"
+title: "David's AdVentures In Data"
+description: |
+  A personal website of data exploration.
+output_dir: "../blog"
+base_url: https://david.frigge.nz/
+repository_url: https://github.com/dakvid/dakvid.github.io
+google_analytics: "UA-30013353-2"
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "Projects"
+      href: projects.html
+    - text: "About"
+      href: about.html
+    - icon: fa fa-twitter
+      href: https://twitter.com/dakvid
+    - icon: fa fa-rss
+      href: index.xml
+output:
+  radix::radix_article:
+    self_contained: false
+creative_commons: CC BY
+twitter:
+  site: "@dakvid"

@@ -1,41 +1,43 @@
 ---
-title: "About"
+title: "About this blog"
+description: |
+  Who is David Friggens? Why is he taking up precious space on the web?
 ---
 
-### Disclaimer
+### About Me
 
-Everything here is entirely personal --- any views are nothing to do with any previous, current, or future employers.
+I currently find myself working as a data analyst (data scientist?) in the private
+sector, after several years in public sector organisations.
+My academic background is mathematical logic and theoretical computer science, and I spent some years
+working in libraries. Most of my time outside of work is consumed by my young family for now.
 
-I'd have loved to use [Peter Gutmann](https://www.cs.auckland.ac.nz/~pgut001/)'s, but it's probably safer to be straight.
+I occasionally find time to play around with code and data for my own curiosity,
+and having a blog is
+proving to be an easy and convenient place to publish things I want to share.
+And it also gives me the incentive to stop my ```skunkworks``` folder from looking too much like this:
+
+![Figure from http://www.commitstrip.com/en/2014/11/25/west-side-project-story/](images/side-project.jpg){width=100% .external}
+
 
 ### Contact
 
 Preferred comments/contact is via [Twitter](https://twitter.com/dakvid).
 Alternatively, you can reach me by changing a dot to an @ in the domain.
 
-### About Me
 
-I currently find myself working as an analyst (data scientist?) in government, which I'm really enjoying.
-My academic background is mathematical logic and theoretical computer science, and I spent some years
-working in libraries. Most of my time outside of work is consumed by my family for now.
+### Disclaimer
 
-I occasionally find time to play around with code and data for my own curiosity, and this is
-proving to be an easy and convenient place to publish things I want to share.
-And it also gives me the incentive to stop my ```skunkworks``` folder from looking too much like this:
-[![side project](images/side-project.jpg)](http://www.commitstrip.com/en/2014/11/25/west-side-project-story/)
+Nothing in here is my own view, but was forced upon me at gunpoint by my wife.
+(Apologies to [Peter Gutmann](https://www.cs.auckland.ac.nz/~pgut001/).)
+
+More seriously, this site is entirely personal --- any views are nothing to do with any previous, current, or future employers.
+
+
 
 ### Colophon
 
-Created with [RMarkdown](http://rmarkdown.rstudio.com/rmarkdown_websites.html) and hosted on [GitHub Pages](https://pages.github.com).
-Using the [Flatly](https://bootswatch.com/flatly/) Bootswatch theme.
+The blog is written in R markdown, produced with the
+[Radix](https://github.com/rstudio/radix) R package
+(itself based on [distill](https://github.com/distillpub)), and
+hosted on [GitHub Pages](https://pages.github.com).
 
-A non-exhaustive list of R packages used:
-
-* [dplyr](https://github.com/hadley/dplyr)
-* [knitr](http://yihui.name/knitr/)
-* [leaflet](http://rstudio.github.io/leaflet/)
-* [maps](https://cran.r-project.org/web/packages/maps/)
-* [plotly](https://github.com/ropensci/plotly)
-* [purrr](https://github.com/hadley/purrr)
-* [readr](https://github.com/hadley/readr)
-* [rmarkdown](https://github.com/rstudio/rmarkdown)
