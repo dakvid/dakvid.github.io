@@ -8,7 +8,7 @@ repository_url: https://github.com/dakvid/dakvid.github.io
 google_analytics: "UA-30013353-2"
 navbar:
   right:
-    - text: "Home"
+    - text: "Blog"
       href: index.html
     - text: "Projects"
       href: projects.html
@@ -25,3 +25,6 @@ output:
 creative_commons: CC BY
 twitter:
   site: "@dakvid"
+collections:
+  posts:
+    citations: false

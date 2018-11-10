@@ -1,5 +1,5 @@
 ---
-title: "David's AdVentures In Data"
+title: "Blog Posts by David Friggens"
 site: radix::radix_website
 listing: posts
 ---
