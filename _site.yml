@@ -21,6 +21,7 @@ navbar:
 output:
   radix::radix_article:
     self_contained: false
+    mathjax: NULL
 creative_commons: CC BY
 twitter:
   site: "@dakvid"
