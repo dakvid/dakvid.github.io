@@ -7,7 +7,19 @@
     <description>A personal website of data exploration.
 </description>
     <generator>Radix</generator>
-    <lastBuildDate>Sun, 29 Jan 2017 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 24 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>A Radixal Approach to Blogging</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2018-11-radixical-blogging</link>
+      <description>The blog is dead. Long live the blog!
+The blog went in to unintentional hiatus as I had enough of handling things
+manually with RMarkdown. I've converted it to use the new radix package, and
+written some notes about the process.</description>
+      <guid>https://david.frigge.nz/posts/2018-11-radixical-blogging</guid>
+      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://david.frigge.nz/posts/2018-11-radixical-blogging/images/radical_goats.gif" medium="image" type="image/gif"/>
+    </item>
     <item>
       <title>Anyone Who Had a Heart</title>
       <dc:creator>David Friggens</dc:creator>
@@ -23,7 +35,7 @@
       <link>https://david.frigge.nz/posts/2016-12-earthquake-excuses</link>
       <description>Some visualisation experiments using earthquake data. Facet zooming in ggplot and maps with Plotly. (Why didn't I make these separate posts?)</description>
       <guid>https://david.frigge.nz/posts/2016-12-earthquake-excuses</guid>
-      <pubDate>Tue, 27 Dec 2016 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 28 Dec 2016 00:00:00 +0000</pubDate>
       <media:content url="https://david.frigge.nz/posts/2016-12-earthquake-excuses/images/eqnz_depth_comparison.png" medium="image" type="image/png" width="800" height="600"/>
     </item>
     <item>
