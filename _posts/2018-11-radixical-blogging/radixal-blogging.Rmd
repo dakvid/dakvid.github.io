@@ -1,0 +1,95 @@
+---
+title: "A Radixal Approach to Blogging"
+description: |
+  The blog is dead. Long live the blog!
+  The blog went in to unintentional hiatus as I had enough of handling things
+  manually with RMarkdown. I've converted it to use the new radix package, and
+  written some notes about the process.
+author: David Friggens
+date: 2018-11-24
+preview: images/radical_goats.gif
+categories:
+  - all
+  - R
+  - rpkg radix
+output:
+  radix::radix_article:
+    self_contained: false
+---
+
+If you're a regular reader of this blog then you're ... a liar, I guess, as
+I haven't posted in 22 months! When I started the blog I decided to use
+[RMarkdown website functionality](https://bookdown.org/yihui/rmarkdown/rmarkdown-site.html).
+This was great, as it allowed me to use the various [cool features](https://bookdown.org/yihui/rmarkdown/html-document.html)
+of RMarkdown I was familiar with from standalone documents and link all of
+the pages together in a coherent site.
+On the downside though, there was no specific blogging functionality, so I
+had to handle all of that manually --- feed, index, "recent posts" etc.
+Starting out I thought it wouldn't be a problem, but five months later I'd had
+enough. Manually creating a new feed entry etc was a little tedious, but the biggest
+issue was that every page had to be re-knitted each time there was a new post ---
+I got caught a couple of times by packages with breaking changes, and it was
+annoying having to go back and debug/rewrite code in an old post in order to
+publish a new one.
+
+Yihui started working on [blogdown](https://bookdown.org/yihui/blogdown/)
+a few months after I started blogging, and when I heard about it I was quite
+excited. After my last post I decided I would make the effort to port the blog
+to blogdown before posting anything else. And somehow this turned into nearly
+two years of silence.
+Is blogdown really that complicated? No! It's a little more work to set up, but
+it's not too bad. The main procrastination holes for me were choosing and
+configuring a new theme, and having to rewrite old posts without the RMarkdown
+features I'd used that weren't supported, such as [code folding](https://bookdown.org/yihui/rmarkdown/html-document.html#code-folding).
+I struggled to find time for the effort, and each time I'd only get part way,
+and the next time usually decide I couldn't remember where I got to so started
+again from scratch. It's not much of an excuse, but it's what happened.
+
+I was just steeling my resolve recently to mount a proper attack and get it done
+when I saw the announcement from RStudio of [radix](https://rstudio.github.io/radix/),
+a new RMarkdown package based on [distill](https://github.com/distillpub/template).
+Radix has nice defaults (I don't have to spend time going through a theme gallery)
+and some attractive features like full-page figures and Tufte-like asides.
+After playing around a little bit I've decided to take the plunge --- I think
+it will work better for me than blogdown.
+
+<aside>
+I'm wont to use footnotes too much, and hopefully these asides will reduce that
+a bit. Also, note that footnotes can appear as tooltips,^[Yes, I put a footnote
+in an aside. I'm a monster!]
+so you don't have to jump up and down the page.
+</aside>
+
+The old posts are all here, as you'll notice if you've been here before, but
+I've restructured some of them to account for the lack of code folding etc. I liked
+the idea of a discussion of the process with code available for those who are
+interested and hidden for those who aren't, but it's not essential.
+I think I'll be more explicit
+now though in either writing an explanatory post where the visuals and discussion
+are the focus, with code in an appendix for those who are interested to dig
+further, or a technical post where discussion of the coding process is
+the focus.
+Speaking of new posts, there should hopefully be more in the coming weeks and
+months. I've got some half-draft posts of things I wanted to play with
+over the past year and a half, so I just need to make the time to finish them
+off.
+
+<aside>
+Not having a working blog didn't stop me from starting things, just following
+them through to completion and publishing! :-) The main blog-worthy activity
+that actually got out in this time was
+[visualising the 2017 NZ election results](https://david.frigge.nz/election2017).
+I had to put this in its own GitHub repository, and it's now linked from
+the [projects page](../../projects).
+</aside>
+
+Is there anything I don't like about Radix? No actual dislikes, but there are
+a few opportunities for improvement, as with any very new software project.
+The key [issue](https://github.com/rstudio/radix/issues/20) for me is code highlighting.
+With a desire to not modify upstream distill, the highlighting for R code is
+generic "clike", which is not quite satisfactory. Other than that, I'm very
+happy with it, and encourage others to give it a go.
+
+Thanks [JJ](https://github.com/rstudio/radix/commits?author=jjallaire)!
+
+![Figure from https://giphy.com/gifs/running-goats-radical-WwAIvO47NQ01O](images/radical_goats.gif){.external}
