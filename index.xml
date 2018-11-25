@@ -7,7 +7,18 @@
     <description>A personal website of data exploration.
 </description>
     <generator>Radix</generator>
-    <lastBuildDate>Sat, 24 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 25 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Leaders' Ages</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2018-11-leader-age</link>
+      <description>_The Economist_ used some graphs to show "Leaders of Western economies
+are getting younger, even as their populations age".
+Naturally my first question was "what about New Zealand?"</description>
+      <guid>https://david.frigge.nz/posts/2018-11-leader-age</guid>
+      <pubDate>Sun, 25 Nov 2018 00:00:00 +0000</pubDate>
+      <media:content url="https://david.frigge.nz/posts/2018-11-leader-age/leader-age_files/figure-html5/nzpm-1.png" medium="image" type="image/png" width="1344" height="576"/>
+    </item>
     <item>
       <title>A Radixal Approach to Blogging</title>
       <dc:creator>David Friggens</dc:creator>

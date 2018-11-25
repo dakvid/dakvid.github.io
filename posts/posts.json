@@ -1,5 +1,30 @@
 [
   {
+    "path": "posts/2018-11-leader-age/",
+    "title": "Leaders' Ages",
+    "description": "_The Economist_ used some graphs to show \"Leaders of Western economies\nare getting younger, even as their populations age\".\nNaturally my first question was \"what about New Zealand?\"",
+    "author": [
+      {
+        "name": "David Friggens",
+        "url": {}
+      }
+    ],
+    "date": "2018-11-25",
+    "categories": [
+      "all",
+      "R",
+      "elections",
+      "New Zealand",
+      "line charts",
+      "rpkg ggplot2",
+      "rpkg xkcd"
+    ],
+    "preview": "posts/2018-11-leader-age/leader-age_files/figure-html5/nzpm-1.png",
+    "last_modified": "2018-11-25T12:51:45+13:00",
+    "preview_width": 1344,
+    "preview_height": 576
+  },
+  {
     "path": "posts/2018-11-radixical-blogging/",
     "title": "A Radixal Approach to Blogging",
     "description": "The blog is dead. Long live the blog!\nThe blog went in to unintentional hiatus as I had enough of handling things\nmanually with RMarkdown. I've converted it to use the new radix package, and\nwritten some notes about the process.",
