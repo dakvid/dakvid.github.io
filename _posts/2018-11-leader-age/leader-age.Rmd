@@ -115,7 +115,7 @@ median age (though not [for women](https://www.stats.govt.nz/news/more-women-are
 ### Notes
 
 * Rather than spending much more time trying to replicate _The Economist_'s style,
-I thought I'd head in the other direction and replicate XKCD (there's an
+I thought I'd head in the other direction and replicate [XKCD](https://xkcd.com) (there's an
 [R package for that](https://cran.r-project.org/web/packages/xkcd/index.html)).
 * The labels are mostly not too bad, but would need manual placement for better
 effect ([ggrepel](https://cran.r-project.org/web/packages/ggrepel/index.html) doesn't help here).
