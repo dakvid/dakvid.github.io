@@ -80,7 +80,9 @@ nzpm <-
   filter(start_date > ymd("1949-12-01")) %>% 
   mutate(end_date = if_else(is.na(end_date), today(), end_date),
          start_age = interval(birth_date, start_date) / years(1),
-         end_age = interval(birth_date, end_date) / years(1))
+         end_age = interval(birth_date, end_date) / years(1)) %>% 
+  # Remove Holyoake's first brief stint
+  filter(!(last_name == "Holyoake" & start_age < 54))
 nz_pop <-
   read.csv("data/nzpop.csv", skip = 4) %>% 
   mutate(year = year %>% paste0("-06-30") %>% ymd())
@@ -122,6 +124,20 @@ effect ([ggrepel](https://cran.r-project.org/web/packages/ggrepel/index.html) do
 * I thought that putting the change years on the x axis rather than regular 
 breaks highlights the times between changes, though some of them overlap.
 
+#### Edit
+
+Thanks to Paul Murrell for [pointing out](https://github.com/dakvid/dakvid.github.io/issues/1)
+that I had a glaring issues of [Nash](https://en.wikipedia.org/wiki/Walter_Nash)
+and [Holyoake](https://en.wikipedia.org/wiki/Keith_Holyoake) appearing to share
+power for three years. I'd missed that Holyoake became PM two months before
+the 1957 election, which he lost, before beating Nash in 1960.
+I manually fixed the underlying data (Wikipedia only lists the dates of first
+entering office and last leaving, rather than all separate terms), but have
+filtered out the two month stint to reduce clutter in the graph.
+
+As an aside, this issue of repeating prime ministers is one reason why I didn't
+try to produce the same graph for Australia. At least there is
+[a Twitter feed](https://twitter.com/whoispm) that gives good granularity.
 
 ## Data {.appendix}
 
