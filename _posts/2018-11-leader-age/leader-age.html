@@ -977,6 +977,9 @@ Click through for the full graphic with the other three countries.
 <li>The labels are mostly not too bad, but would need manual placement for better effect (<a href="https://cran.r-project.org/web/packages/ggrepel/index.html">ggrepel</a> doesn’t help here).</li>
 <li>I thought that putting the change years on the x axis rather than regular breaks highlights the times between changes, though some of them overlap.</li>
 </ul>
+<h4 id="edit">Edit</h4>
+<p>Thanks to Paul Murrell for <a href="https://github.com/dakvid/dakvid.github.io/issues/1">pointing out</a> that I had a glaring issues of <a href="https://en.wikipedia.org/wiki/Walter_Nash">Nash</a> and <a href="https://en.wikipedia.org/wiki/Keith_Holyoake">Holyoake</a> appearing to share power for three years. I’d missed that Holyoake became PM two months before the 1957 election, which he lost, before beating Nash in 1960. I manually fixed the underlying data (Wikipedia only lists the dates of first entering office and last leaving, rather than all separate terms), but have filtered out the two month stint to reduce clutter in the graph.</p>
+<p>As an aside, this issue of repeating prime ministers is one reason why I didn’t try to produce the same graph for Australia. At least there is <a href="https://twitter.com/whoispm">a Twitter feed</a> that gives good granularity.</p>
 <h2 id="data" class="appendix">Data</h2>
 <ul>
 <li>New Zealand Prime Ministers: <a href="data/nzpm.csv">nzpm.csv</a></li>
@@ -1014,7 +1017,9 @@ nzpm &lt;-
   filter(start_date &gt; ymd(&quot;1949-12-01&quot;)) %&gt;% 
   mutate(end_date = if_else(is.na(end_date), today(), end_date),
          start_age = interval(birth_date, start_date) / years(1),
-         end_age = interval(birth_date, end_date) / years(1))
+         end_age = interval(birth_date, end_date) / years(1)) %&gt;% 
+  # Remove Holyoake&#39;s first brief stint
+  filter(!(last_name == &quot;Holyoake&quot; &amp; start_age &lt; 54))
 nz_pop &lt;-
   read.csv(&quot;data/nzpop.csv&quot;, skip = 4) %&gt;% 
   mutate(year = year %&gt;% paste0(&quot;-06-30&quot;) %&gt;% ymd())
