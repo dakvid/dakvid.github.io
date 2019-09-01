@@ -379,9 +379,8 @@
   
   </style>
   
-  <link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet"/>
-  <script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-  <script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+  <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet"/>
+  <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet"/>
   <script src="site_libs/headroom-0.9.4/headroom.min.js"></script>
   <!--/radix_placeholder_navigation_in_header-->
   <!--radix_placeholder_distill-->
@@ -527,6 +526,10 @@
   /* Tweak code blocks (note that this CSS is repeated above in an injection
      into the d-code shadow dom) */
   
+  d-code {
+    overflow-x: auto !important;
+  }
+  
   pre.d-code code.d-code {
     padding-left: 10px;
     font-size: 12px;
@@ -557,6 +560,11 @@
   }
   
   @media(min-width: 768px) {
+  
+  d-code {
+    overflow-x: visible !important;
+  }
+  
   pre.d-code code.d-code  {
       padding-left: 18px;
       font-size: 14px;
@@ -1331,7 +1339,7 @@
   padding-bottom: 12px;
 }
 .posts-list {
-  margin-top: 24px;
+  margin-top: 60px;
   margin-bottom: 24px;
 }
 
@@ -1465,9 +1473,6 @@
 @media(min-width: 768px) {
   .posts-list .post-preview h2 {
     font-size: 26px;
-  }
-  .posts-list {
-    margin-top: 60px;
   }
   .posts-list .post-preview .thumbnail {
     float: right;
@@ -1621,10 +1626,24 @@ function init_posts_list() {
 <div class="posts-container posts-with-sidebar posts-apply-limit l-screen-inset">
 <div class="posts-list">
 <h1 class="posts-list-caption">Blog Posts by David Friggens</h1>
+<a href="posts/2019-08-auckland/" class="post-preview">
+<script class="post-metadata" type="text/json">{"categories":["all","R","maps","New Zealand","rpkg ggplot2","rpkg leaflet"]}</script>
+<div class="metadata">
+<div class="publishedDate">Aug. 30, 2019</div>
+</div>
+<div class="thumbnail">
+<img data-src="posts/2019-08-auckland/images/clip_preview.png"/>
+</div>
+<div class="description">
+<h2>Comparing Auckland's Population with Maps</h2>
+<p>I made a map at work comparing Auckland and other New Zealand cities.
+Let's talk through building something similar, in R.</p>
+</div>
+</a>
 <a href="posts/2018-11-leader-age/" class="post-preview">
 <script class="post-metadata" type="text/json">{"categories":["all","R","elections","New Zealand","line charts","rpkg ggplot2","rpkg xkcd"]}</script>
 <div class="metadata">
-<div class="publishedDate">Nov. 24, 2018</div>
+<div class="publishedDate">Nov. 25, 2018</div>
 </div>
 <div class="thumbnail">
 <img data-src="posts/2018-11-leader-age/leader-age_files/figure-html5/nzpm-1.png"/>
@@ -1776,7 +1795,7 @@ written some notes about the process.</p>
 <ul>
 <li>
 <a href="#all">all</a>
-<span class="category-count">(11)</span>
+<span class="category-count">(12)</span>
 </li>
 <li>
 <a href="#animation">animation</a>
@@ -1816,7 +1835,7 @@ written some notes about the process.</p>
 </li>
 <li>
 <a href="#maps">maps</a>
-<span class="category-count">(2)</span>
+<span class="category-count">(3)</span>
 </li>
 <li>
 <a href="#names">names</a>
@@ -1824,7 +1843,7 @@ written some notes about the process.</p>
 </li>
 <li>
 <a href="#New_Zealand">New Zealand</a>
-<span class="category-count">(6)</span>
+<span class="category-count">(7)</span>
 </li>
 <li>
 <a href="#Official_Information_requests">Official Information requests</a>
@@ -1832,7 +1851,7 @@ written some notes about the process.</p>
 </li>
 <li>
 <a href="#R">R</a>
-<span class="category-count">(10)</span>
+<span class="category-count">(11)</span>
 </li>
 <li>
 <a href="#rpkg_gganimate">rpkg gganimate</a>
@@ -1844,11 +1863,11 @@ written some notes about the process.</p>
 </li>
 <li>
 <a href="#rpkg_ggplot2">rpkg ggplot2</a>
-<span class="category-count">(3)</span>
+<span class="category-count">(4)</span>
 </li>
 <li>
 <a href="#rpkg_leaflet">rpkg leaflet</a>
-<span class="category-count">(1)</span>
+<span class="category-count">(2)</span>
 </li>
 <li>
 <a href="#rpkg_plotly">rpkg plotly</a>
@@ -1873,7 +1892,7 @@ written some notes about the process.</p>
 <a href="#">More articles &raquo;</a>
 </div>
 </div>
-<!--/radix_placeholder_article_listing-->
+<!--/radix_placeholder_article_listing-->
 
 <div class="d-title">
 <h1>Blog Posts by David Friggens</h1>

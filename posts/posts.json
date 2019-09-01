@@ -1,5 +1,29 @@
 [
   {
+    "path": "posts/2019-08-auckland/",
+    "title": "Comparing Auckland's Population with Maps",
+    "description": "I made a map at work comparing Auckland and other New Zealand cities.\nLet's talk through building something similar, in R.",
+    "author": [
+      {
+        "name": "David Friggens",
+        "url": {}
+      }
+    ],
+    "date": "2019-08-31",
+    "categories": [
+      "all",
+      "R",
+      "maps",
+      "New Zealand",
+      "rpkg ggplot2",
+      "rpkg leaflet"
+    ],
+    "preview": "posts/2019-08-auckland/images/clip_preview.png",
+    "last_modified": "2019-09-01T17:26:09+12:00",
+    "preview_width": 344,
+    "preview_height": 440
+  },
+  {
     "path": "posts/2018-11-leader-age/",
     "title": "Leaders' Ages",
     "description": "_The Economist_ used some graphs to show \"Leaders of Western economies\nare getting younger, even as their populations age\".\nNaturally my first question was \"what about New Zealand?\"",
@@ -41,7 +65,7 @@
       "rpkg radix"
     ],
     "preview": "posts/2018-11-radixical-blogging/images/radical_goats.gif",
-    "last_modified": "2018-11-24T14:52:47+13:00"
+    "last_modified": "2019-02-05T08:04:17+13:00"
   },
   {
     "path": "posts/2017-01-anyone-who-had-a-heart/",

@@ -7,7 +7,17 @@
     <description>A personal website of data exploration.
 </description>
     <generator>Radix</generator>
-    <lastBuildDate>Sat, 24 Nov 2018 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 30 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Comparing Auckland's Population with Maps</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2019-08-auckland</link>
+      <description>I made a map at work comparing Auckland and other New Zealand cities.
+Let's talk through building something similar, in R.</description>
+      <guid>https://david.frigge.nz/posts/2019-08-auckland</guid>
+      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
+      <media:content url="https://david.frigge.nz/posts/2019-08-auckland/images/clip_preview.png" medium="image" type="image/png" width="344" height="440"/>
+    </item>
     <item>
       <title>Leaders' Ages</title>
       <dc:creator>David Friggens</dc:creator>
@@ -16,7 +26,7 @@
 are getting younger, even as their populations age".
 Naturally my first question was "what about New Zealand?"</description>
       <guid>https://david.frigge.nz/posts/2018-11-leader-age</guid>
-      <pubDate>Sat, 24 Nov 2018 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 25 Nov 2018 00:00:00 +0000</pubDate>
       <media:content url="https://david.frigge.nz/posts/2018-11-leader-age/leader-age_files/figure-html5/nzpm-1.png" medium="image" type="image/png" width="1344" height="576"/>
     </item>
     <item>

@@ -1,0 +1,556 @@
+Area,code,name
+Wellington Region,129200,Point Chevalier West
+Wellington Region,129900,Point Chevalier East
+Wellington Region,131100,Waterview
+Wellington Region,131900,Mount Albert West
+Wellington Region,132200,Mount Albert North
+Wellington Region,133600,Morningside (Auckland)
+Wellington Region,134200,Mount Albert Central
+Wellington Region,134400,Kingsland
+Wellington Region,135200,Mount Albert South
+Wellington Region,135500,Owairaka West
+Wellington Region,135800,St Lukes
+Wellington Region,136200,Eden Park
+Wellington Region,136300,Sandringham North
+Wellington Region,136800,Owairaka East
+Wellington Region,136900,Eden Valley
+Wellington Region,137000,Sandringham Central
+Wellington Region,137600,Sandringham West
+Wellington Region,137800,Mount Eden North
+Wellington Region,138100,Balmoral
+Wellington Region,138400,Mount Eden West
+Wellington Region,138700,Epsom North
+Wellington Region,139000,Mount Eden East
+Wellington Region,139300,Maungawhau
+Wellington Region,139900,Mount Eden South
+Wellington Region,140200,Epsom Central-North
+Wellington Region,140300,Mount St John
+Wellington Region,140800,Epsom Central-South
+Wellington Region,141500,Epsom East
+Wellington Region,142200,Greenlane North
+Wellington Region,137700,Mount Eden North East
+Wellington Region,138200,Sandringham East
+Waikato Region,121200,Sunnynook South
+Waikato Region,121300,Sunnynook North
+Waikato Region,122600,Forrest Hill North
+Waikato Region,123400,Forrest Hill West
+Waikato Region,123600,Forrest Hill East
+Waikato Region,123700,Castor Bay
+Waikato Region,125400,Milford West
+Waikato Region,125500,Westlake
+Waikato Region,125900,Milford Central
+Waikato Region,126600,Takapuna West
+Waikato Region,126800,Takapuna Central
+Waikato Region,128600,Takapuna South
+Waikato Region,128800,Hauraki
+Waikato Region,129300,Belmont (Auckland)
+Waikato Region,129400,Bayswater
+Waikato Region,130700,Narrow Neck
+Waikato Region,131400,Stanley Point
+Waikato Region,133000,Devonport
+Waikato Region,134000,Cheltenham
+Canterbury Region,149900,Awhitu
+Canterbury Region,155000,Sunkist Bay
+Canterbury Region,156400,Te Puru
+Canterbury Region,157400,Maraetai
+Canterbury Region,159400,Clarks Beach
+Canterbury Region,159800,Karaka Creek
+Canterbury Region,161400,Kingseat-Karaka
+Canterbury Region,162300,Ardmore
+Canterbury Region,162400,Glenbrook
+Canterbury Region,162700,Kawakawa Bay-Orere
+Canterbury Region,162900,Clevedon
+Canterbury Region,163800,Patumahoe
+Canterbury Region,164400,Tamakae
+Canterbury Region,164500,Hamilton Estate
+Canterbury Region,164600,Drury Rural
+Canterbury Region,164700,Waiuku Central
+Canterbury Region,164800,Waiuku East
+Canterbury Region,164900,Kendallvale
+Canterbury Region,165000,Puni
+Canterbury Region,165100,Ramarama
+Canterbury Region,165200,Hunua
+Canterbury Region,165300,Pukekohe North West
+Canterbury Region,165400,Anselmi Ridge
+Canterbury Region,165500,Pukekohe West
+Canterbury Region,165600,Cape Hill
+Canterbury Region,165700,Rosa Birch Park
+Canterbury Region,165800,Rooseville Park
+Canterbury Region,165900,Cloverlea (Auckland)
+Canterbury Region,166000,Pukekohe Central
+Canterbury Region,166100,Pukekohe Hospital
+Canterbury Region,166200,Buckland
+Canterbury Region,166300,Bombay Hills
+Canterbury Region,166400,Ararimu
+Canterbury Region,157100,Turanga
+Waikato Region,118800,Westgate Central
+Waikato Region,119600,Westgate South
+Waikato Region,119800,West Harbour West
+Wellington Region,120600,Massey Central
+Wellington Region,120900,Massey Royal Road West
+Waikato Region,121600,Royal Heights North
+Wellington Region,121700,Massey West
+Wellington Region,122300,Royal Heights South
+Wellington Region,122500,Massey East
+Wellington Region,122900,Massey South
+Wellington Region,123000,Ranui North
+Wellington Region,123200,Te Atatu Peninsula North West
+Wellington Region,123800,Ranui Domain
+Wellington Region,124200,Ranui South West
+Wellington Region,124300,Henderson Larnoch
+Wellington Region,124500,Te Atatu Peninsula Central
+Wellington Region,124800,Te Atatu Peninsula West
+Wellington Region,124900,Henderson Lincoln West
+Wellington Region,125000,Ranui South East
+Wellington Region,125100,Henderson Lincoln East
+Wellington Region,125300,Te Atatu Peninsula East
+Wellington Region,125700,Henderson Lincoln South
+Wellington Region,126000,Summerland South
+Wellington Region,126100,Summerland North
+Wellington Region,126400,Te Atatu South-Edmonton
+Wellington Region,126700,Henderson North
+Wellington Region,126900,Western Heights (Auckland)
+Wellington Region,127000,Te Atatu South-Central
+Wellington Region,127500,Henderson Central
+Wellington Region,127700,Te Atatu South-McLeod North
+Wellington Region,127800,Henderson Valley Park
+Wellington Region,127900,Henderson North East
+Wellington Region,128400,Henderson East
+Wellington Region,128500,Te Atatu South-McLeod South
+Wellington Region,128900,Glendene North
+Wellington Region,128300,McLaren Park
+Wellington Region,129100,Sunnyvale East
+Waikato Region,112700,Orewa North
+Waikato Region,112800,Hatfields Beach
+Waikato Region,112900,Orewa South
+Waikato Region,113000,Orewa Central
+Waikato Region,113100,Millwater North
+Waikato Region,113300,Millwater South
+Waikato Region,113600,Kingsway
+Waikato Region,113800,Silverdale Central (Auckland)
+Waikato Region,113900,Red Beach West
+Waikato Region,114000,Red Beach East
+Waikato Region,114100,Silverdale South (Auckland)
+Waikato Region,114400,Vipond
+Waikato Region,114600,Stanmore Bay West
+Waikato Region,114800,Okura Bush
+Waikato Region,114900,Whangaparoa Central
+Waikato Region,115100,Stanmore Bay East
+Waikato Region,115200,Manly West
+Waikato Region,115400,Tindalls-Matakatia
+Waikato Region,115700,Gulf Harbour North
+Waikato Region,115800,Manly East
+Waikato Region,116000,Army Bay
+Waikato Region,116200,Gulf Harbour South
+Waikato Region,116500,Long Bay
+Waikato Region,116800,Awaruku
+Waikato Region,117200,Torbay
+Waikato Region,117500,Glamorgan
+Waikato Region,117700,Northcross
+Waikato Region,117900,Waiake
+Waikato Region,118200,Browns Bay South West
+Waikato Region,118300,Browns Bay Central
+Waikato Region,118700,Browns Bay South East
+Waikato Region,119000,Rothesay Bay
+Waikato Region,119500,Murrays Bay West
+Waikato Region,120000,Murrays Bay East
+Waikato Region,120500,Mairangi Bay North
+Waikato Region,120800,Mairangi Bay South
+Waikato Region,122200,Campbells Bay
+Canterbury Region,146400,Bucklands Beach North
+Canterbury Region,147800,Half Moon Bay West
+Canterbury Region,148000,Eastern Beach
+Canterbury Region,148100,Sunnyhills West-Pakuranga North
+Canterbury Region,148300,Bucklands Beach Central
+Canterbury Region,148400,Farm Cove
+Canterbury Region,148800,Half Moon Bay North East
+Canterbury Region,149000,Pakuranga West
+Canterbury Region,149200,Sunnyhills East
+Canterbury Region,149300,Half Moon Bay South East
+Canterbury Region,149700,Bucklands Beach South
+Canterbury Region,149800,Pakuranga Central
+Canterbury Region,150400,Howick West
+Canterbury Region,150500,Pakuranga Heights North West
+Canterbury Region,150600,Mellons Bay
+Canterbury Region,150700,Pakuranga Heights East
+Canterbury Region,151300,Highland Park (Auckland)
+Canterbury Region,151500,Pakuranga Heights South West
+Canterbury Region,152000,Howick Central
+Canterbury Region,152200,Botany Downs West
+Canterbury Region,152400,Howick East
+Canterbury Region,152500,Burswood
+Canterbury Region,152900,Botany Downs East
+Canterbury Region,153100,Golflands
+Canterbury Region,153400,Cockle Bay
+Canterbury Region,153700,Northpark North
+Canterbury Region,153800,Somerville
+Canterbury Region,153900,Northpark South
+Canterbury Region,154300,Shelly Park
+Canterbury Region,154500,Huntington Park
+Canterbury Region,154600,Botany Central
+Canterbury Region,154700,Botany North
+Canterbury Region,155200,Redcastle
+Canterbury Region,155300,Botany East
+Canterbury Region,155400,Botany South
+Canterbury Region,156100,Dannemora North
+Canterbury Region,156300,East Tamaki Heights
+Canterbury Region,156600,Dannemora South
+Canterbury Region,156900,Baverstock
+Canterbury Region,157300,Ormiston North
+Canterbury Region,157500,Chapel Downs
+Canterbury Region,157800,Mission Heights North
+Canterbury Region,158000,Donegal Park
+Canterbury Region,158100,Ormiston South
+Canterbury Region,158200,Mission Heights South
+Canterbury Region,158300,Hilltop (Auckland)
+Canterbury Region,158600,Ormiston East
+Canterbury Region,152300,East Tamaki
+Canterbury Region,158900,Tuscany Heights
+Waikato Region,121400,Bayview West
+Waikato Region,121500,Totara Vale North
+Waikato Region,121800,Beach Haven West
+Waikato Region,121900,Totara Vale South
+Waikato Region,122100,Bayview South
+Waikato Region,122400,Beach Haven East
+Waikato Region,122700,Glenfield North
+Waikato Region,122800,Birkdale North
+Waikato Region,123100,Glenfield West
+Waikato Region,123300,Glenfield South West
+Waikato Region,123500,Wairau Valley
+Waikato Region,123900,Beach Haven South
+Waikato Region,124000,Glenfield Central
+Waikato Region,124400,Birkdale South
+Waikato Region,124600,Glenfield East
+Waikato Region,125200,Birkenhead West
+Waikato Region,125600,Hillcrest North (Auckland)
+Waikato Region,125800,Hillcrest West (Auckland)
+Waikato Region,126200,Hillcrest East (Auckland)
+Waikato Region,126300,Chatswood
+Waikato Region,126500,Birkenhead North
+Waikato Region,127100,Northcote Central (Auckland)
+Waikato Region,127200,Akoranga
+Waikato Region,127300,Northcote South (Auckland)
+Waikato Region,127400,Birkenhead South
+Waikato Region,128100,Northcote Tuff Crater
+Waikato Region,128200,Northcote Point (Auckland)
+Waikato Region,121000,Bayview East
+Canterbury Region,146100,Mangere Bridge Ambury
+Canterbury Region,146800,Mangere Bridge
+Canterbury Region,147500,Mangere Mountain View
+Canterbury Region,147900,Auckland Airport
+Canterbury Region,148200,Favona North
+Canterbury Region,148500,Mangere North
+Canterbury Region,148600,Favona West
+Canterbury Region,148900,Mangere West
+Canterbury Region,149400,Favona East
+Canterbury Region,149600,Otahuhu Industrial
+Canterbury Region,150000,Harania North
+Canterbury Region,150100,Otahuhu Central
+Canterbury Region,150200,Mangere Central
+Canterbury Region,150300,Otahuhu North
+Canterbury Region,150800,Sutton Park
+Canterbury Region,150900,Otahuhu East
+Canterbury Region,151000,Mangere South
+Canterbury Region,151200,Harania South
+Canterbury Region,151400,Otahuhu South West
+Canterbury Region,151600,Mangere Mascot
+Canterbury Region,151800,Massey Road West
+Canterbury Region,151900,Otahuhu South
+Canterbury Region,152600,Massey Road South
+Canterbury Region,152800,Mangere South East
+Canterbury Region,153200,Aorere North
+Canterbury Region,152100,Massey Road North
+Canterbury Region,157600,Wiri West
+Canterbury Region,158400,Wiri East
+Canterbury Region,158500,Goodwood Heights
+Canterbury Region,158700,Clendon Park North
+Canterbury Region,158800,Burbank
+Canterbury Region,159000,Totara Heights
+Canterbury Region,159100,Homai East
+Canterbury Region,159200,Homai West
+Canterbury Region,159300,The Gardens (Auckland)
+Canterbury Region,159500,Clendon Park West
+Canterbury Region,159600,Hillpark North
+Canterbury Region,159700,Clendon Park East
+Canterbury Region,159900,Rowandale West
+Canterbury Region,160000,Rowandale East
+Canterbury Region,160100,Manurewa Central
+Canterbury Region,160200,Weymouth North
+Canterbury Region,160300,Hillpark South
+Canterbury Region,160400,Alfriston
+Canterbury Region,160500,Weymouth East
+Canterbury Region,160600,Leabank
+Canterbury Region,160700,Weymouth South
+Canterbury Region,160800,Manurewa East
+Canterbury Region,160900,Manurewa South
+Canterbury Region,161000,Randwick Park East
+Canterbury Region,161100,Wattle Downs West
+Canterbury Region,161200,Wattle Downs North
+Canterbury Region,161300,Randwick Park West
+Canterbury Region,161500,Wattle Downs East
+Wellington Region,142800,One Tree Hill
+Wellington Region,143400,Royal Oak East (Auckland)
+Canterbury Region,143800,Greenlane South
+Wellington Region,144300,Onehunga North
+Canterbury Region,144700,Glen Innes West
+Wellington Region,145000,Onehunga Central
+Canterbury Region,145200,Oranga
+Canterbury Region,145300,Mount Wellington North West
+Canterbury Region,145500,Onehunga-Te Papapa Industrial
+Wellington Region,145600,Te Papapa
+Canterbury Region,145800,Glen Innes East-Wai O Taiki Bay
+Canterbury Region,145900,Penrose
+Canterbury Region,146000,Mount Wellington North East
+Canterbury Region,146200,Mount Wellington Ferndale
+Canterbury Region,146300,Point England
+Canterbury Region,146500,Mount Wellington East
+Canterbury Region,146600,Mount Wellington West
+Canterbury Region,146700,Panmure West
+Canterbury Region,147000,Tamaki
+Canterbury Region,147100,Panmure East
+Canterbury Region,147200,Mount Wellington Central
+Canterbury Region,147400,Sylvia Park
+Canterbury Region,147700,Mount Wellington Industrial
+Canterbury Region,149100,Mount Wellington South West
+Canterbury Region,149500,Mount Wellington South East
+Wellington Region,144100,Onehunga West
+Canterbury Region,144200,Ellerslie West
+Canterbury Region,145400,Panmure Glen Innes Industrial
+Palmerston North,139200,Orakei West
+Wellington Region,139400,Remuera West
+Wellington Region,140000,Remuera Waitaramoa
+Palmerston North,140100,Orakei East
+Palmerston North,140500,Remuera North
+Wellington Region,141000,Remuera South
+Palmerston North,141100,Mission Bay
+Palmerston North,141600,Remuera Waiata
+Palmerston North,141800,Kohimarama
+Palmerston North,141900,Meadowbank West
+Palmerston North,142400,Remuera East
+Palmerston North,142700,Saint Heliers West
+Palmerston North,143000,Saint Heliers North
+Palmerston North,143100,Remuera Abbotts Park
+Palmerston North,143200,Meadowbank East
+Palmerston North,143500,Saint Heliers South
+Palmerston North,143700,Saint Johns West
+Palmerston North,143900,Remuera Waiatarua
+Palmerston North,144000,Glendowie North
+Palmerston North,144400,Ellerslie East
+Palmerston North,144500,Saint Johns East
+Palmerston North,144800,Ellerslie South
+Palmerston North,144900,Stonefields West
+Palmerston North,145100,Glendowie South
+Palmerston North,145700,Stonefields East
+Palmerston North,143300,Ellerslie Central
+Canterbury Region,152700,Middlemore
+Canterbury Region,153000,Grange
+Canterbury Region,153300,Mangere East
+Canterbury Region,153500,Otara West
+Canterbury Region,153600,Aorere Central
+Canterbury Region,154000,Papatoetoe North
+Canterbury Region,154100,Dingwall
+Canterbury Region,154200,Aorere South
+Canterbury Region,154400,Otara Central
+Canterbury Region,154800,Papatoetoe West
+Canterbury Region,154900,Papatoetoe Central
+Canterbury Region,155100,Otara East
+Canterbury Region,155500,Manukau Central
+Canterbury Region,155600,Papatoetoe East
+Canterbury Region,155700,Otara South
+Canterbury Region,155800,Ferguson
+Canterbury Region,155900,Papatoetoe South West
+Canterbury Region,156000,Botany Junction
+Canterbury Region,156200,Papatoetoe South
+Canterbury Region,156500,Puhinui North
+Canterbury Region,156700,Puhinui South
+Canterbury Region,156800,Rongomai West
+Canterbury Region,157000,Puhinui East
+Canterbury Region,157200,Rongomai East
+Canterbury Region,157700,Clover Park North
+Canterbury Region,157900,Clover Park South
+Canterbury Region,161600,Takanini North
+Canterbury Region,161700,Takanini Industrial
+Canterbury Region,161800,Conifer Grove West
+Canterbury Region,161900,Conifer Grove East
+Canterbury Region,162000,Takanini West
+Canterbury Region,162100,Takanini South
+Canterbury Region,162200,Takanini Central
+Canterbury Region,162500,Hingaia
+Canterbury Region,162600,Takanini South East
+Canterbury Region,162800,Papakura West
+Canterbury Region,163000,Papakura North
+Canterbury Region,163100,Pahurehure
+Canterbury Region,163200,Papakura Central
+Canterbury Region,163300,Papakura North East
+Canterbury Region,163400,Karaka Lakes
+Canterbury Region,163500,Papakura Kelvin
+Canterbury Region,163600,Papakura Massey Park
+Canterbury Region,163700,Rosehill
+Canterbury Region,163900,Papakura East
+Canterbury Region,164000,Opaheke
+Canterbury Region,164100,Papakura Industrial
+Canterbury Region,164200,Red Hill
+Canterbury Region,164300,Drury
+Wellington Region,139100,Wesley East
+Wellington Region,139600,Lynfield North
+Wellington Region,139700,Mount Roskill North
+Wellington Region,139800,Mount Roskill White Swan
+Wellington Region,140400,Mount Roskill Central North
+Wellington Region,140600,Three Kings West
+Wellington Region,140700,Mount Roskill Central South
+Wellington Region,140900,Lynfield South
+Wellington Region,141200,Three Kings East
+Wellington Region,141300,Mount Roskill South
+Wellington Region,141700,Epsom South
+Wellington Region,142000,Hillsborough North (Auckland)
+Wellington Region,142100,Hillsborough West (Auckland)
+Wellington Region,142300,Waikowhai North
+Wellington Region,142500,Waikowhai South
+Wellington Region,142600,Royal Oak West (Auckland)
+Wellington Region,142900,Hillsborough East (Auckland)
+Wellington Region,143600,Hillsborough South (Auckland)
+Wellington Region,137900,Wesley West
+Wellington Region,138800,Wesley South
+Waikato Region,110200,Okahukura Peninsula
+Waikato Region,110400,Cape Rodney
+Waikato Region,110500,Wellsford
+Waikato Region,110700,South Head
+Waikato Region,110800,Kaipara Hills
+Waikato Region,110900,Dome Valley-Matakana
+Waikato Region,111100,Warkworth West
+Waikato Region,111200,Puhoi Valley
+Waikato Region,111300,Warkworth East
+Waikato Region,111400,Sandspit
+Waikato Region,111500,Tawharanui Peninsula
+Waikato Region,111600,Te Kuru
+Waikato Region,111700,Snells Beach
+Waikato Region,111900,Algies Bay-Scotts Landing
+Waikato Region,112200,Parakai
+Waikato Region,112300,Helensville Rural
+Waikato Region,112400,Helensville
+Waikato Region,112500,Waitoki
+Waikato Region,112600,Waikoukou Valley
+Waikato Region,113200,Waipatukahu
+Waikato Region,113400,Dairy Flat North
+Waikato Region,113500,Dairy Flat West
+Waikato Region,113700,Riverhead Forest
+Waikato Region,114200,Waimauku
+Waikato Region,114500,Muriwai
+Waikato Region,114700,Kumeu Rural West
+Waikato Region,115000,Kumeu-Huapai
+Waikato Region,115900,Riverhead
+Waikato Region,116100,Kumeu Rural East
+Waikato Region,116300,Paremoremo West
+Waikato Region,116400,Taupaki
+Waikato Region,112100,Wainui-Waiwera
+Waikato Region,115300,Muriwai Valley-Bethells Beach
+Waikato Region,115500,Coatesville
+Waikato Region,115600,Dairy Flat South
+Waikato Region,116600,Paremoremo East
+Waikato Region,116700,Albany Heights
+Waikato Region,116900,Fairview Heights
+Waikato Region,117300,Albany Central
+Waikato Region,117400,Albany West
+Waikato Region,117600,Oteha East
+Waikato Region,117800,Oteha West
+Waikato Region,118100,Albany South
+Waikato Region,118400,Schnapper Rock
+Waikato Region,118500,Pinehill
+Waikato Region,118600,North Harbour
+Waikato Region,118900,Greenhithe West
+Waikato Region,119100,Greenhithe East
+Waikato Region,119200,Hobsonville
+Waikato Region,119400,Greenhithe South
+Waikato Region,119700,Windsor Park
+Waikato Region,119900,Unsworth Heights West
+Waikato Region,120200,Hobsonville Point
+Waikato Region,120300,West Harbour Clearwater Cove
+Waikato Region,120400,Unsworth Heights East
+Waikato Region,120700,West Harbour Luckens Point
+Waikato Region,117000,Whenuapai
+Canterbury Region,144600,Oneroa West
+Canterbury Region,146900,Oneroa East-Palm Beach
+Canterbury Region,147600,Surfdale
+Canterbury Region,148700,Ostend
+Canterbury Region,151100,Onetangi
+Canterbury Region,151700,Waiheke East
+Waikato Region,114300,Gulf Islands
+Waikato Region,117100,Waitakere Ranges North
+Waikato Region,118000,Waitakere
+Waikato Region,121100,Swanson Rural
+Waikato Region,124100,Piha
+Waikato Region,124700,Henderson Valley
+Waikato Region,127600,Waiatarua
+Waikato Region,128000,Waitakere Ranges South
+Waikato Region,129000,Sunnyvale West-Parrs Park
+Waikato Region,129600,Glen Eden West
+Waikato Region,130000,Oratia
+Waikato Region,130100,Glen Eden Rosier
+Waikato Region,130800,Glen Eden North
+Waikato Region,130900,Glen Eden Woodglen
+Waikato Region,131500,Glen Eden Central
+Waikato Region,132500,Konini
+Waikato Region,134600,Waima-Woodlands Park
+Waikato Region,134700,Kaurilands
+Waikato Region,136700,Titirangi South
+Waikato Region,137500,Laingholm
+Waikato Region,120100,Birdwood West
+Waikato Region,122000,Swanson
+Wellington Region,129700,Herne Bay
+Wellington Region,129800,Westmere North
+Wellington Region,130200,Saint Marys Bay
+Wellington Region,130300,Westmere South-Western Springs
+Wellington Region,130400,Ponsonby West
+Wellington Region,131200,Ponsonby East
+Wellington Region,131300,Wynyard-Viaduct
+Wellington Region,131600,Grey Lynn North
+Wellington Region,131800,Freemans Bay
+Wellington Region,132100,Grey Lynn West
+Wellington Region,132400,Victoria Park
+Wellington Region,132700,Hobson Ridge North
+Wellington Region,132800,Grey Lynn Central
+Wellington Region,133200,Queen Street
+Wellington Region,133300,Quay Street-Customs Street
+Wellington Region,133400,Hobson Ridge Central
+Wellington Region,133500,Grey Lynn East
+Wellington Region,133700,Shortland Street
+Wellington Region,133800,Hobson Ridge South
+Wellington Region,134100,Queen Street South West
+Wellington Region,134300,Karangahape
+Wellington Region,134500,Anzac Avenue
+Wellington Region,134800,Auckland-University
+Wellington Region,135100,Symonds Street North West
+Wellington Region,135300,Symonds Street West
+Wellington Region,135700,The Strand
+Wellington Region,135900,Symonds Street East
+Wellington Region,136100,Grafton
+Wellington Region,136400,Parnell West
+Wellington Region,137400,Parnell East
+Wellington Region,138500,Newmarket
+Wellington Region,136000,Eden Terrace
+Wellington Region,128700,Rosebank Peninsula
+Wellington Region,129500,Glendene South
+Wellington Region,130500,Kelston North
+Wellington Region,130600,Avondale Rosebank
+Wellington Region,131000,Kelston South
+Wellington Region,131700,Avondale West (Auckland)
+Wellington Region,132000,Avondale North (Auckland)
+Wellington Region,132300,New Lynn North
+Wellington Region,132600,New Lynn North West
+Wellington Region,132900,Fruitvale
+Wellington Region,133100,Avondale Central (Auckland)
+Wellington Region,133900,New Lynn Central
+Wellington Region,134900,New Lynn Seabrook
+Wellington Region,135000,Avondale South (Auckland)
+Wellington Region,135400,West Lynn
+Wellington Region,135600,New Lynn Central South
+Wellington Region,136500,New Lynn South
+Wellington Region,136600,New Windsor North
+Wellington Region,137100,Glenavon
+Wellington Region,137200,Blockhouse Bay North
+Wellington Region,137300,Green Bay North
+Wellington Region,138000,Green Bay South
+Wellington Region,138600,Blockhouse Bay North East
+Wellington Region,138900,Blockhouse Bay South
+Wellington Region,139500,Blockhouse Bay East
+Wellington Region,138300,New Windsor South
