@@ -49,7 +49,7 @@
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["images/giphy.mp4","images/radical_goats.gif","radixal-blogging_files/bowser-1.9.3/bowser.min.js","radixal-blogging_files/distill-2.2.21/template.v2.js","radixal-blogging_files/jquery-1.11.3/jquery.min.js","radixal-blogging_files/webcomponents-2.0.0/webcomponents.js"]}
+  {"type":"character","attributes":{},"value":["images/radical_goats.gif","radixal-blogging_files/bowser-1.9.3/bowser.min.js","radixal-blogging_files/distill-2.2.21/template.v2.js","radixal-blogging_files/jquery-1.11.3/jquery.min.js","radixal-blogging_files/webcomponents-2.0.0/webcomponents.js"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -196,6 +196,10 @@
   /* Tweak code blocks (note that this CSS is repeated above in an injection
      into the d-code shadow dom) */
   
+  d-code {
+    overflow-x: auto !important;
+  }
+  
   pre.d-code code.d-code {
     padding-left: 10px;
     font-size: 12px;
@@ -226,6 +230,11 @@
   }
   
   @media(min-width: 768px) {
+  
+  d-code {
+    overflow-x: visible !important;
+  }
+  
   pre.d-code code.d-code  {
       padding-left: 18px;
       font-size: 14px;
