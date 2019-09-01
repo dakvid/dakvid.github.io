@@ -4,4 +4,6 @@
 .Ruserdata
 notes
 _posts/_-*
+*.gpkg
+*.txt
 

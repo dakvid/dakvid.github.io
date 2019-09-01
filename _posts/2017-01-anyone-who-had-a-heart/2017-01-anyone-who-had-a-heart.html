@@ -6,7 +6,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
-  <meta name="generator" content="radix" />
+  <meta name="generator" content="distill" />
 
   <style type="text/css">
   /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
@@ -44,7 +44,7 @@
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Anyone Who Had a Heart"]},{"type":"character","attributes":{},"value":["Visualising card game results. Less exciting than it sounds."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["David Friggens"]}]}]},{"type":"character","attributes":{},"value":["2017-01-29"]},{"type":"character","attributes":{},"value":["all","R","games","rpkg ggplot2","line charts","bar charts"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["radix::radix_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Anyone Who Had a Heart"]},{"type":"character","attributes":{},"value":["Visualising card game results. Less exciting than it sounds."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["David Friggens"]}]}]},{"type":"character","attributes":{},"value":["2017-01-29"]},{"type":"character","attributes":{},"value":["all","R","games","rpkg ggplot2","line charts","bar charts"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -196,6 +196,10 @@
   /* Tweak code blocks (note that this CSS is repeated above in an injection
      into the d-code shadow dom) */
   
+  d-code {
+    overflow-x: auto !important;
+  }
+  
   pre.d-code code.d-code {
     padding-left: 10px;
     font-size: 12px;
@@ -226,6 +230,11 @@
   }
   
   @media(min-width: 768px) {
+  
+  d-code {
+    overflow-x: visible !important;
+  }
+  
   pre.d-code code.d-code  {
       padding-left: 18px;
       font-size: 14px;
@@ -878,7 +887,7 @@
   
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
-      $('.radix-site-header a[href]').each(function(i,val) {
+      $('.distill-site-header a[href]').each(function(i,val) {
         $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
       });
     }
@@ -1019,7 +1028,7 @@ score2 %&gt;% select(-round)</code></pre>
 <pre><code>
 # A tibble: 6 x 4
       O     N     B     D
-  &lt;int&gt; &lt;int&gt; &lt;int&gt; &lt;int&gt;
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
 1    25     0     0     1
 2    41     3     6     2
 3    59     3    11     5

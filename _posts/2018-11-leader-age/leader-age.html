@@ -6,7 +6,7 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
-  <meta name="generator" content="radix" />
+  <meta name="generator" content="distill" />
 
   <style type="text/css">
   /* Hide doc at startup (prevent jankiness while JS renders/transforms) */
@@ -44,7 +44,7 @@
   <!--radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Leaders' Ages"]},{"type":"character","attributes":{},"value":["_The Economist_ used some graphs to show \"Leaders of Western economies\nare getting younger, even as their populations age\".\nNaturally my first question was \"what about New Zealand?\"\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["David Friggens"]}]}]},{"type":"character","attributes":{},"value":["2018-11-25"]},{"type":"character","attributes":{},"value":["all","R","elections","New Zealand","line charts","rpkg ggplot2","rpkg xkcd"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["radix::radix_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","categories","output"]}},"value":[{"type":"character","attributes":{},"value":["Leaders' Ages"]},{"type":"character","attributes":{},"value":["_The Economist_ used some graphs to show \"Leaders of Western economies\nare getting younger, even as their populations age\".\nNaturally my first question was \"what about New Zealand?\"\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name"]}},"value":[{"type":"character","attributes":{},"value":["David Friggens"]}]}]},{"type":"character","attributes":{},"value":["2018-11-25"]},{"type":"character","attributes":{},"value":["all","R","elections","New Zealand","line charts","rpkg ggplot2","rpkg xkcd"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -196,6 +196,10 @@
   /* Tweak code blocks (note that this CSS is repeated above in an injection
      into the d-code shadow dom) */
   
+  d-code {
+    overflow-x: auto !important;
+  }
+  
   pre.d-code code.d-code {
     padding-left: 10px;
     font-size: 12px;
@@ -226,6 +230,11 @@
   }
   
   @media(min-width: 768px) {
+  
+  d-code {
+    overflow-x: visible !important;
+  }
+  
   pre.d-code code.d-code  {
       padding-left: 18px;
       font-size: 14px;
@@ -878,7 +887,7 @@
   
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
-      $('.radix-site-header a[href]').each(function(i,val) {
+      $('.distill-site-header a[href]').each(function(i,val) {
         $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
       });
     }
@@ -968,7 +977,7 @@ Click through for the full graphic with the other three countries.
 
 </div>
 <div class="layout-chunk" data-layout="l-body">
-<p><img src="leader-age_files/figure-html5/nzpm-1.png" width="100%" data-radix-preview=1 /></p>
+<p><img src="leader-age_files/figure-html5/nzpm-1.png" width="100%" data-distill-preview=1 /></p>
 </div>
 <p>There does seem to be a general downwards trend (reminding me of <a href="https://en.wikipedia.org/wiki/Simpson%27s_paradox">Simpson’s paradox</a>), but there does seem to be a clear “generational” jump. Despite being younger than Macron, Ardern just misses out on being under the median age (though not <a href="https://www.stats.govt.nz/news/more-women-are-over-30-and-more-men-are-under-30">for women</a>).</p>
 <h3 id="notes">Notes</h3>

@@ -11,9 +11,9 @@ preview: images/radical_goats.gif
 categories:
   - all
   - R
-  - rpkg radix
+  - rpkg distill
 output:
-  radix::radix_article:
+  distill::distill_article:
     self_contained: false
 ---
 
@@ -48,6 +48,7 @@ again from scratch. It's not much of an excuse, but it's what happened.
 I was just steeling my resolve recently to mount a proper attack and get it done
 when I saw the announcement from RStudio of [radix](https://rstudio.github.io/radix/),
 a new RMarkdown package based on [distill](https://github.com/distillpub/template).
+(**EDIT:** the R package has been renamed [distill](https://rstudio.github.io/distill/).)
 Radix has nice defaults (I don't have to spend time going through a theme gallery)
 and some attractive features like full-page figures and Tufte-like asides.
 After playing around a little bit I've decided to take the plunge --- I think
@@ -73,6 +74,8 @@ Speaking of new posts, there should hopefully be more in the coming weeks and
 months. I've got some half-draft posts of things I wanted to play with
 over the past year and a half, so I just need to make the time to finish them
 off.
+(**EDIT:** OK, so that was slightly optimistic, but at least the gap was less
+than a year. I've been reading some good books instead!)
 
 <aside>
 Not having a working blog didn't stop me from starting things, just following
@@ -85,11 +88,11 @@ the [projects page](../../projects).
 
 Is there anything I don't like about Radix? No actual dislikes, but there are
 a few opportunities for improvement, as with any very new software project.
-The key [issue](https://github.com/rstudio/radix/issues/20) for me is code highlighting.
+The key [issue](https://github.com/rstudio/distill/issues/20) for me is code highlighting.
 With a desire to not modify upstream distill, the highlighting for R code is
 generic "clike", which is not quite satisfactory. Other than that, I'm very
 happy with it, and encourage others to give it a go.
 
-Thanks [JJ](https://github.com/rstudio/radix/commits?author=jjallaire)!
+Thanks [JJ](https://github.com/rstudio/distill/commits?author=jjallaire)!
 
 ![Figure from https://giphy.com/gifs/running-goats-radical-WwAIvO47NQ01O](images/radical_goats.gif){.external}

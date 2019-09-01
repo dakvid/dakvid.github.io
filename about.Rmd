@@ -43,7 +43,6 @@ More seriously, this site is entirely personal --- any views are nothing to do w
 ### Colophon
 
 The blog is written in R markdown, produced with the
-[Radix](https://github.com/rstudio/radix) R package
-(itself based on [distill](https://github.com/distillpub)), and
+[Distill](https://github.com/rstudio/distill) R package, and
 hosted on [GitHub Pages](https://pages.github.com).
 

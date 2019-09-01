@@ -11,7 +11,7 @@ categories:
   - names
   - rpkg leaflet
 output:
-  radix::radix_article:
+  distill::distill_article:
     self_contained: false
 ---
 

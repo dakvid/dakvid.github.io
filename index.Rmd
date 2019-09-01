@@ -1,5 +1,5 @@
 ---
 title: "Blog Posts by David Friggens"
-site: radix::radix_website
+site: distill::distill_website
 listing: posts
 ---

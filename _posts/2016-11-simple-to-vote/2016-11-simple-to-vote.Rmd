@@ -13,7 +13,7 @@ categories:
   - bar charts
   - scatter plots
 output:
-  radix::radix_article:
+  distill::distill_article:
     self_contained: false
 ---
 

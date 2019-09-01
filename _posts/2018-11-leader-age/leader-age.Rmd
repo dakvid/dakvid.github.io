@@ -15,7 +15,7 @@ categories:
   - rpkg ggplot2
   - rpkg xkcd
 output:
-  radix::radix_article:
+  distill::distill_article:
     self_contained: false
 ---
 
