@@ -19,7 +19,7 @@
       "rpkg leaflet"
     ],
     "preview": "posts/2019-08-auckland/images/clip_preview.png",
-    "last_modified": "2019-09-01T17:26:09+12:00",
+    "last_modified": "2019-09-01T22:31:14+12:00",
     "preview_width": 344,
     "preview_height": 440
   },
@@ -44,7 +44,7 @@
       "rpkg xkcd"
     ],
     "preview": "posts/2018-11-leader-age/leader-age_files/figure-html5/nzpm-1.png",
-    "last_modified": "2018-12-11T13:20:44+13:00",
+    "last_modified": "2019-09-01T21:55:05+12:00",
     "preview_width": 1344,
     "preview_height": 576
   },
@@ -62,10 +62,10 @@
     "categories": [
       "all",
       "R",
-      "rpkg radix"
+      "rpkg distill"
     ],
     "preview": "posts/2018-11-radixical-blogging/images/radical_goats.gif",
-    "last_modified": "2019-02-05T08:04:17+13:00"
+    "last_modified": "2019-09-01T22:30:37+12:00"
   },
   {
     "path": "posts/2017-01-anyone-who-had-a-heart/",
@@ -87,7 +87,7 @@
       "bar charts"
     ],
     "preview": "posts/2017-01-anyone-who-had-a-heart/images/2017-01-steps-1-1.png",
-    "last_modified": "2018-11-10T23:14:45+13:00",
+    "last_modified": "2019-09-01T21:55:21+12:00",
     "preview_width": 1248,
     "preview_height": 768
   },
@@ -114,7 +114,7 @@
       "maps"
     ],
     "preview": "posts/2016-12-earthquake-excuses/images/eqnz_depth_comparison.png",
-    "last_modified": "2018-11-10T23:18:44+13:00",
+    "last_modified": "2019-09-01T21:55:35+12:00",
     "preview_width": 800,
     "preview_height": 600
   },
@@ -139,7 +139,7 @@
       "Official Information requests"
     ],
     "preview": "posts/2016-12-election-transparency/images/preview.png",
-    "last_modified": "2018-11-10T23:14:08+13:00",
+    "last_modified": "2019-09-01T21:54:29+12:00",
     "preview_width": 704,
     "preview_height": 739
   },
@@ -164,7 +164,7 @@
       "scatter plots"
     ],
     "preview": "posts/2016-11-earthquake-depth/images/eqnz_depth_time.gif",
-    "last_modified": "2018-11-10T23:13:40+13:00"
+    "last_modified": "2019-09-01T21:47:11+12:00"
   },
   {
     "path": "posts/2016-11-simple-to-vote/",
@@ -187,7 +187,7 @@
       "scatter plots"
     ],
     "preview": "posts/2016-11-simple-to-vote/images/stv2016_wrc_porirua-tawa.gif",
-    "last_modified": "2018-11-10T23:13:30+13:00"
+    "last_modified": "2019-09-01T21:47:19+12:00"
   },
   {
     "path": "posts/2016-10-whither-local-democracy/",
@@ -209,7 +209,7 @@
       "dumbbell plots"
     ],
     "preview": "posts/2016-10-whither-local-democracy/images/preview.png",
-    "last_modified": "2018-11-10T23:13:04+13:00",
+    "last_modified": "2019-09-01T21:47:03+12:00",
     "preview_width": 700,
     "preview_height": 450
   },
@@ -233,7 +233,7 @@
       "scatter plots"
     ],
     "preview": "posts/2016-08-the-luminaries/images/preview.png",
-    "last_modified": "2018-11-10T23:12:57+13:00",
+    "last_modified": "2019-09-01T21:39:37+12:00",
     "preview_width": 700,
     "preview_height": 450
   },
@@ -256,7 +256,7 @@
       "rpkg leaflet"
     ],
     "preview": "posts/2016-08-unfamiliar-maps/images/preview.png",
-    "last_modified": "2018-11-10T23:12:49+13:00",
+    "last_modified": "2019-09-01T21:39:24+12:00",
     "preview_width": 432,
     "preview_height": 460
   },
@@ -276,6 +276,6 @@
       "names"
     ],
     "preview": {},
-    "last_modified": "2018-11-10T23:12:40+13:00"
+    "last_modified": "2019-09-01T21:39:03+12:00"
   }
 ]

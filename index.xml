@@ -6,8 +6,8 @@
     <atom:link href="https://david.frigge.nz/index.xml" rel="self" type="application/rss+xml"/>
     <description>A personal website of data exploration.
 </description>
-    <generator>Radix</generator>
-    <lastBuildDate>Fri, 30 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <generator>Distill</generator>
+    <lastBuildDate>Sat, 31 Aug 2019 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Comparing Auckland's Population with Maps</title>
       <dc:creator>David Friggens</dc:creator>
@@ -15,7 +15,7 @@
       <description>I made a map at work comparing Auckland and other New Zealand cities.
 Let's talk through building something similar, in R.</description>
       <guid>https://david.frigge.nz/posts/2019-08-auckland</guid>
-      <pubDate>Fri, 30 Aug 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 31 Aug 2019 00:00:00 +0000</pubDate>
       <media:content url="https://david.frigge.nz/posts/2019-08-auckland/images/clip_preview.png" medium="image" type="image/png" width="344" height="440"/>
     </item>
     <item>
