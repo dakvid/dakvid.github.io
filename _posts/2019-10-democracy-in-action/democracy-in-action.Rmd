@@ -1,0 +1,202 @@
+---
+title: "Democracy-in-action"
+description: I don't know what I'm more excited about - new election results to pore over, or my first follow-up post! In 2016 I looked at voter turnout in the New Zealand local body elections. Now three years later, almost to the day, let's have a look again and see how things have turned out this year. Is it Democracy In Action or Democracy Inaction?
+author: "David Friggens"
+date: 2019-10-13
+xpreview: images/preview.png
+categories:
+  - all
+  - R
+  - elections
+  - New Zealand
+  - rpkg plotly
+  - dumbbell plots
+output:
+  distill::distill_article:
+    self_contained: false
+---
+
+Three years ago [I looked at voter turnout in the 2016 local body elections](../2016-10-whither-local-democracy)
+in New Zealand. There was a lot of concern about the low voter turnout, though
+overall the turnout was slightly higher than 2013. This was driven by the
+"metro" councils, which countered the decline in the "provincial" and "rural"
+councils.
+
+Fellow kiwis will likely have heard similar rumblings about dropping voter
+turnout again, so let's see what actually happened.
+Luckily I was reminded from my previous post that Local Government NZ
+[collates all the data](https://www.lgnz.co.nz/vote2019/voters/preliminary-voter-turnout-2019/),
+which saved me the nightmare of visiting every individual council's website.
+You can go to their page to see some Excel column charts, or you can stay
+here for a repeat of the dumbbell plots.
+
+<aside>
+Yes, it's 2019 and local council websites are still an eclectic mix of
+volume, frequency and (especially) file types when it comes to voting data.
+</aside>
+
+
+```{r setup}
+library(readr)
+library(dplyr)
+library(tidyr)
+library(plotly)
+
+# last time I scraped it with rvest
+# this time I manually appended the new data
+summary_turnout <- read_csv("data/summary_turnout.csv")
+council_turnout <- read_csv("data/council_turnout.csv")
+```
+
+
+## High-level summaries
+
+After a big drop between 2010 and 2013 and a smaller movement in 2016, there
+appears to be another big drop in turnout across the board.
+The national figures apparently suggest an overall increase, but this must
+be a mistake. These are preliminary figures, and I'll update when final numbers
+are confirmed.
+
+
+```{r turnout_summary, fig.height=2}
+nto <- 
+  summary_turnout %>% 
+  spread(Year, Turnout) %>% 
+  mutate(min_to = pmin(`2010`, `2013`, `2016`, `2019`),
+         max_to = pmax(`2010`, `2013`, `2016`, `2019`))
+plot_ly(nto,
+        color = I("gray80")) %>% 
+  add_segments(x = ~min_to, xend = ~max_to, y = ~Group, yend = ~Group, showlegend = FALSE) %>% 
+  add_markers(x = ~`2010`, y = ~Group, name = "2010", color = I("red"),
+              hoverinfo = "text",
+              text = ~paste0(`2010`, "% turnout ", if_else(Group == "National", "across New Zealand", paste0("in ", Group, " councils")), " in 2010")) %>% 
+  add_markers(x = ~`2013`, y = ~Group, name = "2013", color = I("yellow"),
+              hoverinfo = "text",
+              text = ~paste0(`2013`, "% turnout ", if_else(Group == "National", "across New Zealand", paste0("in ", Group, " councils")), " in 2013")) %>% 
+  add_markers(x = ~`2016`, y = ~Group, name = "2016", color = I("blue"),
+              hoverinfo = "text",
+              text = ~paste0(`2016`, "% turnout ", if_else(Group == "National", "across New Zealand", paste0("in ", Group, " councils")), " in 2016")) %>% 
+  add_markers(x = ~`2019`, y = ~Group, name = "2019", color = I("black"),
+              hoverinfo = "text",
+              text = ~paste0(`2019`, "% turnout ", if_else(Group == "National", "across New Zealand", paste0("in ", Group, " councils")), " in 2019")) %>% 
+  layout(
+    title = "Local Election Turnout in New Zealand",
+    xaxis = list(title = "Voter Turnout (Percent)"),
+    yaxis = list(title = "")
+  ) %>% 
+  config(displayModeBar = FALSE)
+```
+
+<aside>
+The four-value dumbbells hopefully aren't too cluttered. I was going to drop
+2010 off to make it cleaner, but I think it's better to keep it to make clearer
+the story of an ongoing drop.
+</aside>
+
+Whilst it's positive to see that rural and provincial districts have good
+turnout relative to the metro areas, they only make up a third of the population.
+To put this in perspective, let's turn these percentages into people.
+
+```{r pc2ppl}
+population <- read_csv("data/population_2018_age15plus.csv", skip = 1)
+council_turnout %>%
+  filter(Year == 2019) %>%
+  inner_join(population, by = c(Council = "Area")) %>%
+  mutate(Voted = Population * (Turnout / 100),
+         DidntVote = Population - Voted) %>%
+  group_by(Type) %>%
+  summarise(Voted = round(sum(Voted), 0),
+            DidntVote = round(sum(DidntVote), 0)) %>%
+  ungroup() %>% 
+  inner_join(summary_turnout %>% filter(Year == 2019),
+             by = c(Type = "Group")) %>% 
+  plot_ly(x = ~Type,
+          y = ~Voted,
+          text = ~paste0("In ", Type, " councils turnout was ", Turnout, "%.<br>",
+                         "Approximately ", prettyNum(Voted %/% 1000 * 1000, big.mark = ","), " people voted."),
+          type = 'bar',
+          name = 'People that voted',
+          hoverinfo = "text") %>% 
+  add_trace(y = ~DidntVote,
+            text = ~paste0("In ", Type, " councils turnout was ", Turnout, "%.<br>",
+                           "Approximately ", prettyNum(DidntVote %/% 1000 * 1000, big.mark = ","), " people didn't vote."),
+            name = "People that didn't vote",
+            hoverinfo = "text") %>% 
+  layout(
+    title = "Local Election Turnout in New Zealand, 2019",
+    xaxis = list(title = ""),
+    yaxis = list(title = "Population"),
+    barmode = 'stack',
+    legend = list(x = 0.7, y = 0.95)
+  ) %>% 
+  config(displayModeBar = FALSE)
+```
+
+<aside>
+NB I've used territorial authority populations for age 15+, rather than the
+number of voters (who must be at least 18) so the numbers aren't precise, but
+the relative comparison should be accurate.
+</aside>
+
+
+
+## Individual councils
+
+We can look at individual councils for a finer breakdown.
+Here are dumbells for the last three elections grouped by metro, provincial
+and rural, then ordered by the 2019 turnout.
+
+```{r turnout_dumbbell0, fig.height=12}
+cto <- 
+  council_turnout %>% 
+  spread(Year, Turnout) %>% 
+  mutate(min_to = pmin(`2013`, `2016`, `2019`),
+         max_to = pmax(`2013`, `2016`, `2019`))
+cto$Council <- 
+  factor(cto$Council,
+         levels = cto$Council[order(cto$Type, cto$`2019`, method = "radix", decreasing = c(TRUE, FALSE))])
+plot_ly(cto,
+        color = I("gray80")) %>% 
+  add_segments(x = ~min_to, xend = ~max_to, y = ~Council, yend = ~Council, showlegend = FALSE) %>% 
+  add_markers(x = ~`2013`, y = ~Council, name = "2013", color = I("yellow"),
+              hoverinfo = "text",
+              text = ~paste0(`2013`, "% turnout in ", Council, " in 2013")) %>% 
+  add_markers(x = ~`2016`, y = ~Council, name = "2016", color = I("blue"),
+              hoverinfo = "text",
+              text = ~paste0(`2016`, "% turnout in ", Council, " in 2016")) %>% 
+  add_markers(x = ~`2019`, y = ~Council, name = "2019", color = I("black"),
+              hoverinfo = "text",
+              text = ~paste0(`2019`, "% turnout in ", Council, " in 2019")) %>% 
+  layout(
+    title = "Local Election Turnout in New Zealand",
+    xaxis = list(title = "Voter Turnout (Percent)"),
+    yaxis = list(title = ""),
+    margin = list(l = 180)
+  ) %>% 
+  config(displayModeBar = FALSE)
+```
+
+<aside>
+2019 turnout figures haven't been released yet for Porirua, New Plymouth or
+Clutha. I'll update these in the coming days.
+</aside>
+
+As expected there is a lot of variation, with big jumps both up and down over 2016.
+Most areas record a drop though, with the largest increases generally being in small districts.
+Only two metro areas had (very small) increases: Christchurch and [Lower] Hutt.
+The biggest metro drops were in Auckland and Wellington --- two of the three
+biggest areas.
+
+
+## Data {.appendix}
+
+Turnout data [by area type](data/summary_turnout.csv) and
+[by council](data/council_turnout.csv), sourced
+[from LGNZ](https://www.lgnz.co.nz/vote2019/voters/preliminary-voter-turnout-2019/) on 13 October 2019.
+The 2016 numbers may differ from my previous post as I never updated the
+preliminary figures when final ones were announced.
+
+2018 [population data](data/population_2018_age15plus.csv)
+for council areas sourced from [Stats NZ](https://nzdotstats.stats.govt.nz).
+
+
