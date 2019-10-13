@@ -1,5 +1,27 @@
 [
   {
+    "path": "posts/2019-10-democracy-in-action/",
+    "title": "Democracy-in-action",
+    "description": "I don't know what I'm more excited about - new election results to pore over, or my first follow-up post! In 2016 I looked at voter turnout in the New Zealand local body elections. Now three years later, almost to the day, let's have a look again and see how things have turned out this year. Is it Democracy In Action or Democracy Inaction?",
+    "author": [
+      {
+        "name": "David Friggens",
+        "url": {}
+      }
+    ],
+    "date": "2019-10-13",
+    "categories": [
+      "all",
+      "R",
+      "elections",
+      "New Zealand",
+      "rpkg plotly",
+      "dumbbell plots"
+    ],
+    "preview": {},
+    "last_modified": "2019-10-13T12:52:13+13:00"
+  },
+  {
     "path": "posts/2019-08-auckland/",
     "title": "Comparing Auckland's Population with Maps",
     "description": "I made a map at work comparing Auckland and other New Zealand cities.\nLet's talk through building something similar, in R.",

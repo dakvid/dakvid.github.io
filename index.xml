@@ -7,7 +7,15 @@
     <description>A personal website of data exploration.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sat, 31 Aug 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 13 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Democracy-in-action</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2019-10-democracy-in-action</link>
+      <description>I don't know what I'm more excited about - new election results to pore over, or my first follow-up post! In 2016 I looked at voter turnout in the New Zealand local body elections. Now three years later, almost to the day, let's have a look again and see how things have turned out this year. Is it Democracy In Action or Democracy Inaction?</description>
+      <guid>https://david.frigge.nz/posts/2019-10-democracy-in-action</guid>
+      <pubDate>Sun, 13 Oct 2019 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Comparing Auckland's Population with Maps</title>
       <dc:creator>David Friggens</dc:creator>
