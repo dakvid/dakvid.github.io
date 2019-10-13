@@ -18,8 +18,10 @@
       "rpkg plotly",
       "dumbbell plots"
     ],
-    "preview": {},
-    "last_modified": "2019-10-13T12:52:13+13:00"
+    "preview": "posts/2019-10-democracy-in-action/images/preview.png",
+    "last_modified": "2019-10-13T13:06:57+13:00",
+    "preview_width": 602,
+    "preview_height": 298
   },
   {
     "path": "posts/2019-08-auckland/",
