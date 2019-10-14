@@ -35,6 +35,11 @@ Yes, it's 2019 and local council websites are still an eclectic mix of
 volume, frequency and (especially) file types when it comes to voting data.
 </aside>
 
+**Update 14 October:** *The final "preliminary" results have changed almost all
+of the numbers; some by over 10%! This changes things to look a lot less dire
+(though it's still pretty dismal compared with national election turnouts).
+I've updated all graphs and commentary.*
+
 
 ```{r setup}
 library(readr)
@@ -51,12 +56,11 @@ council_turnout <- read_csv("data/council_turnout.csv")
 
 ## High-level summaries
 
-After a big drop between 2010 and 2013 and a smaller movement in 2016, there
-appears to be another big drop in turnout across the board.
-The national figures apparently suggest an overall increase, but this must
-be a mistake. These are preliminary figures, and I'll update when final numbers
-are confirmed.
-
+After a big drop in voter turnout between 2010 and 2013 and a small increase in 2016, there
+was a small decrease in 2019.
+In 2016, an increase in metro areas combined with decreases in provincial and
+rural areas; however in 2019 it was metro areas that decreased and we saw increases
+in provincial and rural areas.
 
 ```{r turnout_summary, fig.height=2}
 nto <- 
@@ -89,8 +93,8 @@ plot_ly(nto,
 
 <aside>
 The four-value dumbbells hopefully aren't too cluttered. I was going to drop
-2010 off to make it cleaner, but I think it's better to keep it to make clearer
-the story of an ongoing drop.
+2010 off to make it cleaner, but I think it's more interesting to see the
+longer story.
 </aside>
 
 Whilst it's positive to see that rural and provincial districts have good
@@ -176,23 +180,23 @@ plot_ly(cto,
   config(displayModeBar = FALSE)
 ```
 
-<aside>
-2019 turnout figures haven't been released yet for Porirua, New Plymouth or
-Clutha. I'll update these in the coming days.
-</aside>
-
 As expected there is a lot of variation, with big jumps both up and down over 2016.
-Most areas record a drop though, with the largest increases generally being in small districts.
-Only two metro areas had (very small) increases: Christchurch and [Lower] Hutt.
+<s>Most areas record a drop though, with the largest increases generally being in small districts.
+Only two metro areas had (very small) increases: Christchurch and [Lower] Hutt.</s>
 The biggest metro drops were in Auckland and Wellington --- two of the three
 biggest areas.
+
+The final picture is more promising that election weekend results suggested,
+with increases in a number of metro councils. Nelson retains its title as the
+most consistent constituency. Overall, more councils saw greater turnout in
+2019 than 2016.
 
 
 ## Data {.appendix}
 
 Turnout data [by area type](data/summary_turnout.csv) and
 [by council](data/council_turnout.csv), sourced
-[from LGNZ](https://www.lgnz.co.nz/vote2019/voters/preliminary-voter-turnout-2019/) on 13 October 2019.
+[from LGNZ](https://www.lgnz.co.nz/vote2019/voters/preliminary-voter-turnout-2019/) on 14 October 2019.
 The 2016 numbers may differ from my previous post as I never updated the
 preliminary figures when final ones were announced.
 
