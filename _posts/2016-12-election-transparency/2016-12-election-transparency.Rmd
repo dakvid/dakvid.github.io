@@ -117,7 +117,7 @@ library(dplyr)
 library(purrr)
 library(forcats)
 library(plotly)
-oia <- read_csv("data/stv_oia_events.csv")
+oia <- read_csv("data/stv_oia_events.csv",  quote = "|")
 oia_days <-
   oia %>% 
   group_by(body) %>% 
