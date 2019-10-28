@@ -7,7 +7,16 @@
     <description>A personal website of data exploration.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 13 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 28 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Rugby World Cup Standings</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2019-10-rugby-world-cup</link>
+      <description>Let's look at the changes in country rankings between each Rugby World Cup using a Sankey / alluvial diagram.</description>
+      <guid>https://david.frigge.nz/posts/2019-10-rugby-world-cup</guid>
+      <pubDate>Mon, 28 Oct 2019 00:00:00 +0000</pubDate>
+      <media:content url="https://david.frigge.nz/posts/2019-10-rugby-world-cup/rwc-alluvial_files/figure-html5/rwc_all-1.png" medium="image" type="image/png" width="1920" height="1152"/>
+    </item>
     <item>
       <title>Democracy-in-action</title>
       <dc:creator>David Friggens</dc:creator>

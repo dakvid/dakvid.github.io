@@ -1,5 +1,30 @@
 [
   {
+    "path": "posts/2019-10-rugby-world-cup/",
+    "title": "Rugby World Cup Standings",
+    "description": "Let's look at the changes in country rankings between each Rugby World Cup using a Sankey / alluvial diagram.",
+    "author": [
+      {
+        "name": "David Friggens",
+        "url": {}
+      }
+    ],
+    "date": "2019-10-28",
+    "categories": [
+      "all",
+      "R",
+      "sport",
+      "sankey diagrams",
+      "rpkg ggplot2",
+      "rpkg ggalluvial",
+      "New Zealand"
+    ],
+    "preview": "posts/2019-10-rugby-world-cup/rwc-alluvial_files/figure-html5/rwc_all-1.png",
+    "last_modified": "2019-10-28T16:20:46+13:00",
+    "preview_width": 1920,
+    "preview_height": 1152
+  },
+  {
     "path": "posts/2019-10-democracy-in-action/",
     "title": "Democracy-in-action",
     "description": "I don't know what I'm more excited about - new election results to pore over, or my first follow-up post! In 2016 I looked at voter turnout in the New Zealand local body elections. Now three years later, almost to the day, let's have a look again and see how things have turned out this year. Is it Democracy In Action or Democracy Inaction?",
