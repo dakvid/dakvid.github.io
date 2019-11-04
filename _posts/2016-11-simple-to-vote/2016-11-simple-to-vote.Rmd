@@ -381,7 +381,7 @@ not clear to me from the documentation and examples whether I would be able to a
 as well as the bars.
 
 
-#### Te be continued...
+#### To be continued...
 
 
 ## Code unlisting {.appendix}
