@@ -14,9 +14,6 @@ working in libraries. Most of my time outside of work is consumed by my young fa
 I occasionally find time to play around with code and data for my own curiosity,
 and having a blog is
 proving to be an easy and convenient place to publish things I want to share.
-And it also gives me the incentive to stop my ```skunkworks``` folder from looking too much like this:
-
-![Figure from http://www.commitstrip.com/en/2014/11/25/west-side-project-story/](images/side-project.jpg){width=100% .external}
 
 
 ### Books
