@@ -7,7 +7,16 @@
     <description>A personal website of data exploration.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 28 Oct 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 12 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>STV Results on the Move</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2019-11-stv-results</link>
+      <description>I've made a better go at animating STV election results this time around. Here's a brief announcement/overview.</description>
+      <guid>https://david.frigge.nz/posts/2019-11-stv-results</guid>
+      <pubDate>Tue, 12 Nov 2019 00:00:00 +0000</pubDate>
+      <media:content url="https://david.frigge.nz/posts/2019-11-stv-results/images/gw_lowerhutt.gif" medium="image" type="image/gif"/>
+    </item>
     <item>
       <title>Rugby World Cup Standings</title>
       <dc:creator>David Friggens</dc:creator>

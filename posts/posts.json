@@ -1,5 +1,29 @@
 [
   {
+    "path": "posts/2019-11-stv-results/",
+    "title": "STV Results on the Move",
+    "description": "I've made a better go at animating STV election results this time around. Here's a brief announcement/overview.",
+    "author": [
+      {
+        "name": "David Friggens",
+        "url": {}
+      }
+    ],
+    "date": "2019-11-12",
+    "categories": [
+      "all",
+      "R",
+      "elections",
+      "animation",
+      "bar charts",
+      "rpkg ggplot2",
+      "rpkg gganimate",
+      "New Zealand"
+    ],
+    "preview": "posts/2019-11-stv-results/images/gw_lowerhutt.gif",
+    "last_modified": "2019-11-12T21:22:11+13:00"
+  },
+  {
     "path": "posts/2019-10-rugby-world-cup/",
     "title": "Rugby World Cup Standings",
     "description": "Let's look at the changes in country rankings between each Rugby World Cup using a Sankey / alluvial diagram.",
@@ -236,7 +260,7 @@
       "scatter plots"
     ],
     "preview": "posts/2016-11-simple-to-vote/images/stv2016_wrc_porirua-tawa.gif",
-    "last_modified": "2019-09-01T21:47:19+12:00"
+    "last_modified": "2019-11-04T16:57:15+13:00"
   },
   {
     "path": "posts/2016-10-whither-local-democracy/",
