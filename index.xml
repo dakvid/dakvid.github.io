@@ -7,7 +7,16 @@
     <description>A personal website of data exploration.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 12 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 16 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>The Yellow-eyed Penguin and the Green-eyed Parrot: Animating voting results</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2019-11-boty</link>
+      <description>New Zealand birds and their human puppets have been fighting it out for the coveted Bird of the Year title for the 15th time. Here we animate the STV voting using R's `gganimate` package.</description>
+      <guid>https://david.frigge.nz/posts/2019-11-boty</guid>
+      <pubDate>Sat, 16 Nov 2019 00:00:00 +0000</pubDate>
+      <media:content url="https://david.frigge.nz/posts/2019-11-boty/images/boty2019.gif" medium="image" type="image/gif"/>
+    </item>
     <item>
       <title>STV Results on the Move</title>
       <dc:creator>David Friggens</dc:creator>

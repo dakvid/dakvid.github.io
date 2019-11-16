@@ -1,5 +1,30 @@
 [
   {
+    "path": "posts/2019-11-boty/",
+    "title": "The Yellow-eyed Penguin and the Green-eyed Parrot: Animating voting results",
+    "description": "New Zealand birds and their human puppets have been fighting it out for the coveted Bird of the Year title for the 15th time. Here we animate the STV voting using R's `gganimate` package.",
+    "author": [
+      {
+        "name": "David Friggens",
+        "url": {}
+      }
+    ],
+    "date": "2019-11-16",
+    "categories": [
+      "all",
+      "R",
+      "elections",
+      "animals",
+      "animation",
+      "bar charts",
+      "rpkg ggplot2",
+      "rpkg gganimate",
+      "New Zealand"
+    ],
+    "preview": "posts/2019-11-boty/images/boty2019.gif",
+    "last_modified": "2019-11-16T13:41:29+13:00"
+  },
+  {
     "path": "posts/2019-11-stv-results/",
     "title": "STV Results on the Move",
     "description": "I've made a better go at animating STV election results this time around. Here's a brief announcement/overview.",
