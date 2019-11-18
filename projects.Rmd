@@ -4,6 +4,17 @@ description: |
   Some of my projects that aren't in the blog.
 ---
 
+[STV Elections in New Zealand](https://david.frigge.nz/stvnz) (2019)
+
+:   Animations of Single Transferable Vote elections, and an attempt to collate
+the detailed counting data in one place.
+
+
+[30 Day Map Challenge](https://david.frigge.nz/map30days) (2019)
+
+:   People on Twitter tried to make 30 maps in a month and I tried to tag along.
+
+
 [NZ Election Visualisation 2017](https://david.frigge.nz/election2017)
 
 :   Various visualisations of results from the 2017 general election in
@@ -13,11 +24,6 @@ It's also a nice use of [flexdashboard](https://rmarkdown.rstudio.com/flexdashbo
 
     Since the blog was having a snooze it got its own
 [GitHub repository](https://github.com/dakvid/election2017).
-
-[STV Elections in New Zealand](https://david.frigge.nz/stvnz)
-
-:   Animations of Single Transferable Vote elections, and an attempt to collate
-the detailed counting data in one place.
 
 
 [NZ Election Visualisation 2014](https://david.frigge.nz/nzhex2014)
