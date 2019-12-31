@@ -1,0 +1,339 @@
+---
+title: "Interatively Comparing Auckland's Population Against Other Regions"
+description: |
+  How many regions does it take to match Auckland's population? Here's an interactive
+  to explore the combinations.
+author: David Friggens
+date: 2019-12-31
+categories:
+  - all
+  - D3.js
+  - maps
+  - New Zealand
+output:
+  distill::distill_article:
+    self_contained: false
+    css: auckland.css
+---
+
+I recently came across Flooh Perlot's impressive
+[visualisation of Austrian election results highlighting the size of Graz](https://drawingdata.net/graz2019/index_en.html).
+New Zealanders know that [Auckland is big](../2019-08-auckland/), and this is a
+good way of exploring the issue.
+
+<aside>
+One of the benefits of creating the
+[#30DayMapChallenge gallery](https://david.frigge.nz/30DayMapChallenge/)
+is discovering gems that I missed in November.
+</aside>
+
+Below you can see circles for the populations of the other 15 regions of New Zealand.
+Click on them, or click-and-drag a rectangle, to match them up against the
+population of Auckland region.
+
+<script src="lib/d3_592.min.js" charset="utf-8"></script>
+<script src="lib/topojson_302.js"></script>
+
+<div class="l-body">
+<div class="outer">
+<svg class="svg"></svg>
+</div>
+</div>
+
+<script>
+var nz = d3.formatLocale({"decimal":".", "thousands":",","grouping":[3],"currency":["$", ""]});
+
+var svg = d3.select(".outer").select(".svg");
+
+var defs = svg.append("defs");
+
+var glow = defs.append("filter")
+	.attr("id", "glow_light")
+	.attr("in", "SourceGraphic")
+	.attr("filterUnits", "userSpaceOnUse");
+
+glow.append("feGaussianBlur")
+	.attr("stdDeviation", 2)
+	.attr("result", "cb_light");
+	
+glow.append("feFlood")
+	.attr("flood-color", "#000000")
+	.attr("result", "color");
+	
+glow.append("feComposite")
+	.attr("in", "color")
+	.attr("in2", "cb_light")
+	.attr("operator", "in")
+	.attr("result", "sombra");
+	
+var fe = glow.append("feMerge");
+fe.append("feMergeNode");
+	
+fe.append("feMergeNode")
+	.attr("in", "SourceGraphic");
+
+
+Promise.all([d3.json("data/nzregions.topojson"), d3.tsv("data/population_rc.tsv")]).then(function(data) {
+
+	function resize() {
+		qt.removeAll(qt);
+		var id = "population";
+		
+		var width = d3.select(".outer").node().offsetWidth;
+		var height = d3.select(".outer").node().offsetHeight;
+		qt.extent([[0, 0], [width, height]]);
+		brush.extent([[0, 0], [width, height]]);
+		brush_overlay.call(brush.move, null);
+		brush_overlay.call(brush);
+		
+		calc_map(width, height - 50);
+		
+		regions.attr("d", path);
+		
+		var top = projection([leftx, uppery]);
+		var bottom = projection([rightx, lowery]);
+		var r = (bottom[1] - top[1]) / 2;
+		var center = [bottom[0] - (bottom[0] - top[0]) / 2, bottom[1] - r];
+		rscale.range([0, r]);
+		
+		svg.select(".auckland")
+			.attr("cx", center[0])
+			.attr("cy", center[1])
+			.attr("r", r);
+			
+		dots.attr("transform", function(d) { 
+				d.clicked = false;
+				d.brushed = false;
+				var c = projection(d.center);
+				d.x = c[0];
+				d.y = c[1];
+				return "translate(" + d.x + ", " + d.y + ")";
+			})
+			.attr("r", function(d) { return rscale(d.properties.data[id]); });
+			
+		sim.nodes(og.filter(function(d) { return d.clicked; }))
+			.force("x", d3.forceX().x(center[0]))
+			.force("y", d3.forceY().y(center[1]))
+			.force("collide", d3.forceCollide().radius(function(d) { return rscale(d.properties.data[id]); }))
+			.alpha(0.5).restart();
+		
+		qt.x(function(d) { return d.x; })
+			.y(function(d) { return d.y; })
+			.addAll(og);
+			
+		counter.attr("x", center[0])
+			.attr("y", height)
+			.text("0 residents (Auckland: " + nz.format(",.0f")(data[1][0].population) + ")");
+			
+		counter2.attr("x", center[0])
+			.attr("y", height)
+			.text("0 regions");
+			
+		label.attr("x", center[0])
+			.attr("y", center[1]);
+	}
+
+	function change() {
+		var id = "population";
+		rscale.domain([0, data[1][0][id]]);
+		dots.transition("resi").duration(500).attr("r", function(d) { return rscale(d.properties.data[id]); })
+		clicked();
+	}
+
+	function clicked() {
+		var id = "population";
+		var filtered = og.filter(function(d) { return d.clicked; });
+		var remain = dots.filter(function(d) { return !d.clicked; });
+		remain.transition()
+			.duration(500)
+			.attr("transform", function(d) { 
+				var c = projection(d.center);
+				d.x = c[0];
+				d.y = c[1];
+				return "translate(" + d.x + "," + d.y + ")"; 
+			});
+		
+		sim.nodes(filtered)
+			.force("collide", d3.forceCollide().radius(function(d) { return rscale(d.properties.data[id]); }))
+			.alpha(0.8)
+			.restart();
+			
+		tool.style("display", null);
+		toolbg.style("display", null);
+		
+		var num = d3.sum(filtered, function(d) { return +d.properties.data[id]; });
+
+		counter.text(nz.format(",.0f")(num) + " " + "residents" + " (Auckland: " + nz.format(",.0f")(data[1][0][id]) + ")")
+			.classed("outmaxed", function(d) { return num > +data[1][0][id] ? true : false; });
+		counter2.text(nz.format(",.0f")(filtered.length) + " regions");
+		
+		svg.select(".auckland").classed("outmaxed", function(d) { return num > +data[1][0][id] ? true : false; });
+	}
+
+	function point() {
+		qt.removeAll(og);
+		qt.x(function(d) { return d.x; })
+			.y(function(d) { return d.y; })
+			.addAll(og);
+			
+		var xy = d3.mouse(this);
+		var find = qt.find(xy[0], xy[1], 20);
+		if (find) {
+			if (find.clicked) {
+				find.clicked = false;
+				
+			} else {
+				find.clicked = true;
+			}
+			clicked();
+		}
+	}
+
+	function checkarea() {
+		var area = d3.select(".selection");
+
+		if (area.style("display") != "none") {
+			var hitbox = area.node().getBBox();
+			dots.each(function(d) {
+				if (d.x >= hitbox.x && d.x <= (hitbox.x + hitbox.width) && d.y >= hitbox.y && d.y <= (hitbox.y + hitbox.height)) {
+					if (!d.brushed) {
+						if (d.clicked) {
+							d.clicked = false;
+						} else {
+							d.clicked = true;
+						}
+						d.brushed = true;
+					}
+				}
+			});
+			
+			clicked();
+		}
+	}
+
+	function unbrush() {
+		dots.each(function(d, i) {
+			d.brushed = false;
+		});
+	}
+
+	function calc_map(w, h) {
+		var sca = .95 / Math.max((b[1][0] - b[0][0]) / w, (b[1][1] - b[0][1]) / h);
+		projection.scale(sca);
+		projection.translate([w / 2, h / 2]);
+	}
+
+
+	var rscale = d3.scaleSqrt().domain([0, d3.max(data[1], function(d) { return +d.population; })]);
+	var projection = d3.geoMercator().scale(1);
+	projection.scale(1).translate([0, 0]);
+	var map = topojson.feature(data[0], data[0].objects.nzregions);
+	var path = d3.geoPath().projection(projection);
+	var b = path.bounds(map);
+	var box = d3.geoBounds(map);
+
+	var og = map.features.filter(function(d) { return d.properties.code != "02"; });  // Auckland
+	var uppery = d3.geoBounds(og.filter(function(d) { return d.properties.code == "01"; })[0])[0][1]; // Waikato
+	var lowery = d3.geoBounds(og.filter(function(d) { return d.properties.code == "03"; })[0])[0][1]; // Hawkes Bay
+	var leftx = d3.geoBounds(og.filter(function(d) { return d.properties.code == "12"; })[0])[1][0];  // West Coast
+	var rightx = d3.geoBounds(og.filter(function(d) { return d.properties.code == "13"; })[0])[0][0]; // Canterbury
+
+	projection.center([(box[0][0] + box[1][0])/2, (box[0][1] + box[1][1])/2]);
+
+	og.forEach(function(region, i) {
+		region.properties.data = data[1].filter(function(d) { return d.code == region.properties.code; })[0];
+		region.center = d3.geoCentroid(region);
+		region.clicked = false;
+		region.brushed = false;
+	});
+
+	var sim = d3.forceSimulation()
+		.nodes(og)
+		.on("tick", function() {
+			dots.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+		})
+		.stop();
+
+	var qt = d3.quadtree();
+	var brush = d3.brush();
+	brush.on("brush", checkarea);
+	brush.on("end", unbrush);
+
+	var regions = svg.selectAll(".gems")
+		.data(og)
+		.enter()
+		.append("path")
+		.attr("class", "gems");
+
+	svg.append("circle")
+		.attr("class", "auckland")
+		.style("filter", "url(#glow_light)");
+
+	var dots = svg.selectAll(".dots")
+		.data(og)
+		.enter()
+		.append("circle")
+		.attr("class", function(d) { return "dots " + d.properties.code; });
+
+	var toolbg = svg.append("text")
+		.attr("class", "tool bg");
+		
+	var tool = svg.append("text")
+		.attr("class", "tool");
+
+	svg.on("mousemove", function() {
+		var xy = d3.mouse(this);
+		var find = qt.find(xy[0], xy[1], 20);
+		if (find) {
+			var id = "population";
+			var c = projection(find.center);
+			toolbg.attr("x", find.x)
+				.attr("y", find.y - rscale(find.properties.data[id]))
+				.style("display", "block")
+				.text(find.properties.data.name);
+				
+			tool.attr("x", find.x)
+				.attr("y", find.y - rscale(find.properties.data[id]))
+				.style("display", "block")
+				.text(find.properties.data.name);
+		} else {
+			tool.style("display", "none");
+			toolbg.style("display", "none");
+		}
+	})
+
+	var counter = svg.append("text")
+		.attr("class", "counter")
+		.attr("dy", "-0.2em")
+		.text("0 residents (Auckland: " + nz.format(",.0f")(data[1][0].population) + ")");
+		
+	var counter2 = svg.append("text")
+		.attr("class", "counter2")
+		.attr("dy", "-1.4em")
+		.text("0 regions");
+
+	var label = svg.append("text")
+		.attr("class", "label")
+		.attr("dy", "0.35em")
+		.text("Auckland");
+	
+	label.lower();
+
+	var brush_overlay = svg.append("g")
+		.attr("class", "brush")
+		.call(brush);
+	
+	svg.select(".overlay").on("click", point);
+		
+	resize();
+	window.onresize = resize;
+
+});
+</script>
+
+
+# Data {.appendix}
+
+* 2019 estimated regional population from [Stats NZ](http://nzdotstats.stats.govt.nz): [population_rc.tsv](data/population_rc.tsv)
+* Simplified TopoJSON of regions: [nzregions.topojson](data/nzregions.topojson)
+
