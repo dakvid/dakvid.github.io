@@ -1,0 +1,63 @@
+.outer {
+  width: 100%;
+  height: 600px;
+  margin: 0 auto;
+  top: 1em;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+}
+
+svg text {
+  fill: #444444;
+}
+
+.gems {
+  fill: #eeeeee;
+  stroke: #eeeeee;
+}
+
+.auckland {
+  fill: none;
+  stroke: #f6f6f6;
+  stroke-width: 2px;
+}
+
+.dots {
+  stroke: white;
+  fill: tomato;
+}
+
+.tool {
+  display: none;
+  font-size: 14px;
+  text-anchor: middle;
+  pointer-events: none;
+  fill: #444444;
+}
+
+.tool.bg {
+  stroke: #f6f6f6;
+  stroke-width: 3px;
+  fill: none;
+}
+
+.counter, .counter2, .label {
+  font-size: 18px;
+  text-anchor: middle;
+  xfill: #99b19c;
+}
+
+.label {
+  font-size: 14px;
+}
+
+.counter.outmaxed {
+  fill: #ff5601;
+}
+
+.auckland.outmaxed {
+  stroke: #ff5601;
+}

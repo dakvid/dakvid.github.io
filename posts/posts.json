@@ -1,5 +1,25 @@
 [
   {
+    "path": "posts/2019-12-auckland2/",
+    "title": "Interatively Comparing Auckland's Population Against Other Regions",
+    "description": "How many regions does it take to match Auckland's population? Here's an interactive\nto explore the combinations.",
+    "author": [
+      {
+        "name": "David Friggens",
+        "url": {}
+      }
+    ],
+    "date": "2019-12-31",
+    "categories": [
+      "all",
+      "D3.js",
+      "maps",
+      "New Zealand"
+    ],
+    "preview": {},
+    "last_modified": "2019-12-31T13:21:43+13:00"
+  },
+  {
     "path": "posts/2019-11-boty/",
     "title": "The Yellow-eyed Penguin and the Green-eyed Parrot: Animating voting results",
     "description": "New Zealand birds and their human puppets have been fighting it out for the coveted Bird of the Year title for the 15th time. Here we animate the STV voting using R's `gganimate` package.",

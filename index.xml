@@ -7,7 +7,16 @@
     <description>A personal website of data exploration.
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sat, 16 Nov 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 31 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Interatively Comparing Auckland's Population Against Other Regions</title>
+      <dc:creator>David Friggens</dc:creator>
+      <link>https://david.frigge.nz/posts/2019-12-auckland2</link>
+      <description>How many regions does it take to match Auckland's population? Here's an interactive
+to explore the combinations.</description>
+      <guid>https://david.frigge.nz/posts/2019-12-auckland2</guid>
+      <pubDate>Tue, 31 Dec 2019 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>The Yellow-eyed Penguin and the Green-eyed Parrot: Animating voting results</title>
       <dc:creator>David Friggens</dc:creator>
