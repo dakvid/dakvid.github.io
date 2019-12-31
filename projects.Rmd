@@ -4,6 +4,11 @@ description: |
   Some of my projects that aren't in the blog.
 ---
 
+[30 Day Map Challenge Gallery](https://david.frigge.nz/30DayMapChallenge) (2019)
+:   A gallery of all the maps created on Twitter for #30DayMapChallenge. There
+were so many fantastic creations and I felt they ought to be preserved for posterity
+in some form or another.
+
 [STV Elections in New Zealand](https://david.frigge.nz/stvnz) (2019)
 
 :   Animations of Single Transferable Vote elections, and an attempt to collate
@@ -13,6 +18,8 @@ the detailed counting data in one place.
 [30 Day Map Challenge](https://david.frigge.nz/map30days) (2019)
 
 :   People on Twitter tried to make 30 maps in a month and I tried to tag along.
+After a late start (finishing the STV animations) I managed 9 maps in the last
+half of the month.
 
 
 [NZ Election Visualisation 2017](https://david.frigge.nz/election2017)
