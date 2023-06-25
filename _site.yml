@@ -5,7 +5,7 @@ description: |
 output_dir: "../blog"
 base_url: https://david.frigge.nz/
 repository_url: https://github.com/dakvid/dakvid.github.io
-google_analytics: "UA-30013353-2"
+google_analytics: "G-XXMZ722Q6J"
 navbar:
   right:
     - text: "Blog"
